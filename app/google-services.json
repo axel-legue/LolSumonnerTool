@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "835094754914",
+    "firebase_url": "https://lolsummonertool.firebaseio.com",
+    "project_id": "lolsummonertool",
+    "storage_bucket": "lolsummonertool.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835094754914:android:702f8e09ca94df40",
+        "android_client_info": {
+          "package_name": "com.legue.axel.lolsummonertool"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835094754914-fe7iagkqsu3t3ekt694in7q6bg1n66gs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.legue.axel.lolsummonertool",
+            "certificate_hash": "533090cbadecc8c5de71d2c4300cb6f522bdcbb3"
+          }
+        },
+        {
+          "client_id": "835094754914-vldfe8mfa660ftqcfblf40vt8gbm1ivh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQ_QhojiHHTINjJRqUhkOVeATpmIB9jYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835094754914-vldfe8mfa660ftqcfblf40vt8gbm1ivh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

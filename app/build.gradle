@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.legue.axel.lolsummonertool"
+        minSdkVersion 24
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes.each {
+        it.buildConfigField "String", "ADMOB_API_APPLICATION_CODE", AdMobApplicationCode
+        it.buildConfigField "String", "ADMOB_BANNER_API_KEY_TEST", AdMobBannerApiKeyTest
+        it.buildConfigField "String", "ADMOB_BANNER_API_KEY_PROD", AdMobBannerApiKeyProduction
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Android dependencies
+    implementation("com.android.support:appcompat-v7:$rootProject.ext.supportVersion", {
+        exclude group: 'com.android.support', module: 'support-media-compat'
+    })
+    implementation("com.android.support:recyclerview-v7:$rootProject.ext.supportVersion", {
+        exclude group: 'com.android.support', module: 'support-media-compat'
+    })
+
+    implementation("com.android.support:design:$rootProject.ext.supportVersion", {
+        exclude group: 'com.android.support', module: 'support-media-compat'
+    })
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
+    // Glide dependencies
+    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.ext.glideVersion"
+    // Firebase dependencies
+    implementation "com.google.firebase:firebase-core:$rootProject.ext.firebaseVersion"
+    implementation "com.google.firebase:firebase-ads:$rootProject.ext.firebaseAdsVersion"
+    implementation "com.google.firebase:firebase-crash:$rootProject.ext.firebaseCrashLyticsVersion"
+    // Retrofit dependencies
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit2Version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit2Version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit2Version"
+    // OkHttp dependencies
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okHttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.ext.okHttpVersion"
+    // Gson dependencies
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+    // Rxjava & RxAndroid dependencies
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    // Lifecycle dependencies
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.lifecycleVersion"
+    implementation "android.arch.lifecycle:common-java8:$rootProject.ext.lifecycleVersion"
+    // Room dependencies
+    implementation "android.arch.persistence.room:runtime:$rootProject.ext.roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.ext.roomVersion"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.ext.roomVersion"
+    // Butterknife dependencies
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
+    // Test dependencies
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+
+}
