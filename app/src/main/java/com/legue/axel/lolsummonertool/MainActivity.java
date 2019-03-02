@@ -1,44 +1,45 @@
 package com.legue.axel.lolsummonertool;
 
 import android.os.Bundle;
-
+import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.view.View;
-
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.legue.axel.lolsummonertool.retrofit.Constants;
+import com.legue.axel.lolsummonertool.retrofit.RetrofitHelper;
+
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private final String TAG = MainActivity.class.getName();
     private FirebaseAnalytics mFirebaseAnalytics;
+    private SuperApplication application;
+    private ResponseBody responseBody;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -48,6 +49,19 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //TODO : testing purpose => update code and move it at a better place
+        application = (SuperApplication) getApplication();
+        loadChampions();
+    }
+
+    private void loadChampions() {
+        //TODO : testing purpose => update code and move it at a better place
+        RetrofitHelper.getChampions(
+                "RGAPI-ae0c4069-cc12-4258-bb10-0667ac29a378",
+                Constants.ACTION_COMPLETE,
+                championhandler,
+                application);
     }
 
     @Override
@@ -106,4 +120,24 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    //TODO : testing purpose => update code and move it at a better place
+    private Handler championhandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            switch (msg.what) {
+                case Constants.ACTION_COMPLETE:
+
+                    if (application.getResponseBody() != null) {
+                        responseBody = application.getResponseBody();
+                        Log.i(TAG, "handleMessage: " + responseBody);
+                    }
+                    break;
+
+                case Constants.ACTION_ERROR:
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 }
