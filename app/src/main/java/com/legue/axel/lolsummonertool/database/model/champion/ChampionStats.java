@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.database.model;
+package com.legue.axel.lolsummonertool.database.model.champion;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -40,6 +40,10 @@ public class ChampionStats {
     private float attackSpeedOffset;
     @SerializedName("attackspeedperlevel")
     private float attackSpeedPerLevel;
+
+    public ChampionStats() {
+    }
+
     public ChampionStats(float hp, float hpPerLevel, float mp, float mpPerLevel, float moveSpeed,
                          float armor, float armorPerLevel, float spellBlock,
                          float spellBlockPerLevel, float attackRange, float hpRegen,

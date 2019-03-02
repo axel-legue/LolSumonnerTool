@@ -1,10 +1,20 @@
-package com.legue.axel.lolsummonertool.database.model;
+package com.legue.axel.lolsummonertool.database.model.champion;
 
 public class ChampionInfo {
     private int attack;
     private int defense;
     private int magic;
     private int difficulty;
+
+    public ChampionInfo(int attack, int defense, int magic, int difficulty) {
+        this.attack = attack;
+        this.defense = defense;
+        this.magic = magic;
+        this.difficulty = difficulty;
+    }
+
+    public ChampionInfo() {
+    }
 
     public int getAttack() {
         return attack;
@@ -35,13 +45,6 @@ public class ChampionInfo {
     }
 
     public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public ChampionInfo(int attack, int defense, int magic, int difficulty) {
-        this.attack = attack;
-        this.defense = defense;
-        this.magic = magic;
         this.difficulty = difficulty;
     }
 }

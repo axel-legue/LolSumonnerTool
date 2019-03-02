@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.util.Log;
 
-import com.legue.axel.lolsummonertool.database.model.Champion;
+import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 
 @Database(entities = {Champion.class}, version = 1, exportSchema = false)
 public abstract class SummonerToolDatabase extends RoomDatabase {

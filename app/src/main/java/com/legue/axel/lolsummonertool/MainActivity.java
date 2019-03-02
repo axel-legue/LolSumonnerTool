@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity
     private void loadChampions() {
         //TODO : testing purpose => update code and move it at a better place
         RetrofitHelper.getChampions(
-                "RGAPI-ae0c4069-cc12-4258-bb10-0667ac29a378",
                 Constants.ACTION_COMPLETE,
                 championhandler,
                 application);
@@ -120,6 +119,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     //TODO : testing purpose => update code and move it at a better place
     private Handler championhandler = new Handler() {
         @Override

@@ -1,4 +1,6 @@
-package com.legue.axel.lolsummonertool.database.model;
+package com.legue.axel.lolsummonertool.database.model.champion;
+
+import com.legue.axel.lolsummonertool.database.model.RiotImage;
 
 import java.util.List;
 
@@ -10,12 +12,15 @@ public class Champion {
     private String title;
     private String blurb;   // Texte de présentation
     private ChampionInfo championInfo;
-    private ChampionImage championImage;
+    private RiotImage riotImage;
     private List<String> tags;
     private String partype;
     private ChampionStats championStats;
 
-    public Champion(String version, String id, String key, String name, String title, String blurb, ChampionInfo championInfo, ChampionImage championImage, List<String> tags, String partype, ChampionStats championStats) {
+    public Champion() {
+    }
+
+    public Champion(String version, String id, String key, String name, String title, String blurb, ChampionInfo championInfo, RiotImage riotImage, List<String> tags, String partype, ChampionStats championStats) {
         this.version = version;
         this.id = id;
         this.key = key;
@@ -23,7 +28,7 @@ public class Champion {
         this.title = title;
         this.blurb = blurb;
         this.championInfo = championInfo;
-        this.championImage = championImage;
+        this.riotImage = riotImage;
         this.tags = tags;
         this.partype = partype;
         this.championStats = championStats;
@@ -85,12 +90,12 @@ public class Champion {
         this.championInfo = championInfo;
     }
 
-    public ChampionImage getChampionImage() {
-        return championImage;
+    public RiotImage getRiotImage() {
+        return riotImage;
     }
 
-    public void setChampionImage(ChampionImage championImage) {
-        this.championImage = championImage;
+    public void setRiotImage(RiotImage riotImage) {
+        this.riotImage = riotImage;
     }
 
     public List<String> getTags() {

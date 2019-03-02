@@ -1,6 +1,6 @@
 package com.legue.axel.lolsummonertool.database.model;
 
-public class ChampionImage {
+public class RiotImage {
     private String full;
     private String sprite;
     private String group;
@@ -9,7 +9,11 @@ public class ChampionImage {
     private int w;
     private int h;
 
-    public ChampionImage(String full, String sprite, String group, int x, int y, int w, int h) {
+
+    public RiotImage() {
+    }
+
+    public RiotImage(String full, String sprite, String group, int x, int y, int w, int h) {
         this.full = full;
         this.sprite = sprite;
         this.group = group;
