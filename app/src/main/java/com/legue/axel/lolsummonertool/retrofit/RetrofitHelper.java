@@ -16,9 +16,9 @@ import retrofit2.HttpException;
 public class RetrofitHelper {
     private static final String TAG = RetrofitHelper.class.getSimpleName();
 
-    public static void getChampions(String ApiKey, final int action, final Handler handlerMessage, final SuperApplication application) {
+    public static void getChampions(final int action, final Handler handlerMessage, final SuperApplication application) {
 
-        application.getRetrofitManager().getChampions(ApiKey)
+        application.getRetrofitManager().getChampions()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResponseBody>() {
