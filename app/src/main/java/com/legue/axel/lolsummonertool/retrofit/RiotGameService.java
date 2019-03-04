@@ -7,5 +7,5 @@ import retrofit2.http.GET;
 public interface RiotGameService {
 
     @GET("lol/summoner/v3/summoners/by-name/{name}")
-    Observable<ResponseBody> getChampions();
+    Observable<ResponseBody> getSummonersByName();
 }

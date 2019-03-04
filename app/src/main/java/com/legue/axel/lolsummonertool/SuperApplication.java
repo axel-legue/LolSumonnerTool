@@ -2,6 +2,7 @@ package com.legue.axel.lolsummonertool;
 
 import android.app.Application;
 
+import com.legue.axel.lolsummonertool.network.ChampionsResponse;
 import com.legue.axel.lolsummonertool.retrofit.RetrofitManager;
 
 import okhttp3.ResponseBody;
@@ -10,7 +11,7 @@ public class SuperApplication extends Application {
 
     private static SuperApplication instance;
     private RetrofitManager mRetrofitManager;
-    private ResponseBody responseBody;
+    private ChampionsResponse championsResponse;
 
     public static SuperApplication getInstance() {
         return instance;
@@ -27,11 +28,11 @@ public class SuperApplication extends Application {
         return mRetrofitManager;
     }
 
-    public ResponseBody getResponseBody() {
-        return responseBody;
+    public ChampionsResponse getChampionsResponse() {
+        return championsResponse;
     }
 
-    public void setResponseBody(ResponseBody responseBody) {
-        this.responseBody = responseBody;
+    public void setChampionsResponse(ChampionsResponse championsResponse) {
+        this.championsResponse = championsResponse;
     }
 }

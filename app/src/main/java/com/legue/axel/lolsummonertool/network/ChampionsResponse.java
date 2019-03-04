@@ -3,6 +3,7 @@ package com.legue.axel.lolsummonertool.network;
 import com.google.gson.annotations.SerializedName;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ChampionsResponse {
@@ -11,9 +12,9 @@ public class ChampionsResponse {
     private String format;
     private String version;
     @SerializedName("data")
-    private List<Champion> championList;
+    private HashMap<String, Champion> championList;
 
-    public ChampionsResponse(String type, String format, String version, List<Champion> championList) {
+    public ChampionsResponse(String type, String format, String version, HashMap<String, Champion> championList) {
         this.type = type;
         this.format = format;
         this.version = version;
@@ -44,11 +45,11 @@ public class ChampionsResponse {
         this.version = version;
     }
 
-    public List<Champion> getChampionList() {
+    public HashMap<String, Champion> getChampionList() {
         return championList;
     }
 
-    public void setChampionList(List<Champion> championList) {
+    public void setChampionList(HashMap<String, Champion> championList) {
         this.championList = championList;
     }
 }

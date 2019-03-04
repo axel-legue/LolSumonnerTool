@@ -1,6 +1,8 @@
 package com.legue.axel.lolsummonertool.retrofit;
 
 
+import com.legue.axel.lolsummonertool.network.ChampionsResponse;
+
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -53,7 +55,7 @@ public class RetrofitManager {
         riotGameService = retrofitRiotGame.create(RiotGameService.class);
     }
 
-    public Observable<ResponseBody> getChampions() {
+    public Observable<ChampionsResponse> getChampions() {
         return riotDragonService.getChampions();
     }
 

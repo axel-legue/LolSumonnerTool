@@ -1,6 +1,13 @@
 package com.legue.axel.lolsummonertool.database.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "images")
 public class RiotImage {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String full;
     private String sprite;
     private String group;
@@ -9,7 +16,7 @@ public class RiotImage {
     private int w;
     private int h;
 
-
+    @Ignore
     public RiotImage() {
     }
 

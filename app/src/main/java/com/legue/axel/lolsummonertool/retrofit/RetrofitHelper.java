@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.legue.axel.lolsummonertool.SuperApplication;
+import com.legue.axel.lolsummonertool.network.ChampionsResponse;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -21,7 +22,7 @@ public class RetrofitHelper {
         application.getRetrofitManager().getChampions()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
+                .subscribe(new Observer<ChampionsResponse>() {
 
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -29,10 +30,10 @@ public class RetrofitHelper {
                     }
 
                     @Override
-                    public void onNext(ResponseBody responseBody) {
-                        if (responseBody != null) {
-                            Log.i(TAG, "onNext: " + responseBody);
-                            application.setResponseBody(responseBody);
+                    public void onNext(ChampionsResponse championsResponse) {
+                        if (championsResponse != null) {
+                            Log.i(TAG, "onNext: " + championsResponse);
+                            application.setChampionsResponse(championsResponse);
                         }
                     }
 

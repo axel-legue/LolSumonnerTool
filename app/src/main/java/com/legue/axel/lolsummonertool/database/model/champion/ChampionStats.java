@@ -1,8 +1,15 @@
 package com.legue.axel.lolsummonertool.database.model.champion;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "champions_stats")
 public class ChampionStats {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private float hp;
     @SerializedName("hpperlevel")
     private float hpPerLevel;
@@ -41,15 +48,18 @@ public class ChampionStats {
     @SerializedName("attackspeedperlevel")
     private float attackSpeedPerLevel;
 
+
+    @Ignore
     public ChampionStats() {
     }
 
-    public ChampionStats(float hp, float hpPerLevel, float mp, float mpPerLevel, float moveSpeed,
+    public ChampionStats(int id, float hp, float hpPerLevel, float mp, float mpPerLevel, float moveSpeed,
                          float armor, float armorPerLevel, float spellBlock,
                          float spellBlockPerLevel, float attackRange, float hpRegen,
                          float hpRegenPerLevel, float mpRegen, float mpRegenPerLevel, float crit,
                          float critPerLevel, float attackDamage, float attackDamagePerLevel,
                          float attackSpeedOffset, float attackSpeedPerLevel) {
+        this.id = id;
         this.hp = hp;
         this.hpPerLevel = hpPerLevel;
         this.mp = mp;
@@ -72,6 +82,13 @@ public class ChampionStats {
         this.attackSpeedPerLevel = attackSpeedPerLevel;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public float getHp() {
         return hp;

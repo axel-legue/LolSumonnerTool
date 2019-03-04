@@ -1,45 +1,37 @@
 package com.legue.axel.lolsummonertool.database.model.champion;
 
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
-import java.util.List;
+import io.reactivex.annotations.NonNull;
 
+@Entity(tableName = "champions")
 public class Champion {
-    private String version;
-    private String id;
+
+    @PrimaryKey()
+    @NonNull
     private String key;
+    @Ignore
+    private String id;
     private String name;
     private String title;
-    private String blurb;   // Texte de présentation
-    private ChampionInfo championInfo;
-    private RiotImage riotImage;
-    private List<String> tags;
+    private String lore;
+    private String blurb;
     private String partype;
-    private ChampionStats championStats;
 
+    @Ignore
     public Champion() {
     }
 
-    public Champion(String version, String id, String key, String name, String title, String blurb, ChampionInfo championInfo, RiotImage riotImage, List<String> tags, String partype, ChampionStats championStats) {
-        this.version = version;
+    public Champion(String id, String key, String name, String title, String partype, String lore, String blurb) {
         this.id = id;
         this.key = key;
         this.name = name;
         this.title = title;
+        this.lore = lore;
         this.blurb = blurb;
-        this.championInfo = championInfo;
-        this.riotImage = riotImage;
-        this.tags = tags;
         this.partype = partype;
-        this.championStats = championStats;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
     }
 
     public String getId() {
@@ -74,36 +66,20 @@ public class Champion {
         this.title = title;
     }
 
+    public String getLore() {
+        return lore;
+    }
+
+    public void setLore(String lore) {
+        this.lore = lore;
+    }
+
     public String getBlurb() {
         return blurb;
     }
 
     public void setBlurb(String blurb) {
         this.blurb = blurb;
-    }
-
-    public ChampionInfo getChampionInfo() {
-        return championInfo;
-    }
-
-    public void setChampionInfo(ChampionInfo championInfo) {
-        this.championInfo = championInfo;
-    }
-
-    public RiotImage getRiotImage() {
-        return riotImage;
-    }
-
-    public void setRiotImage(RiotImage riotImage) {
-        this.riotImage = riotImage;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
     }
 
     public String getPartype() {
@@ -114,11 +90,5 @@ public class Champion {
         this.partype = partype;
     }
 
-    public ChampionStats getChampionStats() {
-        return championStats;
-    }
 
-    public void setChampionStats(ChampionStats championStats) {
-        this.championStats = championStats;
-    }
 }

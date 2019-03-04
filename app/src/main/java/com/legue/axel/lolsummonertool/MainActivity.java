@@ -16,17 +16,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.legue.axel.lolsummonertool.network.ChampionsResponse;
 import com.legue.axel.lolsummonertool.retrofit.Constants;
 import com.legue.axel.lolsummonertool.retrofit.RetrofitHelper;
-
-import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final String TAG = MainActivity.class.getName();
     private FirebaseAnalytics mFirebaseAnalytics;
     private SuperApplication application;
-    private ResponseBody responseBody;
+    private ChampionsResponse championsResponse;
+
+    //TODO : General : add relation in Models and add default Dao CRUD
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,9 +129,9 @@ public class MainActivity extends AppCompatActivity
             switch (msg.what) {
                 case Constants.ACTION_COMPLETE:
 
-                    if (application.getResponseBody() != null) {
-                        responseBody = application.getResponseBody();
-                        Log.i(TAG, "handleMessage: " + responseBody);
+                    if (application.getChampionsResponse() != null) {
+                        championsResponse = application.getChampionsResponse();
+                        Log.i(TAG, "handleMessage: " + championsResponse);
                     }
                     break;
 
