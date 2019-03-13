@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
 
     //TODO : General : add relation in Models and add default Dao CRUD
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

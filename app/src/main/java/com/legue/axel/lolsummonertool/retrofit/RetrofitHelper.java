@@ -11,7 +11,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
 public class RetrofitHelper {
@@ -34,6 +33,9 @@ public class RetrofitHelper {
                         if (championsResponse != null) {
                             Log.i(TAG, "onNext: " + championsResponse);
                             application.setChampionsResponse(championsResponse);
+                            // TODO Work Manager for database insertion.
+                        }else{
+                            Log.i(TAG, "onNext: getChampions response is null");
                         }
                     }
 

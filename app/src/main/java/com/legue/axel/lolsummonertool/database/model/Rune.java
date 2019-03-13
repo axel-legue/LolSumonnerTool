@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 public class Rune {
 
     @SerializedName("isrune")
-    private boolean isRune;
-    private int tier;
-    private String type;
+    public boolean isRune;
+    public int tier;
+    public String type;
 
     public Rune() {
     }
@@ -18,27 +18,4 @@ public class Rune {
         this.type = type;
     }
 
-    public boolean isRune() {
-        return isRune;
-    }
-
-    public void setRune(boolean rune) {
-        isRune = rune;
-    }
-
-    public int getTier() {
-        return tier;
-    }
-
-    public void setTier(int tier) {
-        this.tier = tier;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

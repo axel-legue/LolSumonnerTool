@@ -18,7 +18,4 @@ public class Effect {
         return integerList;
     }
 
-    public void setIntegerList(List<Integer> integerList) {
-        this.integerList = integerList;
-    }
 }

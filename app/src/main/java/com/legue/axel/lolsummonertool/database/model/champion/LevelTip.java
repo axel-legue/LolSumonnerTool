@@ -11,43 +11,15 @@ import java.util.List;
 @Entity(tableName = "level_tip")
 public class LevelTip {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    @SerializedName("label")
-    private List<String> labels;
-    @SerializedName("effect")
-    private List<String> effects;
+    public int id;
+    // TODO : add relation between LevelTip and Labels / Effecs
 
     @Ignore
     public LevelTip() {
     }
 
-    public LevelTip(int id, List<String> labels, List<String> effects) {
-        this.id = id;
-        this.labels = labels;
-        this.effects = effects;
-    }
-
-    public List<String> getLabels() {
-        return labels;
-    }
-
-    public void setLabels(List<String> labels) {
-        this.labels = labels;
-    }
-
-    public List<String> getEffects() {
-        return effects;
-    }
-
-    public void setEffects(List<String> effects) {
-        this.effects = effects;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public LevelTip(int id) {
         this.id = id;
     }
+
 }

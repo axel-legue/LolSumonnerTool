@@ -1,51 +1,33 @@
 package com.legue.axel.lolsummonertool.database.model.champion;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
-
-@Entity(tableName = "passive")
+@Entity(tableName = "passives",
+        foreignKeys = @ForeignKey(
+                entity = Champion.class,
+                parentColumns = "key",
+                childColumns = "championId"
+        ))
 public class Passive {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String name;
-    private String description;
-    // TODO ADD RELATION  BETWEEN Passive and  RiotImage
+    public int id;
+    public String name;
+    public String description;
+    @ColumnInfo(index = true)
+    public int championId;
 
     @Ignore
     public Passive() {
     }
 
-    public Passive(int id, String name, String description, RiotImage image) {
+    public Passive(int id, String name, String description, int championId) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.championId = championId;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }

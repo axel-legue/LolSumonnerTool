@@ -7,8 +7,8 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "ennemy_tip")
 public class EnnemyTip {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String ennemytip;
+    public int id;
+    public String ennemytip;
 
     @Ignore
     public EnnemyTip() {
@@ -19,20 +19,5 @@ public class EnnemyTip {
         this.ennemytip = ennemytip;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getEnnemytip() {
-        return ennemytip;
-    }
-
-    public void setEnnemytip(String ennemytip) {
-        this.ennemytip = ennemytip;
-    }
 
 }

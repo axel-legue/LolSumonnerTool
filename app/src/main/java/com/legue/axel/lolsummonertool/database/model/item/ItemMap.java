@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class ItemMap {
     @SerializedName("1")
-    private boolean one;
+    public boolean one;
     @SerializedName("8")
-    private boolean height;
+    public boolean height;
     @SerializedName("10")
-    private boolean ten;
+    public boolean ten;
     @SerializedName("12")
-    private boolean twelve;
+    public boolean twelve;
 
     public ItemMap() {
     }
@@ -22,35 +22,4 @@ public class ItemMap {
         this.twelve = twelve;
     }
 
-    public boolean isOne() {
-        return one;
-    }
-
-    public void setOne(boolean one) {
-        this.one = one;
-    }
-
-    public boolean isHeight() {
-        return height;
-    }
-
-    public void setHeight(boolean height) {
-        this.height = height;
-    }
-
-    public boolean isTen() {
-        return ten;
-    }
-
-    public void setTen(boolean ten) {
-        this.ten = ten;
-    }
-
-    public boolean isTwelve() {
-        return twelve;
-    }
-
-    public void setTwelve(boolean twelve) {
-        this.twelve = twelve;
-    }
 }

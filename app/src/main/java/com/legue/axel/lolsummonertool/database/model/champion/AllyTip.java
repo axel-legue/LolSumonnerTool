@@ -10,33 +10,18 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "allytips")
 public class AllyTip {
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    public int id;
     @SerializedName("allytip")
     @ColumnInfo(name = "allyTip")
-    private String allyTip;
+    public String allyTip;
 
     @Ignore
     public AllyTip() {
     }
 
-    public AllyTip(int id, String allytip) {
+    public AllyTip(int id, String allyTip) {
         this.id = id;
-        this.allyTip = allytip;
+        this.allyTip = allyTip;
     }
-
-    public String getAllytip() {
-        return allyTip;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setAllytip(String allytip) {
-        this.allyTip = allytip;
-    }
+    
 }

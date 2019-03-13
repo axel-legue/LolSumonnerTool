@@ -1,16 +1,19 @@
 package com.legue.axel.lolsummonertool.database.model.champion;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "vars")
 public class Var {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private String link;
-    private Float coeff;
-    private String key;
+    public int id;
+    public String link;
+    public Float coeff;
+    public String key;
 
+    @Ignore
     public Var() {
     }
 
@@ -21,35 +24,4 @@ public class Var {
         this.key = key;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public Float getCoeff() {
-        return coeff;
-    }
-
-    public void setCoeff(Float coeff) {
-        this.coeff = coeff;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
 }

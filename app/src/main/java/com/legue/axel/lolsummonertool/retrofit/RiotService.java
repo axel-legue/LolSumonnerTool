@@ -4,9 +4,10 @@ import com.legue.axel.lolsummonertool.network.ChampionsResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Url;
 
-public interface RiotDragonService {
+public interface RiotService {
 
-    @GET("cdn/6.24.1/data/en_US/champion.json")
-    Observable<ChampionsResponse> getChampions();
+    @GET
+    Observable<ChampionsResponse> getChampions(@Url String url);
 }

@@ -1,64 +1,73 @@
 package com.legue.axel.lolsummonertool.database.model.champion;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "champions_stats")
+@Entity(tableName = "champion_stats",
+        foreignKeys = @ForeignKey(
+                entity = Champion.class,
+                parentColumns = "key",
+                childColumns = "championId"
+        ))
 public class ChampionStats {
     @PrimaryKey(autoGenerate = true)
-    private int id;
-    private float hp;
+    public int id;
+    public float hp;
     @SerializedName("hpperlevel")
-    private float hpPerLevel;
-    private float mp;
+    public float hpPerLevel;
+    public float mp;
     @SerializedName("mpperlevel")
-    private float mpPerLevel;
+    public float mpPerLevel;
     @SerializedName("movespeed")
-    private float moveSpeed;
-    private float armor;
+    public float moveSpeed;
+    public float armor;
     @SerializedName("armorperlevel")
-    private float armorPerLevel;
+    public float armorPerLevel;
     @SerializedName("spellblock")
-    private float spellBlock;
+    public float spellBlock;
     @SerializedName("spellblockperlevel")
-    private float spellBlockPerLevel;
+    public float spellBlockPerLevel;
     @SerializedName("attackrange")
-    private float attackRange;
+    public float attackRange;
     @SerializedName("hpregen")
-    private float hpRegen;
+    public float hpRegen;
     @SerializedName("hpregenperlevel")
-    private float HpRegenPerLevel;
+    public float hpRegenPerLevel;
     @SerializedName("mpregen")
-    private float mpRegen;
+    public float mpRegen;
     @SerializedName("mpregenperlevel")
-    private float mpRegenPerLevel;
+    public float mpRegenPerLevel;
     @SerializedName("crit")
-    private float crit;
+    public float crit;
     @SerializedName("critperlevel")
-    private float critPerLevel;
+    public float critPerLevel;
     @SerializedName("attackdamage")
-    private float attackDamage;
+    public float attackDamage;
     @SerializedName("attackdamageperlevel")
-    private float attackDamagePerLevel;
-    @SerializedName("attackspeedoffset")
-    private float attackSpeedOffset;
+    public float attackDamagePerLevel;
     @SerializedName("attackspeedperlevel")
-    private float attackSpeedPerLevel;
+    public float attackSpeedPerLevel;
+    @SerializedName("attackspeed")
+    public float attackSpeed;
+    @ColumnInfo(index = true)
+    public int championId;
 
 
     @Ignore
     public ChampionStats() {
     }
 
-    public ChampionStats(int id, float hp, float hpPerLevel, float mp, float mpPerLevel, float moveSpeed,
-                         float armor, float armorPerLevel, float spellBlock,
+    public ChampionStats(int id, float hp, float hpPerLevel, float mp, float mpPerLevel,
+                         float moveSpeed, float armor, float armorPerLevel, float spellBlock,
                          float spellBlockPerLevel, float attackRange, float hpRegen,
                          float hpRegenPerLevel, float mpRegen, float mpRegenPerLevel, float crit,
                          float critPerLevel, float attackDamage, float attackDamagePerLevel,
-                         float attackSpeedOffset, float attackSpeedPerLevel) {
+                         float attackSpeedPerLevel, float attackSpeed, int championId) {
         this.id = id;
         this.hp = hp;
         this.hpPerLevel = hpPerLevel;
@@ -71,182 +80,15 @@ public class ChampionStats {
         this.spellBlockPerLevel = spellBlockPerLevel;
         this.attackRange = attackRange;
         this.hpRegen = hpRegen;
-        HpRegenPerLevel = hpRegenPerLevel;
+        this.hpRegenPerLevel = hpRegenPerLevel;
         this.mpRegen = mpRegen;
         this.mpRegenPerLevel = mpRegenPerLevel;
         this.crit = crit;
         this.critPerLevel = critPerLevel;
         this.attackDamage = attackDamage;
         this.attackDamagePerLevel = attackDamagePerLevel;
-        this.attackSpeedOffset = attackSpeedOffset;
         this.attackSpeedPerLevel = attackSpeedPerLevel;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public float getHp() {
-        return hp;
-    }
-
-    public void setHp(float hp) {
-        this.hp = hp;
-    }
-
-    public float getHpPerLevel() {
-        return hpPerLevel;
-    }
-
-    public void setHpPerLevel(float hpPerLevel) {
-        this.hpPerLevel = hpPerLevel;
-    }
-
-    public float getMp() {
-        return mp;
-    }
-
-    public void setMp(float mp) {
-        this.mp = mp;
-    }
-
-    public float getMpPerLevel() {
-        return mpPerLevel;
-    }
-
-    public void setMpPerLevel(float mpPerLevel) {
-        this.mpPerLevel = mpPerLevel;
-    }
-
-    public float getMoveSpeed() {
-        return moveSpeed;
-    }
-
-    public void setMoveSpeed(float moveSpeed) {
-        this.moveSpeed = moveSpeed;
-    }
-
-    public float getArmor() {
-        return armor;
-    }
-
-    public void setArmor(float armor) {
-        this.armor = armor;
-    }
-
-    public float getArmorPerLevel() {
-        return armorPerLevel;
-    }
-
-    public void setArmorPerLevel(float armorPerLevel) {
-        this.armorPerLevel = armorPerLevel;
-    }
-
-    public float getSpellBlock() {
-        return spellBlock;
-    }
-
-    public void setSpellBlock(float spellBlock) {
-        this.spellBlock = spellBlock;
-    }
-
-    public float getSpellBlockPerLevel() {
-        return spellBlockPerLevel;
-    }
-
-    public void setSpellBlockPerLevel(float spellBlockPerLevel) {
-        this.spellBlockPerLevel = spellBlockPerLevel;
-    }
-
-    public float getAttackRange() {
-        return attackRange;
-    }
-
-    public void setAttackRange(float attackRange) {
-        this.attackRange = attackRange;
-    }
-
-    public float getHpRegen() {
-        return hpRegen;
-    }
-
-    public void setHpRegen(float hpRegen) {
-        this.hpRegen = hpRegen;
-    }
-
-    public float getHpRegenPerLevel() {
-        return HpRegenPerLevel;
-    }
-
-    public void setHpRegenPerLevel(float hpRegenPerLevel) {
-        HpRegenPerLevel = hpRegenPerLevel;
-    }
-
-    public float getMpRegen() {
-        return mpRegen;
-    }
-
-    public void setMpRegen(float mpRegen) {
-        this.mpRegen = mpRegen;
-    }
-
-    public float getMpRegenPerLevel() {
-        return mpRegenPerLevel;
-    }
-
-    public void setMpRegenPerLevel(float mpRegenPerLevel) {
-        this.mpRegenPerLevel = mpRegenPerLevel;
-    }
-
-    public float getCrit() {
-        return crit;
-    }
-
-    public void setCrit(float crit) {
-        this.crit = crit;
-    }
-
-    public float getCritPerLevel() {
-        return critPerLevel;
-    }
-
-    public void setCritPerLevel(float critPerLevel) {
-        this.critPerLevel = critPerLevel;
-    }
-
-    public float getAttackDamage() {
-        return attackDamage;
-    }
-
-    public void setAttackDamage(float attackDamage) {
-        this.attackDamage = attackDamage;
-    }
-
-    public float getAttackDamagePerLevel() {
-        return attackDamagePerLevel;
-    }
-
-    public void setAttackDamagePerLevel(float attackDamagePerLevel) {
-        this.attackDamagePerLevel = attackDamagePerLevel;
-    }
-
-    public float getAttackSpeedOffset() {
-        return attackSpeedOffset;
-    }
-
-    public void setAttackSpeedOffset(float attackSpeedOffset) {
-        this.attackSpeedOffset = attackSpeedOffset;
-    }
-
-    public float getAttackSpeedPerLevel() {
-        return attackSpeedPerLevel;
-    }
-
-    public void setAttackSpeedPerLevel(float attackSpeedPerLevel) {
-        this.attackSpeedPerLevel = attackSpeedPerLevel;
+        this.attackSpeed = attackSpeed;
+        this.championId = championId;
     }
 }
