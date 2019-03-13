@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "cooldown")
+@Entity(tableName = "cooldowns")
 public class Cooldown {
     @PrimaryKey(autoGenerate = true)
     public int id;

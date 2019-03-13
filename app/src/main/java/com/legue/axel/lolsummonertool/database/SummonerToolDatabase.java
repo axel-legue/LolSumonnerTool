@@ -6,6 +6,21 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.util.Log;
 
+import com.legue.axel.lolsummonertool.database.dao.RiotImageDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.AllyTipDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.BlockDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.ChampionDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.ChampionInfoDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.ChampionStatDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.CooldownDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.EnnemyTipDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.LevelTipDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.PassiveDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.RecommendedDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.SkinDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.SpellDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.TagDao;
+import com.legue.axel.lolsummonertool.database.dao.champion.VarDao;
 import com.legue.axel.lolsummonertool.database.model.RiotImage;
 import com.legue.axel.lolsummonertool.database.model.champion.AllyTip;
 import com.legue.axel.lolsummonertool.database.model.champion.Block;
@@ -65,5 +80,35 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
 
         return sInstance;
     }
+
+    public abstract AllyTipDao allyTipDao();
+
+    public abstract BlockDao blockDao();
+
+    public abstract ChampionDao championDao();
+
+    public abstract ChampionInfoDao championInfoDao();
+
+    public abstract ChampionStatDao championStatDao();
+
+    public abstract CooldownDao cooldownDao();
+
+    public abstract EnnemyTipDao ennemyTipDao();
+
+    public abstract LevelTipDao levelTipDao();
+
+    public abstract PassiveDao passiveDao();
+
+    public abstract RecommendedDao recommendedDao();
+
+    public abstract SkinDao skinDao();
+
+    public abstract SpellDao spellDao();
+
+    public abstract TagDao tagDao();
+
+    public abstract VarDao varDao();
+
+    public abstract RiotImageDao riotImageDao();
 
 }
