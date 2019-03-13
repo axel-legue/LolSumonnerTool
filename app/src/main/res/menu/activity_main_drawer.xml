@@ -5,33 +5,33 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_builds"
+            android:icon="@drawable/ic_build_black_24dp"
+            android:title="@string/nav_builds" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_profil"
+            android:icon="@drawable/ic_profil_black_24dp"
+            android:title="@string/nav_profil" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_bans"
+            android:icon="@drawable/ic_bans_black_24dp"
+            android:title="@string/nav_bans" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_wiki"
+            android:icon="@drawable/ic_dictionary_black_24dp"
+            android:title="@string/nav_wiki" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/nav_group_about">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback_black_24dp"
+                android:title="@string/nav_feedback" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_privacy"
+                android:icon="@drawable/ic_privacy_black_24dp"
+                android:title="@string/nav_policy_licence" />
         </menu>
     </item>
 

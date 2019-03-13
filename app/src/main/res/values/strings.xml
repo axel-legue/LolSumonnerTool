@@ -2,8 +2,21 @@
     <string name="app_name">LolSummonerTool</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Summoner\'s Tool</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+
+    <!--Settings Main Menu-->
+    <string name="action_sort_by">Sort by</string>
+    <string name="action_search">search</string>
+    <string name="action_filter">filter</string>
+
+    <!-- Action Drawer Menu-->
+    <string name="nav_builds">Builds</string>
+    <string name="nav_profil">Profil</string>
+    <string name="nav_bans">Bans</string>
+    <string name="nav_wiki">Wiki</string>
+    <string name="nav_feedback">Feedback</string>
+    <string name="nav_policy_licence">Policy / Licence</string>
+    <string name="nav_group_about">About</string>
+
 </resources>
