@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -27,15 +30,19 @@ import com.legue.axel.lolsummonertool.retrofit.RetrofitHelper;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final String TAG = MainActivity.class.getName();
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private SuperApplication application;
-    private ChampionsResponse championsResponse;
-    private ChampionDetailResponse championDetailResponse;
 
-    private ImageView testPicasso;
+    @BindView(R.id.fl_content)
+    FrameLayout flContent;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+
+
     private Context context;
 
     //TODO : General : add relation in Models and add default Dao CRUD
@@ -59,20 +66,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        testPicasso = findViewById(R.id.test_image);
-
-        //TODO : testing purpose => update code and move it at a better place
-        application = (SuperApplication) getApplication();
-        loadChampions();
+        displaySelectedScreen(R.id.nav_builds);
     }
 
-    private void loadChampions() {
-        //TODO : testing purpose => update code and move it at a better place
-        RetrofitHelper.getChampions(
-                Constants.ACTION_COMPLETE,
-                championhandler,
-                application);
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -111,62 +108,48 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        displaySelectedScreen(id);
+        return true;
+    }
 
-        if (id == R.id.nav_builds) {
-            // Handle the build action
-        } else if (id == R.id.nav_profil) {
+    private void displaySelectedScreen(int id) {
+        Fragment fragment = null;
 
-        } else if (id == R.id.nav_bans) {
+        switch (id) {
+            case R.id.nav_builds:
+                fragment = new BuildsFragment();
+                break;
+            case R.id.nav_profil:
+                // TODO : replace with correct fragment
+                fragment = new BuildsFragment();
+                break;
+            case R.id.nav_bans:
+                // TODO : replace with correct fragment
+                fragment = new BuildsFragment();
+                break;
+            case R.id.nav_wiki:
+                // TODO : replace with correct fragment
+                fragment = new BuildsFragment();
+                break;
+            case R.id.nav_feedback:
+                // TODO : replace with correct fragment
+                fragment = new BuildsFragment();
+                break;
+            case R.id.nav_privacy:
+                // TODO : replace with correct fragment
+                fragment = new BuildsFragment();
+                break;
+        }
 
-        } else if (id == R.id.nav_wiki) {
-
-        } else if (id == R.id.nav_feedback) {
-
-        } else if (id == R.id.nav_privacy) {
-
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fl_content, fragment)
+                    .commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
-    private Handler championhandler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(Message msg) {
-
-            switch (msg.what) {
-                case Constants.ACTION_COMPLETE:
-
-                    if (application.getChampionsResponse() != null) {
-                        championsResponse = application.getChampionsResponse();
-                        Log.i(TAG, "handleMessage: " + championsResponse);
-                        printMap(championsResponse.getChampionList());
-                        //TODO: clean code : Test Display Glide Image from ChampionResponse
-                        Uri uri = Uri.parse("http://ddragon.leagueoflegends.com/cdn/9.5.1/img/champion/" + championDetailResponse.getImage().full);
-                        Glide.with(context)
-                                .load(uri)
-                                .circleCrop()
-                                .into(testPicasso);
-                    }
-                    break;
-
-                case Constants.ACTION_ERROR:
-                    break;
-            }
-            return true;
-        }
-    });
-
-    // TODO : clean code : Test iterate LinkedHashMap
-    private void printMap(HashMap hashMap) {
-        Iterator it = hashMap.entrySet().iterator();
-        while (it.hasNext()) {
-            HashMap.Entry pair = (HashMap.Entry) it.next();
-            String key = (String) pair.getKey();
-            championDetailResponse = (ChampionDetailResponse) pair.getValue();
-            it.remove();
-            return;
-        }
-    }
 }

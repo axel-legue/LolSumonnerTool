@@ -40,5 +40,7 @@
     <!-- Key Lines -->
     <dimen name="key_lines_vertical_1">16dp</dimen>
     <dimen name="key_lines_vertical_2">72dp</dimen>
+    <!-- Banner-->
+    <dimen name="banner_height">60dp</dimen>
 
 </resources>
