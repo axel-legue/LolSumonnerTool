@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_wrapper_champion"
+    style="@style/champion_adapter_card">
+
+    <ImageView
+        android:id="@+id/iv_champion"
+        style="@style/champion_adapter_image"
+        android:src="@drawable/ic_placeholder_black_24dp" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/champion_adapter_text"
+        tools:text="Vladimir" />
+
+</LinearLayout>

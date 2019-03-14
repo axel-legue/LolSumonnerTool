@@ -32,7 +32,5 @@ public class Champion {
         this.blurb = blurb;
         this.partype = partype;
     }
-    
-
 
 }

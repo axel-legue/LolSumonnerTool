@@ -13,25 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitManager {
 
     private static final String TAG = RetrofitManager.class.getSimpleName();
-    // Content Delivery Network
-    private static final String API_DRAGON_BASE_CDN = "https://ddragon.leagueoflegends.com/cdn/";
-
-    private static final String API_ITEM_VERSION = "9.5.1";
-    private static final String API_RUNE_VERSION = "7.23.1";
-    private static final String API_MASTERY_VERSION = "7.23.1";
-    private static final String API_SUMMONER_VERSION = "9.5.1";
-    private static final String API_CHAMPION_VERSION = "9.5.1";
-    private static final String API_PROFIL_ICON_VERSION = "9.5.1";
-    private static final String API_MAP_VERSION = "9.5.1";
-    private static final String API_LANGUAGE_VERSION = "9.5.1";
-    private static final String API_STICKER_VERSION = "9.5.1";
-
-    private static final String API_TYPE_DATA = "data";
-    private static final String API_TYPE_IMAGE = "img";
-
-    private static final String LANGUAGE_KEY = "en_GB";
-    private static final String API_KEY = "api_key";
-
     private final RiotService riotService;
 
 
@@ -48,7 +29,7 @@ public class RetrofitManager {
                 .build();
 
         Retrofit retrofitDataDragon = new Retrofit.Builder()
-                .baseUrl(API_DRAGON_BASE_CDN)
+                .baseUrl(Constants.API_DRAGON_BASE_CDN)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -59,7 +40,7 @@ public class RetrofitManager {
     }
 
     public Observable<ChampionsResponse> getChampions() {
-        String url = API_DRAGON_BASE_CDN + API_CHAMPION_VERSION + "/" + API_TYPE_DATA + "/" + LANGUAGE_KEY + "/" + "champion.json";
+        String url = Constants.API_DRAGON_BASE_CDN + Constants.API_CHAMPION_VERSION + "/" + Constants.API_TYPE_DATA + "/" + Constants.LANGUAGE_KEY + "/" + "champion.json";
         return riotService.getChampions(url);
     }
 

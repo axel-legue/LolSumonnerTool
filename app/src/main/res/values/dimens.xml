@@ -4,5 +4,41 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Margin Text  -->
+    <dimen name="margin_text_s">4dp</dimen>
+    <dimen name="margin_text_n">8dp</dimen>
+    <dimen name="margin_text_l">12dp</dimen>
+    <dimen name="margin_text_xl">16dp</dimen>
+
+    <!-- Padding Text  -->
+    <dimen name="padding_text_s">4dp</dimen>
+    <dimen name="padding_text_n">8dp</dimen>
+    <dimen name="padding_text_l">12dp</dimen>
+    <dimen name="padding_text_xl">16dp</dimen>
+
+    <!-- Margin Component  -->
+    <dimen name="margin_component_s">8dp</dimen>
+    <dimen name="margin_component_n">16dp</dimen>
+    <dimen name="margin_component_l">24dp</dimen>
+    <dimen name="margin_component_xl">32dp</dimen>
+
+    <!-- ¨Padding Component  -->
+    <dimen name="padding_component_s">8dp</dimen>
+    <dimen name="padding_component_n">16dp</dimen>
+    <dimen name="padding_component_l">24dp</dimen>
+    <dimen name="padding_component_xl">32dp</dimen>
+
+    <!-- Title -->
+    <dimen name="title_1_text_size">28sp</dimen>
+    <dimen name="title_2_text_size">24sp</dimen>
+    <dimen name="title_3_text_size">20sp</dimen>
+    <!-- Body -->
+    <dimen name="body_1_text_size">16sp</dimen>
+    <dimen name="body_2_text_size">12sp</dimen>
+    <dimen name="body_3_text_size">8sp</dimen>
+    <!-- Key Lines -->
+    <dimen name="key_lines_vertical_1">16dp</dimen>
+    <dimen name="key_lines_vertical_2">72dp</dimen>
+
 </resources>

@@ -11,7 +11,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -20,7 +19,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.network.ChampionDetailResponse;
 import com.legue.axel.lolsummonertool.network.ChampionsResponse;
 import com.legue.axel.lolsummonertool.retrofit.Constants;
@@ -28,7 +26,6 @@ import com.legue.axel.lolsummonertool.retrofit.RetrofitHelper;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     private Context context;
 
     //TODO : General : add relation in Models and add default Dao CRUD
-
+    //TODO : General : add a WorkManager for Database Insertion ?
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
