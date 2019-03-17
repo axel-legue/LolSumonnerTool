@@ -11,7 +11,15 @@
         style="@style/champion_adapter_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:visibility="gone"
         android:src="@drawable/ic_placeholder_black_24dp" />
+
+    <ProgressBar
+        android:id="@+id/pb_champion"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/tv_name"

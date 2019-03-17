@@ -33,6 +33,9 @@ public interface RiotImageDao {
     @Delete
     void deleteRiotImage(RiotImage riotImage);
 
+    @Query("DELETE FROM images")
+    void deleteAll();
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateRiotImage(RiotImage riotImage);
 }

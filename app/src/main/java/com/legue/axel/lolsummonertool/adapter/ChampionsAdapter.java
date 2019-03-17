@@ -2,7 +2,9 @@ package com.legue.axel.lolsummonertool.adapter;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,9 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.database.model.RiotImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
@@ -64,7 +70,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
             championViewModel.getChampionImage(champion.key).observe(mFragment, riotImage -> {
                 if (riotImage != null) {
                     mRiotImage = riotImage;
-                    displayImage(mRiotImage.full, holder.ivIcon);
+                    displayImage(mRiotImage.full, holder.ivIcon, holder.pbChampion);
                 }
             });
 
@@ -87,13 +93,26 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
         return mChampions.size();
     }
 
-    private void displayImage(String url, ImageView imageView) {
+    private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         if (mRiotImage != null) {
             Glide.with(mContext)
                     .load(ImageUtils.BuildChampionIconUrl(url))
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            progressBar.setVisibility(View.GONE);
+                            imageView.setVisibility(View.VISIBLE);
+                            return false;
+                        }
+                    })
                     .circleCrop()
                     .error(R.drawable.ic_placeholder_black_24dp)
-                    .placeholder(R.drawable.ic_placeholder_black_24dp)
                     .into(imageView);
         } else {
             Log.i(TAG, "displayImage: null");
@@ -106,6 +125,8 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
         ImageView ivIcon;
         @BindView(R.id.tv_name)
         TextView tvName;
+        @BindView(R.id.pb_champion)
+        ProgressBar pbChampion;
         @BindView(R.id.ll_wrapper_champion)
         LinearLayout llWrapper;
 

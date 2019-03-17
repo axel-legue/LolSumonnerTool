@@ -15,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.legue.axel.lolsummonertool.wiki.WikiFragment;
 
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.fl_content)
     FrameLayout flContent;
+
+    AdView adView;
+
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private Context mContext;
@@ -54,6 +59,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         displaySelectedScreen(R.id.nav_builds);
+
+        adView = findViewById(R.id.ad_banner);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     }
 
@@ -138,7 +148,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
-
 
 
 }

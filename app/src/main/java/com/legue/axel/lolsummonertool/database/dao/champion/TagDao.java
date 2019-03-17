@@ -30,6 +30,9 @@ public interface TagDao {
     @Delete
     void deleteTag(Tag tag);
 
+    @Query("DELETE FROM tags")
+    void deleteAll();
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateTag(Tag tag);
 

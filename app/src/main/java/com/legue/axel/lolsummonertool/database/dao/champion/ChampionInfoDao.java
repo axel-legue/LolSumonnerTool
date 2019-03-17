@@ -27,6 +27,9 @@ public interface ChampionInfoDao {
     @Insert
     void insertAllChampionInfo(List<ChampionInfo> championInfoList);
 
+    @Query("DELETE FROM champion_infos")
+    void deleteAll();
+
     @Delete
     void deleteChampionInfo(ChampionInfo championInfo);
 

@@ -30,6 +30,9 @@ public interface ChampionStatDao {
     @Delete
     void deleteChampionStats(ChampionStats championStats);
 
+    @Query("DELETE FROM champion_stats")
+    void deleteAll();
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateChampionStats(ChampionStats championStats);
 }

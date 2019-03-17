@@ -47,6 +47,13 @@ public class DabaseUtils {
                 }
                 AppExecutors.getInstance().getDiskIO().execute(() -> {
                     try {
+                        //TODO : find a way to avoid this delete every time
+                        database.championDao().deleteAll();
+                        database.championInfoDao().deleteAll();
+                        database.riotImageDao().deleteAll();
+                        database.championStatDao().deleteAll();
+                        database.tagDao().deleteAll();
+
                         database.championDao().insertAllChampion(champions);
                         database.championInfoDao().insertAllChampionInfo(championInfos);
                         database.riotImageDao().insertAllRiotImage(images);
