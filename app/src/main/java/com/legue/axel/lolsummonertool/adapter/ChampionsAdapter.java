@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,8 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
                 mChampionListener.championSelected(position, champion);
             });
 
+        } else {
+            Log.i(TAG, "onBindViewHolder: champion is null");
         }
     }
 
@@ -92,6 +95,8 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
                     .error(R.drawable.ic_placeholder_black_24dp)
                     .placeholder(R.drawable.ic_placeholder_black_24dp)
                     .into(imageView);
+        } else {
+            Log.i(TAG, "displayImage: null");
         }
 
     }

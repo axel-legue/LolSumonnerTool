@@ -46,12 +46,15 @@ public class DabaseUtils {
                     extractChampionDetails(championDetailResponse, database);
                 }
                 AppExecutors.getInstance().getDiskIO().execute(() -> {
-
-                    database.championDao().insertAllChampion(champions);
-                    database.championInfoDao().insertAllChampionInfo(championInfos);
-                    database.riotImageDao().insertAllRiotImage(images);
-                    database.championStatDao().insertAllChampionStats(championStatsList);
-                    database.tagDao().insertAllTag(tagList);
+                    try {
+                        database.championDao().insertAllChampion(champions);
+                        database.championInfoDao().insertAllChampionInfo(championInfos);
+                        database.riotImageDao().insertAllRiotImage(images);
+                        database.championStatDao().insertAllChampionStats(championStatsList);
+                        database.tagDao().insertAllTag(tagList);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 });
             }

@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity
     FrameLayout flContent;
 
     private FirebaseAnalytics mFirebaseAnalytics;
-
-
-
-    private Context context;
+    private Context mContext;
+    SuperApplication application;
 
     //TODO : General : add relation in Models and add default Dao CRUD
     //TODO : General : add a WorkManager for Database Insertion ?
@@ -40,7 +38,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
+        mContext = this;
+        application = (SuperApplication) this.getApplication();
 //        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -55,8 +54,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         displaySelectedScreen(R.id.nav_builds);
-    }
 
+    }
 
 
     @Override
@@ -139,5 +138,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
+
+
 
 }

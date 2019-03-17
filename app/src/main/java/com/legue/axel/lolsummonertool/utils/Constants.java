@@ -9,10 +9,10 @@ public class Constants {
     public final static String KEY_WIKI_PAGE_NAME = "key_page_name";
 
 
-    public final static String WIKI_PAGE_CHAMPIONS = "wiki_page_champions";
-    public final static String WIKI_PAGE_ITEMS = "wiki_page_items";
-    public final static String WIKI_PAGE_TREE = "wiki_page_tree";
-    public final static String WIKI_PAGE_SPELL = "wiki_page_spell";
+    public final static String WIKI_PAGE_CHAMPIONS = "Champions";
+    public final static String WIKI_PAGE_ITEMS = "Items";
+    public final static String WIKI_PAGE_TREE = "Tree";
+    public final static String WIKI_PAGE_SPELL = "Spell";
 
 
 }

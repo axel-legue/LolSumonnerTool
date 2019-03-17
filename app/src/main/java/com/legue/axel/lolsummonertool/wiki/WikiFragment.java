@@ -4,6 +4,7 @@ package com.legue.axel.lolsummonertool.wiki;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -24,6 +25,8 @@ public class WikiFragment extends Fragment {
 
     @BindView(R.id.vp_wiki)
     ViewPager vpWiki;
+    @BindView(R.id.tl_wiki)
+    TabLayout tlWiki;
 
     WikiFragmentAdapter mWikiFragmentAdapter;
 
@@ -53,6 +56,8 @@ public class WikiFragment extends Fragment {
         mWikiFragmentAdapter = new WikiFragmentAdapter(getChildFragmentManager());
         vpWiki.setAdapter(mWikiFragmentAdapter);
 
-    }
+        tlWiki.setupWithViewPager(vpWiki);
 
+        vpWiki.setCurrentItem(0);
+    }
 }
