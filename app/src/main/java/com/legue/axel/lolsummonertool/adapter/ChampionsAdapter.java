@@ -21,7 +21,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.legue.axel.lolsummonertool.R;
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
@@ -44,7 +44,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
     private List<Champion> mChampions;
     private ChampionListener mChampionListener;
     private WikiChampionFragment mFragment;
-    private RiotImage mRiotImage;
+    private ChampionImage mChampionImage;
 
     // Constructor
     public ChampionsAdapter(Context context, List<Champion> champions, ChampionListener championListener, WikiChampionFragment fragment) {
@@ -69,8 +69,8 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
             ChampionViewModel championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel.class);
             championViewModel.getChampionImage(champion.key).observe(mFragment, riotImage -> {
                 if (riotImage != null) {
-                    mRiotImage = riotImage;
-                    displayImage(mRiotImage.full, holder.ivIcon, holder.pbChampion);
+                    mChampionImage = riotImage;
+                    displayImage(mChampionImage.full, holder.ivIcon, holder.pbChampion);
                 }
             });
 
@@ -94,7 +94,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
     }
 
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
-        if (mRiotImage != null) {
+        if (mChampionImage != null) {
             Glide.with(mContext)
                     .load(ImageUtils.BuildChampionIconUrl(url))
                     .listener(new RequestListener<Drawable>() {

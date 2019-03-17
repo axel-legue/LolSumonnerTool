@@ -34,7 +34,7 @@ public class WikiChampionFragment extends Fragment {
 
     private final static String TAG = WikiChampionFragment.class.getName();
 
-    @BindView(R.id.rv_champions_build)
+    @BindView(R.id.rrv_wiki_champions)
     RecyclerView rvChampionsBuild;
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
@@ -69,7 +69,7 @@ public class WikiChampionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_build_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_wiki_champions, container, false);
 
         ButterKnife.bind(this, view);
 

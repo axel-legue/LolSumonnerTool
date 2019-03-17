@@ -1,6 +1,6 @@
 package com.legue.axel.lolsummonertool.network;
 
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 
@@ -16,14 +16,14 @@ public class ChampionDetailResponse {
     private String blurb;
     private String partype;
     private ChampionInfo info;
-    private RiotImage image;
+    private ChampionImage image;
     private List<String> tags;
     private ChampionStats stats;
 
     public ChampionDetailResponse() {
     }
 
-    public ChampionDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, RiotImage image, List<String> tags, ChampionStats stats) {
+    public ChampionDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats) {
         this.key = key;
         this.id = id;
         this.name = name;
@@ -101,11 +101,11 @@ public class ChampionDetailResponse {
         this.info = info;
     }
 
-    public RiotImage getImage() {
+    public ChampionImage getImage() {
         return image;
     }
 
-    public void setImage(RiotImage image) {
+    public void setImage(ChampionImage image) {
         this.image = image;
     }
 

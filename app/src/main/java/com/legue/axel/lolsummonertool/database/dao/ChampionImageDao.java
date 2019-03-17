@@ -8,34 +8,34 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 
 import java.util.List;
 
 @Dao
-public interface RiotImageDao {
+public interface ChampionImageDao {
 
     @Query("SELECT * FROM images ORDER BY id")
-    LiveData<List<RiotImage>> getRiotImages();
+    LiveData<List<ChampionImage>> getChampionImages();
 
     @Query("SELECT * FROM images WHERE id = :riotImageId")
-    LiveData<RiotImage> getRiotImageById(int riotImageId);
+    LiveData<ChampionImage> getChampionImageById(int riotImageId);
 
     @Query("SELECT * FROM images WHERE championId = :championId")
-    LiveData<RiotImage> getRiotImageByChampionId(int championId);
+    LiveData<ChampionImage> getChampionImageByChampionId(int championId);
 
     @Insert
-    void insertRiotImage(RiotImage riotImage);
+    void insertChampionImage(ChampionImage championImage);
 
     @Insert
-    void insertAllRiotImage(List<RiotImage> riotImageList);
+    void insertAllChampionImage(List<ChampionImage> championImageList);
 
     @Delete
-    void deleteRiotImage(RiotImage riotImage);
+    void deleteChampionImage(ChampionImage championImage);
 
     @Query("DELETE FROM images")
     void deleteAll();
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateRiotImage(RiotImage riotImage);
+    void updateChampionImage(ChampionImage championImage);
 }

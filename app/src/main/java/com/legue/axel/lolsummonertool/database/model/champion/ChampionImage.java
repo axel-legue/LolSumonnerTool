@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.database.model;
+package com.legue.axel.lolsummonertool.database.model.champion;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -17,7 +17,7 @@ import com.legue.axel.lolsummonertool.database.model.champion.Passive;
                         childColumns = "championId"
                 )}
 )
-public class RiotImage {
+public class ChampionImage {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public String full;
@@ -33,10 +33,10 @@ public class RiotImage {
 //    public int passiveId;
 
     @Ignore
-    public RiotImage() {
+    public ChampionImage() {
     }
 
-    public RiotImage(int id, String full, String sprite, String group, int x, int y, int w, int h, int championId) {
+    public ChampionImage(int id, String full, String sprite, String group, int x, int y, int w, int h, int championId) {
         this.id = id;
         this.full = full;
         this.sprite = sprite;

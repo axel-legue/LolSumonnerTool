@@ -6,7 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.util.Log;
 
-import com.legue.axel.lolsummonertool.database.dao.RiotImageDao;
+import com.legue.axel.lolsummonertool.database.dao.ChampionImageDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.AllyTipDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.BlockDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.ChampionDao;
@@ -21,10 +21,10 @@ import com.legue.axel.lolsummonertool.database.dao.champion.SkinDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.SpellDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.TagDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.VarDao;
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
 import com.legue.axel.lolsummonertool.database.model.champion.AllyTip;
 import com.legue.axel.lolsummonertool.database.model.champion.Block;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.Cooldown;
@@ -53,7 +53,7 @@ import com.legue.axel.lolsummonertool.database.model.champion.Var;
                 Spell.class,
                 Tag.class,
                 Var.class,
-                RiotImage.class
+                ChampionImage.class
         },
         version = 1,
         exportSchema = false)
@@ -109,6 +109,6 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
 
     public abstract VarDao varDao();
 
-    public abstract RiotImageDao riotImageDao();
+    public abstract ChampionImageDao championImageDao();
 
 }

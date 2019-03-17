@@ -1,10 +1,8 @@
 package com.legue.axel.lolsummonertool.utils;
 
-import android.util.Log;
-
 import com.legue.axel.lolsummonertool.AppExecutors;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
@@ -21,7 +19,7 @@ import java.util.List;
 public class DabaseUtils {
 
     private static List<Champion> champions;
-    private static List<RiotImage> images;
+    private static List<ChampionImage> images;
     private static List<ChampionInfo> championInfos;
     private static List<ChampionStats> championStatsList;
     private static List<Tag> tagList;
@@ -50,13 +48,13 @@ public class DabaseUtils {
                         //TODO : find a way to avoid this delete every time
                         database.championDao().deleteAll();
                         database.championInfoDao().deleteAll();
-                        database.riotImageDao().deleteAll();
+                        database.championImageDao().deleteAll();
                         database.championStatDao().deleteAll();
                         database.tagDao().deleteAll();
 
                         database.championDao().insertAllChampion(champions);
                         database.championInfoDao().insertAllChampionInfo(championInfos);
-                        database.riotImageDao().insertAllRiotImage(images);
+                        database.championImageDao().insertAllChampionImage(images);
                         database.championStatDao().insertAllChampionStats(championStatsList);
                         database.tagDao().insertAllTag(tagList);
                     } catch (Exception e) {
@@ -98,9 +96,9 @@ public class DabaseUtils {
         championInfos.add(championInfo);
 
 
-        RiotImage riotImage = championDetailResponse.getImage();
-        riotImage.championId = Integer.valueOf(championDetailResponse.getKey());
-        images.add(riotImage);
+        ChampionImage championImage = championDetailResponse.getImage();
+        championImage.championId = Integer.valueOf(championDetailResponse.getKey());
+        images.add(championImage);
 
         ChampionStats championStats = championDetailResponse.getStats();
         championStats.championId = Integer.valueOf(championDetailResponse.getKey());

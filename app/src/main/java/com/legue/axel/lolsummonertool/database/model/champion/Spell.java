@@ -7,9 +7,6 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
-import com.legue.axel.lolsummonertool.database.model.RiotImage;
-
-import java.util.List;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -24,7 +21,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 )
 public class Spell {
 
-    //TODO add relation beetween Spell and LevelTip/Cooldown/Cost/Effect/EffectBurn/Vars/Range/RiotImage
+    //TODO add relation beetween Spell and LevelTip/Cooldown/Cost/Effect/EffectBurn/Vars/Range/ChampionImage
     @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     public int key;

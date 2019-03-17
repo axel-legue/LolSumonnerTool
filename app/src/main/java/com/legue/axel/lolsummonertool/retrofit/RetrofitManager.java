@@ -2,6 +2,7 @@ package com.legue.axel.lolsummonertool.retrofit;
 
 
 import com.legue.axel.lolsummonertool.network.ChampionsResponse;
+import com.legue.axel.lolsummonertool.network.ItemsResponse;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -42,6 +43,11 @@ public class RetrofitManager {
     public Observable<ChampionsResponse> getChampions() {
         String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "champion.json";
         return riotService.getChampions(url);
+    }
+
+    public Observable<ItemsResponse> getItems() {
+        String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "item.json";
+        return riotService.getItems(url);
     }
 
 
