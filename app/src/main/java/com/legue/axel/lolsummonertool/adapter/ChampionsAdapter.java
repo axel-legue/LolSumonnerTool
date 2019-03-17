@@ -1,5 +1,6 @@
 package com.legue.axel.lolsummonertool.adapter;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -13,17 +14,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.legue.axel.lolsummonertool.R;
+import com.legue.axel.lolsummonertool.database.model.RiotImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
+import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
+import com.legue.axel.lolsummonertool.wiki.WikiChampionFragment;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChampionBuildAdapter extends RecyclerView.Adapter<ChampionBuildAdapter.ChampionHolder> {
+public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.ChampionHolder> {
 
-    private static final String TAG = ChampionBuildAdapter.class.getName();
+    private static final String TAG = ChampionsAdapter.class.getName();
 
     public interface ChampionListener {
         void championSelected(int position, Champion champion);
@@ -32,12 +36,15 @@ public class ChampionBuildAdapter extends RecyclerView.Adapter<ChampionBuildAdap
     private Context mContext;
     private List<Champion> mChampions;
     private ChampionListener mChampionListener;
+    private WikiChampionFragment mFragment;
+    private RiotImage mRiotImage;
 
     // Constructor
-    public ChampionBuildAdapter(Context context, List<Champion> champions, ChampionListener championListener) {
+    public ChampionsAdapter(Context context, List<Champion> champions, ChampionListener championListener, WikiChampionFragment fragment) {
         mContext = context;
         mChampions = champions;
         mChampionListener = championListener;
+        mFragment = fragment;
     }
 
     @NonNull
@@ -52,12 +59,14 @@ public class ChampionBuildAdapter extends RecyclerView.Adapter<ChampionBuildAdap
         final Champion champion = mChampions.get(position);
 
         if (champion != null) {
-            Glide.with(mContext)
-                    .load(ImageUtils.BuildChampionIconUrl(champion.name))
-                    .circleCrop()
-                    .error(R.drawable.ic_placeholder_black_24dp)
-                    .placeholder(R.drawable.ic_placeholder_black_24dp)
-                    .into(holder.ivIcon);
+            ChampionViewModel championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel.class);
+            championViewModel.getChampionImage(champion.key).observe(mFragment, riotImage -> {
+                if (riotImage != null) {
+                    mRiotImage = riotImage;
+                    displayImage(mRiotImage.full, holder.ivIcon);
+                }
+            });
+
 
             if (champion.name != null && !TextUtils.isEmpty(champion.name)) {
                 holder.tvName.setText(champion.name);
@@ -73,6 +82,18 @@ public class ChampionBuildAdapter extends RecyclerView.Adapter<ChampionBuildAdap
     @Override
     public int getItemCount() {
         return mChampions.size();
+    }
+
+    private void displayImage(String url, ImageView imageView) {
+        if (mRiotImage != null) {
+            Glide.with(mContext)
+                    .load(ImageUtils.BuildChampionIconUrl(url))
+                    .circleCrop()
+                    .error(R.drawable.ic_placeholder_black_24dp)
+                    .placeholder(R.drawable.ic_placeholder_black_24dp)
+                    .into(imageView);
+        }
+
     }
 
     class ChampionHolder extends RecyclerView.ViewHolder {

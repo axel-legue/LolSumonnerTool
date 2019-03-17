@@ -1,10 +1,7 @@
 package com.legue.axel.lolsummonertool;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -14,21 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.legue.axel.lolsummonertool.network.ChampionDetailResponse;
-import com.legue.axel.lolsummonertool.network.ChampionsResponse;
-import com.legue.axel.lolsummonertool.retrofit.Constants;
-import com.legue.axel.lolsummonertool.retrofit.RetrofitHelper;
-
-import java.util.HashMap;
-import java.util.Iterator;
+import com.legue.axel.lolsummonertool.wiki.WikiFragment;
 
 import butterknife.BindView;
 
@@ -117,27 +105,27 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_builds:
-                fragment = new BuildsFragment();
+                fragment = new WikiFragment();
                 break;
             case R.id.nav_profil:
                 // TODO : replace with correct fragment
-                fragment = new BuildsFragment();
+                fragment = new WikiFragment();
                 break;
             case R.id.nav_bans:
                 // TODO : replace with correct fragment
-                fragment = new BuildsFragment();
+                fragment = new WikiFragment();
                 break;
             case R.id.nav_wiki:
                 // TODO : replace with correct fragment
-                fragment = new BuildsFragment();
+                fragment = new WikiFragment();
                 break;
             case R.id.nav_feedback:
                 // TODO : replace with correct fragment
-                fragment = new BuildsFragment();
+                fragment = new WikiFragment();
                 break;
             case R.id.nav_privacy:
                 // TODO : replace with correct fragment
-                fragment = new BuildsFragment();
+                fragment = new WikiFragment();
                 break;
         }
 

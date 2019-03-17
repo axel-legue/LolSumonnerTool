@@ -21,8 +21,14 @@ public interface RiotImageDao {
     @Query("SELECT * FROM images WHERE id = :riotImageId")
     LiveData<RiotImage> getRiotImageById(int riotImageId);
 
+    @Query("SELECT * FROM images WHERE championId = :championId")
+    LiveData<RiotImage> getRiotImageByChampionId(int championId);
+
     @Insert
     void insertRiotImage(RiotImage riotImage);
+
+    @Insert
+    void insertAllRiotImage(List<RiotImage> riotImageList);
 
     @Delete
     void deleteRiotImage(RiotImage riotImage);

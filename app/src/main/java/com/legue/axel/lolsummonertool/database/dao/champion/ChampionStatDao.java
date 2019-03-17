@@ -24,6 +24,9 @@ public interface ChampionStatDao {
     @Insert
     void insertChampionStats(ChampionStats championStats);
 
+    @Insert
+    void insertAllChampionStats(List<ChampionStats> championStatsList);
+
     @Delete
     void deleteChampionStats(ChampionStats championStats);
 

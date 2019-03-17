@@ -15,11 +15,6 @@ import com.legue.axel.lolsummonertool.database.model.champion.Passive;
                         entity = Champion.class,
                         parentColumns = "key",
                         childColumns = "championId"
-                ),
-                @ForeignKey(
-                        entity = Passive.class,
-                        parentColumns = "id",
-                        childColumns = "passiveId"
                 )}
 )
 public class RiotImage {
@@ -34,14 +29,14 @@ public class RiotImage {
     public int h;
     @ColumnInfo(index = true)
     public int championId;
-    @ColumnInfo(index = true)
-    public int passiveId;
+//    @ColumnInfo(index = true)
+//    public int passiveId;
 
     @Ignore
     public RiotImage() {
     }
 
-    public RiotImage(int id, String full, String sprite, String group, int x, int y, int w, int h, int championId, int passiveId) {
+    public RiotImage(int id, String full, String sprite, String group, int x, int y, int w, int h, int championId) {
         this.id = id;
         this.full = full;
         this.sprite = sprite;
@@ -51,6 +46,6 @@ public class RiotImage {
         this.w = w;
         this.h = h;
         this.championId = championId;
-        this.passiveId = passiveId;
+
     }
 }

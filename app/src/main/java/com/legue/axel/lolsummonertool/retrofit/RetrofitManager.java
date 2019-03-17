@@ -29,7 +29,7 @@ public class RetrofitManager {
                 .build();
 
         Retrofit retrofitDataDragon = new Retrofit.Builder()
-                .baseUrl(Constants.API_DRAGON_BASE_CDN)
+                .baseUrl(RetrofitConstants.API_DRAGON_BASE_CDN)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -40,7 +40,7 @@ public class RetrofitManager {
     }
 
     public Observable<ChampionsResponse> getChampions() {
-        String url = Constants.API_DRAGON_BASE_CDN + Constants.API_CHAMPION_VERSION + "/" + Constants.API_TYPE_DATA + "/" + Constants.LANGUAGE_KEY + "/" + "champion.json";
+        String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "champion.json";
         return riotService.getChampions(url);
     }
 

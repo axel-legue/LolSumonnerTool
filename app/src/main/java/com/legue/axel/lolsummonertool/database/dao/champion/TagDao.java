@@ -24,6 +24,9 @@ public interface TagDao {
     @Insert
     void insertTag(Tag tag);
 
+    @Insert
+    void insertAllTag(List<Tag> tagList);
+
     @Delete
     void deleteTag(Tag tag);
 

@@ -1,6 +1,6 @@
 package com.legue.axel.lolsummonertool.retrofit;
 
-public class Constants {
+public class RetrofitConstants {
 
     // Content Delivery Network
     public static final String API_DRAGON_BASE_CDN = "https://ddragon.leagueoflegends.com/cdn/";

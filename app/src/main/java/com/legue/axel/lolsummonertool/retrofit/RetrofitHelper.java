@@ -5,7 +5,9 @@ import android.os.Message;
 import android.util.Log;
 
 import com.legue.axel.lolsummonertool.SuperApplication;
+import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.ChampionsResponse;
+import com.legue.axel.lolsummonertool.utils.DabaseUtils;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,9 +34,12 @@ public class RetrofitHelper {
                     public void onNext(ChampionsResponse championsResponse) {
                         if (championsResponse != null) {
                             Log.i(TAG, "onNext: " + championsResponse);
-                            application.setChampionsResponse(championsResponse);
-                            // TODO Work Manager for database insertion.
-                        }else{
+
+                            DabaseUtils.insertChampionResponseInDB(
+                                    championsResponse,
+                                    SummonerToolDatabase.getInstance(application));
+
+                        } else {
                             Log.i(TAG, "onNext: getChampions response is null");
                         }
                     }
@@ -52,8 +57,8 @@ public class RetrofitHelper {
                         }
                         // Send message for send image
                         Message msg = new Message();
-                        msg.what = Constants.ACTION_ERROR;
-                        msg.obj = Constants.ERROR;
+                        msg.what = RetrofitConstants.ACTION_ERROR;
+                        msg.obj = RetrofitConstants.ERROR;
                         handlerMessage.sendMessage(msg);
                     }
 

@@ -2,11 +2,11 @@ package com.legue.axel.lolsummonertool.utils;
 
 import android.net.Uri;
 
-import com.legue.axel.lolsummonertool.retrofit.Constants;
+import com.legue.axel.lolsummonertool.retrofit.RetrofitConstants;
 
 public class ImageUtils {
 
     public static Uri BuildChampionIconUrl(String endPointUrl) {
-        return Uri.parse(Constants.API_DRAGON_BASE_CDN + Constants.API_CHAMPION_VERSION + "/" + Constants.API_TYPE_IMAGE + "/" + Constants.API_TYPE_CHAMPION + "/" + endPointUrl);
+        return Uri.parse(RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_IMAGE + "/" + RetrofitConstants.API_TYPE_CHAMPION + "/" + endPointUrl);
     }
 }

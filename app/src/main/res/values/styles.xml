@@ -18,8 +18,6 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="champion_adapter_card">
-        <item name="android:layout_width">@dimen/wrap_content</item>
-        <item name="android:layout_height">@dimen/wrap_content</item>
         <item name="android:layout_margin">@dimen/margin_component_n</item>
         <item name="android:orientation">vertical</item>
     </style>
@@ -31,8 +29,6 @@
     </style>
 
     <style name="champion_adapter_image">
-        <item name="android:layout_width">60dp</item>
-        <item name="android:layout_height">60dp</item>
         <item name="android:contentDescription">@string/content_description_champion_image</item>
     </style>
 

@@ -24,6 +24,9 @@ public interface ChampionDao {
     @Insert
     void insertChampion(Champion champion);
 
+    @Insert
+    void insertAllChampion(List<Champion> champions);
+
     @Delete
     void deleteChampion(Champion champion);
 
