@@ -1,13 +1,12 @@
 package com.legue.axel.lolsummonertool.database.model.item;
 
-
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(tableName = "item_golds",
+@Entity(tableName = "item_maps",
         foreignKeys = {
                 @ForeignKey(
                         entity = Item.class,
@@ -15,26 +14,23 @@ import android.arch.persistence.room.PrimaryKey;
                         childColumns = "itemId"
                 )}
 )
-public class ItemGold {
+public class ItemMap {
+
     @PrimaryKey(autoGenerate = true)
     public int id;
-    public int base;
-    public int total;
-    public int sell;
-    public boolean purchasable;
+    public String key;
+    public Boolean value;
     @ColumnInfo(index = true)
     public int itemId;
 
     @Ignore
-    public ItemGold() {
+    public ItemMap() {
     }
 
-    public ItemGold(int id, int base, int total, int sell, boolean purchasable, int itemId) {
+    public ItemMap(int id, String key, Boolean value, int itemId) {
         this.id = id;
-        this.base = base;
-        this.total = total;
-        this.sell = sell;
-        this.purchasable = purchasable;
+        this.key = key;
+        this.value = value;
         this.itemId = itemId;
     }
 }

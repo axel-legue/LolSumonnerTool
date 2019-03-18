@@ -2,8 +2,8 @@ package com.legue.axel.lolsummonertool.utils;
 
 import com.legue.axel.lolsummonertool.AppExecutors;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
-import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.Tag;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class DabaseUtils {
+public class ChampionUtils {
 
     private static List<Champion> champions;
     private static List<ChampionImage> images;
@@ -117,4 +117,5 @@ public class DabaseUtils {
         }
 
     }
+
 }

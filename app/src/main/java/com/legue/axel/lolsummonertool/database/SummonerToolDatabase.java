@@ -21,6 +21,13 @@ import com.legue.axel.lolsummonertool.database.dao.champion.SkinDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.SpellDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.TagDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.VarDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemEffectDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemGoldDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemImageDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemMapDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemStatDao;
+import com.legue.axel.lolsummonertool.database.dao.item.ItemTagDao;
 import com.legue.axel.lolsummonertool.database.model.champion.AllyTip;
 import com.legue.axel.lolsummonertool.database.model.champion.Block;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
@@ -36,24 +43,20 @@ import com.legue.axel.lolsummonertool.database.model.champion.Skin;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.model.champion.Tag;
 import com.legue.axel.lolsummonertool.database.model.champion.Var;
+import com.legue.axel.lolsummonertool.database.model.item.Item;
+import com.legue.axel.lolsummonertool.database.model.item.ItemEffect;
+import com.legue.axel.lolsummonertool.database.model.item.ItemGold;
+import com.legue.axel.lolsummonertool.database.model.item.ItemImage;
+import com.legue.axel.lolsummonertool.database.model.item.ItemMap;
+import com.legue.axel.lolsummonertool.database.model.item.ItemStat;
+import com.legue.axel.lolsummonertool.database.model.item.ItemTag;
 
 @Database(
-        entities = {
-                AllyTip.class,
-                Block.class,
-                Champion.class,
-                ChampionInfo.class,
-                ChampionStats.class,
-                Cooldown.class,
-                EnnemyTip.class,
-                LevelTip.class,
-                Passive.class,
-                Recommended.class,
-                Skin.class,
-                Spell.class,
-                Tag.class,
-                Var.class,
-                ChampionImage.class
+        entities = {AllyTip.class, Block.class, Champion.class, ChampionInfo.class,
+                ChampionStats.class, Cooldown.class, EnnemyTip.class, LevelTip.class, Passive.class,
+                Recommended.class, Skin.class, Spell.class, Tag.class, Var.class,
+                ChampionImage.class, Item.class, ItemEffect.class, ItemGold.class, ItemImage.class,
+                ItemMap.class, ItemStat.class, ItemTag.class
         },
         version = 1,
         exportSchema = false)
@@ -110,5 +113,19 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
     public abstract VarDao varDao();
 
     public abstract ChampionImageDao championImageDao();
+
+    public abstract ItemDao itemDao();
+
+    public abstract ItemEffectDao itemEffectDao();
+
+    public abstract ItemGoldDao itemGoldDao();
+
+    public abstract ItemImageDao itemImageDao();
+
+    public abstract ItemMapDao itemMapDao();
+
+    public abstract ItemStatDao itemStatDao();
+
+    public abstract ItemTagDao itemTagDao();
 
 }

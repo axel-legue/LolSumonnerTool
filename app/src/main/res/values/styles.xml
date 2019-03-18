@@ -32,4 +32,15 @@
         <item name="android:contentDescription">@string/content_description_champion_image</item>
     </style>
 
+    <style name="item_adapter_card">
+        <item name="android:layout_margin">@dimen/margin_component_n</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="item_adapter_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/body_1_text_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+
 </resources>

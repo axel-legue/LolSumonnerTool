@@ -1,5 +1,6 @@
 package com.legue.axel.lolsummonertool.network;
 
+import com.google.gson.annotations.SerializedName;
 import com.legue.axel.lolsummonertool.database.model.item.ItemGold;
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage;
 
@@ -14,6 +15,7 @@ public class ItemDetailResponse {
     public List<String> from;
     public Boolean hideFromAll;
     public List<String> into;
+    @SerializedName("image")
     public ItemImage itemImage;
     public ItemGold gold;
     public List<String> tags;

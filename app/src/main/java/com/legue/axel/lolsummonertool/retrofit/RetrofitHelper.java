@@ -8,7 +8,8 @@ import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.ItemsResponse;
-import com.legue.axel.lolsummonertool.utils.DabaseUtils;
+import com.legue.axel.lolsummonertool.utils.ChampionUtils;
+import com.legue.axel.lolsummonertool.utils.ItemUtils;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -36,7 +37,7 @@ public class RetrofitHelper {
                         if (championsResponse != null) {
                             Log.i(TAG, "onNext: " + championsResponse);
 
-                            DabaseUtils.insertChampionResponseInDB(
+                            ChampionUtils.insertChampionResponseInDB(
                                     championsResponse,
                                     SummonerToolDatabase.getInstance(application));
 
@@ -91,9 +92,9 @@ public class RetrofitHelper {
                         if (itemsResponse != null) {
                             Log.i(TAG, "onNext: " + itemsResponse);
 
-//                            DabaseUtils.insertChampionResponseInDB(
-//                                    itemsResponse,
-//                                    SummonerToolDatabase.getInstance(application));
+                            ItemUtils.insertItemResponseInDB(
+                                    itemsResponse,
+                                    SummonerToolDatabase.getInstance(application));
 
                         } else {
                             Log.i(TAG, "onNext: getItems response is null");

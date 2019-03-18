@@ -1,43 +1,38 @@
 package com.legue.axel.lolsummonertool.database.model.item;
 
-import com.google.gson.annotations.SerializedName;
-import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-import java.util.List;
-
+@Entity(tableName = "items")
 public class Item {
 
-    //TODO : http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/item.json
-    //Field maps for what purpose ?
+    @PrimaryKey()
+    @NonNull
+    public int id;
     public String name;
     public String description;
     public String colloq;
     public String plaintext;
     public int depth;
-    public List<String> into;
-    public ChampionImage image;
-    public ItemGold itemGold;
-    public List<String> tags;
-    @SerializedName("from")
-    public List<String> fromIds;
-    @SerializedName("into")
-    public List<String> intoIds;
+    //TODO : Add Type Converters for tranform Into and From array as String separated comma
+//    @ColumnInfo(index = true)
+//    public int intoId;
+//    @ColumnInfo(index = true)
+//    public int fromId;
 
+    @Ignore
     public Item() {
     }
 
-    public Item(String name, String description, String colloq, String plaintext, int depth, List<String> into, ChampionImage image, ItemGold itemGold, List<String> tags, List<String> fromIds, List<String> intoIds) {
+    public Item(int id, String name, String description, String colloq, String plaintext,
+                int depth) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.colloq = colloq;
         this.plaintext = plaintext;
         this.depth = depth;
-        this.into = into;
-        this.image = image;
-        this.itemGold = itemGold;
-        this.tags = tags;
-        this.fromIds = fromIds;
-        this.intoIds = intoIds;
     }
-
 }

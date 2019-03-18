@@ -94,6 +94,7 @@ public class WikiChampionFragment extends Fragment {
         }
 
         loadChampions();
+        loadItems();
 
         adapter = new ChampionsAdapter(application, championList, championListener, fragment);
         rvChampionsBuild.setLayoutManager(new GridLayoutManager(application, 4));
@@ -104,6 +105,14 @@ public class WikiChampionFragment extends Fragment {
     private void loadChampions() {
         //TODO : testing purpose => update code and move it at a better place
         RetrofitHelper.getChampions(
+                RetrofitConstants.ACTION_COMPLETE,
+                championhandler,
+                application);
+    }
+
+    private void loadItems() {
+        //TODO : testing purpose => update code and move it at a better place
+        RetrofitHelper.getItems(
                 RetrofitConstants.ACTION_COMPLETE,
                 championhandler,
                 application);

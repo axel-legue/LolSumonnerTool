@@ -16,6 +16,7 @@ public class RetrofitConstants {
     public static final String API_TYPE_DATA = "data";
     public static final String API_TYPE_IMAGE = "img";
     public static final String API_TYPE_CHAMPION = "champion";
+    public static final String API_TYPE_ITEM = "item";
     public static final String LANGUAGE_KEY = "en_GB";
     public static final String API_KEY = "api_key";
 
