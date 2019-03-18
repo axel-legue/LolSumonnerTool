@@ -1,14 +1,14 @@
 package com.legue.axel.lolsummonertool.database.model;
 
-import com.legue.axel.lolsummonertool.database.model.item.ItemMap;
-import com.legue.axel.lolsummonertool.database.model.item.ItemStats;
+import com.legue.axel.lolsummonertool.database.model.item.ItemGold;
+
 
 import java.util.List;
 
 public class Basic {
     public String name;
     public Rune rune;
-    public Gold gold;
+    public ItemGold itemGold;
     public String group;
     public String description;
     public String colloq;
@@ -23,17 +23,17 @@ public class Basic {
     public boolean inStore;
     public boolean hideFromALl;
     public String requiredChampion;
-    public ItemStats itemStats;
+
     public List<String> tags;
-    public ItemMap maps;
+
 
     public Basic() {
     }
 
-    public Basic(String name, Rune rune, Gold gold, String group, String description, String colloq, String plaintext, boolean consumed, int stacks, int depths, boolean consumeOnFull, List<Integer> from, List<Integer> into, int specialRecipe, boolean inStore, boolean hideFromALl, String requiredChampion, ItemStats itemStats, List<String> tags, ItemMap maps) {
+    public Basic(String name, Rune rune, ItemGold itemGold, String group, String description, String colloq, String plaintext, boolean consumed, int stacks, int depths, boolean consumeOnFull, List<Integer> from, List<Integer> into, int specialRecipe, boolean inStore, boolean hideFromALl, String requiredChampion, List<String> tags ) {
         this.name = name;
         this.rune = rune;
-        this.gold = gold;
+        this.itemGold = itemGold;
         this.group = group;
         this.description = description;
         this.colloq = colloq;
@@ -48,9 +48,7 @@ public class Basic {
         this.inStore = inStore;
         this.hideFromALl = hideFromALl;
         this.requiredChampion = requiredChampion;
-        this.itemStats = itemStats;
         this.tags = tags;
-        this.maps = maps;
     }
 
 }

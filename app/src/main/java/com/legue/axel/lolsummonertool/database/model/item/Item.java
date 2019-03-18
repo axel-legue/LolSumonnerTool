@@ -2,7 +2,6 @@ package com.legue.axel.lolsummonertool.database.model.item;
 
 import com.google.gson.annotations.SerializedName;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
-import com.legue.axel.lolsummonertool.database.model.Gold;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class Item {
     public int depth;
     public List<String> into;
     public ChampionImage image;
-    public Gold gold;
+    public ItemGold itemGold;
     public List<String> tags;
     @SerializedName("from")
     public List<String> fromIds;
@@ -27,7 +26,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name, String description, String colloq, String plaintext, int depth, List<String> into, ChampionImage image, Gold gold, List<String> tags, List<String> fromIds, List<String> intoIds) {
+    public Item(String name, String description, String colloq, String plaintext, int depth, List<String> into, ChampionImage image, ItemGold itemGold, List<String> tags, List<String> fromIds, List<String> intoIds) {
         this.name = name;
         this.description = description;
         this.colloq = colloq;
@@ -35,7 +34,7 @@ public class Item {
         this.depth = depth;
         this.into = into;
         this.image = image;
-        this.gold = gold;
+        this.itemGold = itemGold;
         this.tags = tags;
         this.fromIds = fromIds;
         this.intoIds = intoIds;

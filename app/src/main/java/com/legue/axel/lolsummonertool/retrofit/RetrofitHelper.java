@@ -7,6 +7,7 @@ import android.util.Log;
 import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.ChampionsResponse;
+import com.legue.axel.lolsummonertool.network.ItemsResponse;
 import com.legue.axel.lolsummonertool.utils.DabaseUtils;
 
 import io.reactivex.Observer;
@@ -41,6 +42,61 @@ public class RetrofitHelper {
 
                         } else {
                             Log.i(TAG, "onNext: getChampions response is null");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            HttpException httpException = (HttpException) e;
+                            int code = httpException.code();
+                            Log.i(TAG, "Server respond with code : " + code);
+                            Log.i(TAG, "Response : " + httpException.getMessage());
+                        } else {
+                            Log.i(TAG, e.getMessage() == null ? "unknown error" : e.getMessage());
+                            e.printStackTrace();
+                        }
+                        // Send message for send image
+                        Message msg = new Message();
+                        msg.what = RetrofitConstants.ACTION_ERROR;
+                        msg.obj = RetrofitConstants.ERROR;
+                        handlerMessage.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete");
+                        Message message = new Message();
+                        message.what = action;
+                        handlerMessage.sendMessage(message);
+                    }
+                });
+    }
+
+
+    public static void getItems(final int action, final Handler handlerMessage, final SuperApplication application) {
+
+        application.getRetrofitManager().getItems()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ItemsResponse>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe :" + d.toString());
+                    }
+
+                    @Override
+                    public void onNext(ItemsResponse itemsResponse) {
+                        if (itemsResponse != null) {
+                            Log.i(TAG, "onNext: " + itemsResponse);
+
+//                            DabaseUtils.insertChampionResponseInDB(
+//                                    itemsResponse,
+//                                    SummonerToolDatabase.getInstance(application));
+
+                        } else {
+                            Log.i(TAG, "onNext: getItems response is null");
                         }
                     }
 

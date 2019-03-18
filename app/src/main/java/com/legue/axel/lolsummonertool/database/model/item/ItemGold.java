@@ -1,15 +1,15 @@
-package com.legue.axel.lolsummonertool.database.model;
+package com.legue.axel.lolsummonertool.database.model.item;
 
-public class Gold {
+public class ItemGold {
     public int base;
     public int total;
     public int sell;
     public boolean purchasable;
 
-    public Gold() {
+    public ItemGold() {
     }
 
-    public Gold(int base, int total, int sell, boolean purchasable) {
+    public ItemGold(int base, int total, int sell, boolean purchasable) {
         this.base = base;
         this.total = total;
         this.sell = sell;
