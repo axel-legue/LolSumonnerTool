@@ -34,8 +34,8 @@ public class WikiChampionFragment extends Fragment {
 
     private final static String TAG = WikiChampionFragment.class.getName();
 
-    @BindView(R.id.rrv_wiki_champions)
-    RecyclerView rvChampionsBuild;
+    @BindView(R.id.rv_wiki_champions)
+    RecyclerView rvChampionWiki;
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
 
@@ -70,9 +70,7 @@ public class WikiChampionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_wiki_champions, container, false);
-
         ButterKnife.bind(this, view);
-
         return view;
     }
 
@@ -94,12 +92,12 @@ public class WikiChampionFragment extends Fragment {
         }
 
         loadChampions();
-        loadItems();
+
 
         adapter = new ChampionsAdapter(application, championList, championListener, fragment);
-        rvChampionsBuild.setLayoutManager(new GridLayoutManager(application, 4));
-        rvChampionsBuild.setAdapter(adapter);
-        rvChampionsBuild.setHasFixedSize(true);
+        rvChampionWiki.setLayoutManager(new GridLayoutManager(application, 4));
+        rvChampionWiki.setAdapter(adapter);
+        rvChampionWiki.setHasFixedSize(true);
     }
 
     private void loadChampions() {
@@ -110,13 +108,6 @@ public class WikiChampionFragment extends Fragment {
                 application);
     }
 
-    private void loadItems() {
-        //TODO : testing purpose => update code and move it at a better place
-        RetrofitHelper.getItems(
-                RetrofitConstants.ACTION_COMPLETE,
-                championhandler,
-                application);
-    }
 
     private Handler championhandler = new Handler(msg -> {
 

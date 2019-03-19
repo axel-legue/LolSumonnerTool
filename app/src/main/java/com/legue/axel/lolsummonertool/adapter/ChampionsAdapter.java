@@ -15,8 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
@@ -67,9 +69,9 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
 
         if (champion != null) {
             ChampionViewModel championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel.class);
-            championViewModel.getChampionImage(champion.key).observe(mFragment, riotImage -> {
-                if (riotImage != null) {
-                    mChampionImage = riotImage;
+            championViewModel.getChampionImage(champion.key).observe(mFragment, championImage -> {
+                if (championImage != null) {
+                    mChampionImage = championImage;
                     displayImage(mChampionImage.full, holder.ivIcon, holder.pbChampion);
                 }
             });
@@ -113,6 +115,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
                     })
                     .circleCrop()
                     .error(R.drawable.ic_placeholder_black_24dp)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(imageView);
         } else {
             Log.i(TAG, "displayImage: null");

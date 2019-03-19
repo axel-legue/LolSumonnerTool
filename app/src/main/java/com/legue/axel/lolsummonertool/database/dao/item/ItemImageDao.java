@@ -21,6 +21,9 @@ public interface ItemImageDao {
     @Query("SELECT * FROM item_images WHERE id = :itemImageId")
     LiveData<ItemImage> getItemImageById(int itemImageId);
 
+    @Query("SELECT * FROM item_images WHERE itemId = :itemId")
+    LiveData<ItemImage> getItemImageByItemId(int itemId);
+
     @Insert
     void insertItemImage(ItemImage itemImage);
 

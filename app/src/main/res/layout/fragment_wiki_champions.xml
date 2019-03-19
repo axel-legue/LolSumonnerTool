@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rrv_wiki_champions"
+        android:id="@+id/rv_wiki_champions"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
