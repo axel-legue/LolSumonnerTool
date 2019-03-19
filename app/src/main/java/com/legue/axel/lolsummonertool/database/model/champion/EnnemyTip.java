@@ -9,6 +9,7 @@ public class EnnemyTip {
     @PrimaryKey(autoGenerate = true)
     public int id;
     public String ennemytip;
+    //TODO : transform with TypeConverters
 
     @Ignore
     public EnnemyTip() {

@@ -11,7 +11,7 @@ public class Constants {
 
     public final static String WIKI_PAGE_CHAMPIONS = "Champions";
     public final static String WIKI_PAGE_ITEMS = "Items";
-    public final static String WIKI_PAGE_TREE = "Tree";
+    public final static String WIKI_PAGE_MASTERY = "Mastery";
     public final static String WIKI_PAGE_SPELL = "Spell";
 
 

@@ -34,7 +34,7 @@ public class WikiChampionFragment extends Fragment {
 
     private final static String TAG = WikiChampionFragment.class.getName();
 
-    @BindView(R.id.rv_wiki_champions)
+    @BindView(R.id.rv_wiki_data)
     RecyclerView rvChampionWiki;
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
@@ -69,7 +69,7 @@ public class WikiChampionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_wiki_champions, container, false);
+        View view = inflater.inflate(R.layout.fragment_wiki_data, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -93,11 +93,20 @@ public class WikiChampionFragment extends Fragment {
 
         loadChampions();
 
+        loadMasteries();
 
         adapter = new ChampionsAdapter(application, championList, championListener, fragment);
         rvChampionWiki.setLayoutManager(new GridLayoutManager(application, 4));
         rvChampionWiki.setAdapter(adapter);
         rvChampionWiki.setHasFixedSize(true);
+    }
+
+    private void loadMasteries() {
+
+        RetrofitHelper.getMasteries(
+                RetrofitConstants.ACTION_COMPLETE,
+                championhandler,
+                application);
     }
 
     private void loadChampions() {
@@ -106,6 +115,8 @@ public class WikiChampionFragment extends Fragment {
                 RetrofitConstants.ACTION_COMPLETE,
                 championhandler,
                 application);
+
+
     }
 
 

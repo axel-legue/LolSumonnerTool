@@ -23,81 +23,79 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.legue.axel.lolsummonertool.R;
-import com.legue.axel.lolsummonertool.database.model.item.Item;
-import com.legue.axel.lolsummonertool.database.model.item.ItemImage;
-import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel;
+import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
+import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage;
+import com.legue.axel.lolsummonertool.database.viewmodel.MasteryViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
-import com.legue.axel.lolsummonertool.wiki.WikiItemFragment;
+import com.legue.axel.lolsummonertool.wiki.WikiMasteryFragment;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
-    private static final String TAG = ItemAdapter.class.getName();
+public class MasteriesAdapter extends RecyclerView.Adapter<MasteriesAdapter.MasteryHolder> {
 
-    public interface ItemListener {
-        void itemSelected(int position, Item item);
+    private static final String TAG = MasteriesAdapter.class.getName();
+
+    public interface MasteryListener {
+        void masterySelected(int position, Mastery mastery);
     }
 
     private Context mContext;
-    private List<Item> mItems;
-    private ItemAdapter.ItemListener mItemListener;
-    private WikiItemFragment mFragment;
-    private ItemImage mItemImage;
+    private List<Mastery> mMasterys;
+    private MasteriesAdapter.MasteryListener mMasteryListener;
+    private WikiMasteryFragment mFragment;
+    private MasteryImage mMasteryImage;
 
-
-    public ItemAdapter(Context context, List<Item> items, ItemListener itemListener, WikiItemFragment fragment) {
+    public MasteriesAdapter(Context context, List<Mastery> masterys, MasteryListener masteryListener, WikiMasteryFragment fragment) {
         mContext = context;
-        mItems = items;
-        mItemListener = itemListener;
+        mMasterys = masterys;
+        mMasteryListener = masteryListener;
         mFragment = fragment;
     }
 
     @NonNull
     @Override
-    public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
-        return new ItemHolder(v);
+    public MasteryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_mastery, parent, false);
+        return new MasteryHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-        final Item item = mItems.get(position);
+    public void onBindViewHolder(@NonNull MasteryHolder holder, int position) {
+        final Mastery mastery = mMasterys.get(position);
 
-        if (item != null) {
-            ItemViewModel itemViewModel = ViewModelProviders.of(mFragment).get(ItemViewModel.class);
-            itemViewModel.getItemImage(item.id).observe(mFragment, itemImage -> {
-                if (itemImage != null) {
-                    mItemImage = itemImage;
-                    displayImage(mItemImage.full, holder.ivIcon, holder.pbItem);
+        if (mastery != null) {
+            MasteryViewModel masteryViewModel = ViewModelProviders.of(mFragment).get(MasteryViewModel.class);
+            masteryViewModel.getMasteryImage(mastery.id).observe(mFragment, masteryImage -> {
+                if (masteryImage != null) {
+                    mMasteryImage = masteryImage;
+                    displayImage(mMasteryImage.full, holder.ivIcon, holder.pbMastery);
                 }
             });
 
-            if (item.name != null && !TextUtils.isEmpty(item.name)) {
-                holder.tvName.setText(item.name);
+            if (mastery.name != null && !TextUtils.isEmpty(mastery.name)) {
+                holder.tvName.setText(mastery.name);
             }
 
             holder.llWrapper.setOnClickListener(v -> {
-                mItemListener.itemSelected(position, item);
+                mMasteryListener.masterySelected(position, mastery);
             });
-
-
         } else {
-            Log.i(TAG, "onBindViewHolder: item is null");
+            Log.i(TAG, "onBindViewHolder: mastery at position " + position + " is null");
         }
 
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mMasterys.size();
     }
 
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         Glide.with(mContext)
-                .load(ImageUtils.BuildItemIconUrl(url))
+                .load(ImageUtils.BuildMasteryIconUrl(url))
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -112,25 +110,25 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
                         return false;
                     }
                 })
+                .circleCrop()
                 .error(R.drawable.ic_placeholder_black_24dp)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageView);
-
     }
 
-    class ItemHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.iv_item)
+    class MasteryHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.iv_mastery)
         ImageView ivIcon;
         @BindView(R.id.tv_name)
         TextView tvName;
-        @BindView(R.id.pb_item)
-        ProgressBar pbItem;
-        @BindView(R.id.ll_wrapper_item)
+        @BindView(R.id.pb_mastery)
+        ProgressBar pbMastery;
+        @BindView(R.id.ll_wrapper_mastery)
         LinearLayout llWrapper;
 
-        ItemHolder(@NonNull View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
+        MasteryHolder(@NonNull View masteryView) {
+            super(masteryView);
+            ButterKnife.bind(this, masteryView);
         }
     }
 }

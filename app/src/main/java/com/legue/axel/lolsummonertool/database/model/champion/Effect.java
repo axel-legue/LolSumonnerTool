@@ -4,6 +4,7 @@ import java.util.List;
 
 //TODO work on it
 public class Effect {
+    //TODO : transform with TypeConverters
     List<Integer> integerList;
 
     public Effect() {

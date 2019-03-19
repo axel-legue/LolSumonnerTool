@@ -28,6 +28,8 @@ import com.legue.axel.lolsummonertool.database.dao.item.ItemImageDao;
 import com.legue.axel.lolsummonertool.database.dao.item.ItemMapDao;
 import com.legue.axel.lolsummonertool.database.dao.item.ItemStatDao;
 import com.legue.axel.lolsummonertool.database.dao.item.ItemTagDao;
+import com.legue.axel.lolsummonertool.database.dao.mastery.MasteryDao;
+import com.legue.axel.lolsummonertool.database.dao.mastery.MasteryImageDao;
 import com.legue.axel.lolsummonertool.database.model.champion.AllyTip;
 import com.legue.axel.lolsummonertool.database.model.champion.Block;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
@@ -50,13 +52,15 @@ import com.legue.axel.lolsummonertool.database.model.item.ItemImage;
 import com.legue.axel.lolsummonertool.database.model.item.ItemMap;
 import com.legue.axel.lolsummonertool.database.model.item.ItemStat;
 import com.legue.axel.lolsummonertool.database.model.item.ItemTag;
+import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
+import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage;
 
 @Database(
         entities = {AllyTip.class, Block.class, Champion.class, ChampionInfo.class,
                 ChampionStats.class, Cooldown.class, EnnemyTip.class, LevelTip.class, Passive.class,
                 Recommended.class, Skin.class, Spell.class, Tag.class, Var.class,
                 ChampionImage.class, Item.class, ItemEffect.class, ItemGold.class, ItemImage.class,
-                ItemMap.class, ItemStat.class, ItemTag.class
+                ItemMap.class, ItemStat.class, ItemTag.class, Mastery.class, MasteryImage.class
         },
         version = 1,
         exportSchema = false)
@@ -127,5 +131,9 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
     public abstract ItemStatDao itemStatDao();
 
     public abstract ItemTagDao itemTagDao();
+
+    public abstract MasteryDao masteryDao();
+
+    public abstract MasteryImageDao masteryImageDao();
 
 }

@@ -10,6 +10,7 @@ import com.legue.axel.lolsummonertool.utils.Constants;
 import com.legue.axel.lolsummonertool.wiki.BlankFragment;
 import com.legue.axel.lolsummonertool.wiki.WikiItemFragment;
 import com.legue.axel.lolsummonertool.wiki.WikiChampionFragment;
+import com.legue.axel.lolsummonertool.wiki.WikiMasteryFragment;
 
 public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
     private final static String TAG = "WikiFragmentAdapter";
@@ -32,7 +33,7 @@ public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
                 return WikiItemFragment.newInstance(1, Constants.WIKI_PAGE_ITEMS);
             case 2:
                 Log.i(TAG, "getItem: 2");
-                return BlankFragment.newInstance("", Constants.WIKI_PAGE_CHAMPIONS);
+                return WikiMasteryFragment.newInstance(2, Constants.WIKI_PAGE_MASTERY);
             case 3:
                 Log.i(TAG, "getItem: 3");
                 return BlankFragment.newInstance("", Constants.WIKI_PAGE_CHAMPIONS);
@@ -56,11 +57,11 @@ public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
                 Log.i(TAG, "getItem: 1");
                 return Constants.WIKI_PAGE_ITEMS;
             case 2:
+                Log.i(TAG, "getItem: 3");
+                return Constants.WIKI_PAGE_MASTERY;
+            case 3:
                 Log.i(TAG, "getItem: 2");
                 return Constants.WIKI_PAGE_SPELL;
-            case 3:
-                Log.i(TAG, "getItem: 3");
-                return Constants.WIKI_PAGE_TREE;
             default:
                 return null;
         }

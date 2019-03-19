@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.network;
+package com.legue.axel.lolsummonertool.network.response.champion;
 
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;

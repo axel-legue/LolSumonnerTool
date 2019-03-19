@@ -2,7 +2,6 @@ package com.legue.axel.lolsummonertool.utils;
 
 import com.legue.axel.lolsummonertool.AppExecutors;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
-import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.item.Item;
 import com.legue.axel.lolsummonertool.database.model.item.ItemEffect;
 import com.legue.axel.lolsummonertool.database.model.item.ItemGold;
@@ -10,9 +9,8 @@ import com.legue.axel.lolsummonertool.database.model.item.ItemImage;
 import com.legue.axel.lolsummonertool.database.model.item.ItemMap;
 import com.legue.axel.lolsummonertool.database.model.item.ItemStat;
 import com.legue.axel.lolsummonertool.database.model.item.ItemTag;
-import com.legue.axel.lolsummonertool.network.ChampionDetailResponse;
-import com.legue.axel.lolsummonertool.network.ItemDetailResponse;
-import com.legue.axel.lolsummonertool.network.ItemsResponse;
+import com.legue.axel.lolsummonertool.network.response.item.ItemDetailResponse;
+import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;

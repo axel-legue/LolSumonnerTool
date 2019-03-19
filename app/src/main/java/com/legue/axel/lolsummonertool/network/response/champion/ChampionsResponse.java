@@ -1,6 +1,7 @@
-package com.legue.axel.lolsummonertool.network;
+package com.legue.axel.lolsummonertool.network.response.champion;
 
 import com.google.gson.annotations.SerializedName;
+import com.legue.axel.lolsummonertool.network.response.champion.ChampionDetailResponse;
 
 import java.util.LinkedHashMap;
 

@@ -2,10 +2,8 @@ package com.legue.axel.lolsummonertool;
 
 import android.app.Application;
 
-import com.legue.axel.lolsummonertool.network.ChampionsResponse;
+import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.retrofit.RetrofitManager;
-
-import okhttp3.ResponseBody;
 
 public class SuperApplication extends Application {
 

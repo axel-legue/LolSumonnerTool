@@ -7,8 +7,8 @@ import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.Tag;
-import com.legue.axel.lolsummonertool.network.ChampionDetailResponse;
-import com.legue.axel.lolsummonertool.network.ChampionsResponse;
+import com.legue.axel.lolsummonertool.network.response.champion.ChampionDetailResponse;
+import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 
 import java.util.ArrayList;
 import java.util.HashMap;

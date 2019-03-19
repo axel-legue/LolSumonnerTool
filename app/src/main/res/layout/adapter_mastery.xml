@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_wrapper_mastery"
+    style="@style/mastery_adapter_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_mastery"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/content_description_mastery_image"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/pb_mastery"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/mastery_adapter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Zonyhas" />
+
+</LinearLayout>

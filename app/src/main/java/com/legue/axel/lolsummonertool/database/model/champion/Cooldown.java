@@ -10,6 +10,8 @@ public class Cooldown {
     public int id;
     public int duration;
 
+    //TODO : transform with TypeConverters
+
     @Ignore
     public Cooldown() {
     }

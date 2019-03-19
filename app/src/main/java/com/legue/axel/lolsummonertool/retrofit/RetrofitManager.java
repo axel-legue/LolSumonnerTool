@@ -1,8 +1,9 @@
 package com.legue.axel.lolsummonertool.retrofit;
 
 
-import com.legue.axel.lolsummonertool.network.ChampionsResponse;
-import com.legue.axel.lolsummonertool.network.ItemsResponse;
+import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
+import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
+import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -48,6 +49,11 @@ public class RetrofitManager {
     public Observable<ItemsResponse> getItems() {
         String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "item.json";
         return riotService.getItems(url);
+    }
+
+    public Observable<MasteryResponse> getMasteries() {
+        String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_MASTERY_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "mastery.json";
+        return riotService.getMasteries(url);
     }
 
 

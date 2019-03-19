@@ -24,6 +24,8 @@ public class Tag {
     public String tag;
     public int championId;
 
+    //TODO : transform with TypeConverters
+
     @Ignore
     public Tag() {
     }

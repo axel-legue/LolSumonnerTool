@@ -14,6 +14,7 @@ public class LevelTip {
     public int id;
     // TODO : add relation between LevelTip and Labels / Effecs
 
+
     @Ignore
     public LevelTip() {
     }
