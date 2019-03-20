@@ -93,21 +93,12 @@ public class WikiChampionFragment extends Fragment {
 
         loadChampions();
 
-        loadMasteries();
-
         adapter = new ChampionsAdapter(application, championList, championListener, fragment);
         rvChampionWiki.setLayoutManager(new GridLayoutManager(application, 4));
         rvChampionWiki.setAdapter(adapter);
         rvChampionWiki.setHasFixedSize(true);
     }
 
-    private void loadMasteries() {
-
-        RetrofitHelper.getMasteries(
-                RetrofitConstants.ACTION_COMPLETE,
-                championhandler,
-                application);
-    }
 
     private void loadChampions() {
         //TODO : testing purpose => update code and move it at a better place
@@ -115,7 +106,6 @@ public class WikiChampionFragment extends Fragment {
                 RetrofitConstants.ACTION_COMPLETE,
                 championhandler,
                 application);
-
 
     }
 
