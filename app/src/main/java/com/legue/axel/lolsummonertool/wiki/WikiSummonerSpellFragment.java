@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.SuperApplication;
-import com.legue.axel.lolsummonertool.adapter.MasteriesAdapter;
-import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
-import com.legue.axel.lolsummonertool.database.viewmodel.MasteryViewModel;
+import com.legue.axel.lolsummonertool.adapter.SummonerSpellAdapter;
+import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell;
+import com.legue.axel.lolsummonertool.database.viewmodel.SummonerSpellViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.utils.Constants;
@@ -30,40 +30,37 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WikiMasteryFragment extends Fragment {
+public class WikiSummonerSpellFragment extends Fragment {
 
-    private final static String TAG = WikiMasteryFragment.class.getName();
+    private final static String TAG = WikiSummonerSpellFragment.class.getName();
 
     @BindView(R.id.rv_wiki_data)
     RecyclerView rvWikiData;
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
 
-    private MasteriesAdapter adapter;
+    private SummonerSpellAdapter adapter;
     private SuperApplication application;
-    private WikiMasteryFragment fragment;
-    private List<Mastery> masteryList;
+    private WikiSummonerSpellFragment fragment;
+    private List<SummonerSpell> summonerSpellList;
 
-
-    MasteriesAdapter.MasteryListener masteryListener = new MasteriesAdapter.MasteryListener() {
+    SummonerSpellAdapter.SummonerSpellListener summonerSpellListener = new SummonerSpellAdapter.SummonerSpellListener() {
         @Override
-        public void masterySelected(int position, Mastery mastery) {
-            Toast.makeText(application, "Mastery a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
-
+        public void SummonerSpellSelected(int position, SummonerSpell summonerSpell) {
+            Toast.makeText(application, "SummonerSpell a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
         }
     };
 
-    public static WikiMasteryFragment newInstance(int page, String title) {
-        WikiMasteryFragment masteryFragment = new WikiMasteryFragment();
+    public static WikiSummonerSpellFragment newInstance(int page, String title) {
+        WikiSummonerSpellFragment wikiMasteryFragment = new WikiSummonerSpellFragment();
         Bundle args = new Bundle();
         args.putInt(Constants.KEY_WIKI_PAGE_NUMBER, page);
         args.putString(Constants.KEY_WIKI_PAGE_NAME, title);
-        masteryFragment.setArguments(args);
-        return masteryFragment;
+        wikiMasteryFragment.setArguments(args);
+        return wikiMasteryFragment;
     }
 
-    public WikiMasteryFragment() {
-        // Required empty public constructor
+    public WikiSummonerSpellFragment() {
     }
 
     @Nullable
@@ -85,34 +82,35 @@ public class WikiMasteryFragment extends Fragment {
     }
 
     private void initData() {
-        if (masteryList == null) {
-            masteryList = new ArrayList<>();
+        if (summonerSpellList == null) {
+            summonerSpellList = new ArrayList<>();
         }
         loadData();
 
-        adapter = new MasteriesAdapter(application, masteryList, masteryListener, fragment);
+        adapter = new SummonerSpellAdapter(application, summonerSpellList, summonerSpellListener, fragment);
         rvWikiData.setLayoutManager(new GridLayoutManager(application, 4));
         rvWikiData.setAdapter(adapter);
         rvWikiData.setHasFixedSize(true);
     }
 
+
     private void loadData() {
-        RetrofitHelper.getItems(
+        RetrofitHelper.getSummonerSpells(
                 RetrofitConstants.ACTION_COMPLETE,
-                masteryHandler,
+                summonerHandler,
                 application);
     }
 
-    private Handler masteryHandler = new Handler(msg -> {
+    private Handler summonerHandler = new Handler(msg -> {
         switch (msg.what) {
             case RetrofitConstants.ACTION_COMPLETE:
                 Log.i(TAG, "ACTION_COMPLETE ");
 
-                MasteryViewModel masteryViewModel = ViewModelProviders.of(fragment).get(MasteryViewModel.class);
-                masteryViewModel.getMasteries().observe(fragment, masteries -> {
-                    if (masteries != null && masteries.size() > 0) {
-                        masteryList.clear();
-                        masteryList.addAll(masteries);
+                SummonerSpellViewModel summonerSpellViewModel = ViewModelProviders.of(fragment).get(SummonerSpellViewModel.class);
+                summonerSpellViewModel.getSummonerSpells().observe(fragment, summonerSpells -> {
+                    if (summonerSpells != null && summonerSpells.size() > 0) {
+                        summonerSpellList.clear();
+                        summonerSpellList.addAll(summonerSpells);
                         adapter.notifyDataSetChanged();
                     }
                 });

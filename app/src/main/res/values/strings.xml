@@ -22,6 +22,7 @@
     <string name="content_description_champion_image">champion image</string>
     <string name="content_description_item_image">item image</string>
     <string name="content_description_mastery_image">mastery image</string>
+    <string name="content_description_summoner_spell_image">summoner spell image</string>
 
     <!-- Ads-->
     <string name="banner_main_activity">ca-app-pub-4205057744646990/5030663119</string>

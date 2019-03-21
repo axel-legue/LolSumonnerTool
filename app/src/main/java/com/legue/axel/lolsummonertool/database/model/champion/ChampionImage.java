@@ -9,12 +9,15 @@ import android.arch.persistence.room.PrimaryKey;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.champion.Passive;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "images",
         foreignKeys = {
                 @ForeignKey(
                         entity = Champion.class,
                         parentColumns = "key",
-                        childColumns = "championId"
+                        childColumns = "championId",
+                        onDelete = CASCADE
                 )}
 )
 public class ChampionImage {

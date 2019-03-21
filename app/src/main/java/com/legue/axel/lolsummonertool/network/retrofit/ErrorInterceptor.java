@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.retrofit;
+package com.legue.axel.lolsummonertool.network.retrofit;
 
 import android.util.Log;
 

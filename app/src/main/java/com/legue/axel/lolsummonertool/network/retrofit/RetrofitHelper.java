@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.retrofit;
+package com.legue.axel.lolsummonertool.network.retrofit;
 
 import android.os.Handler;
 import android.os.Message;
@@ -9,9 +9,11 @@ import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
+import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 import com.legue.axel.lolsummonertool.utils.ChampionUtils;
 import com.legue.axel.lolsummonertool.utils.ItemUtils;
 import com.legue.axel.lolsummonertool.utils.MasteryUtils;
+import com.legue.axel.lolsummonertool.utils.SummonerSpellUtils;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -149,6 +151,60 @@ public class RetrofitHelper {
 
                             MasteryUtils.insertMasteryResponseInDB(
                                     masteryResponse,
+                                    SummonerToolDatabase.getInstance(application));
+
+                        } else {
+                            Log.i(TAG, "onNext: getMasteries response is null");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            HttpException httpException = (HttpException) e;
+                            int code = httpException.code();
+                            Log.i(TAG, "Server respond with code : " + code);
+                            Log.i(TAG, "Response : " + httpException.getMessage());
+                        } else {
+                            Log.i(TAG, e.getMessage() == null ? "unknown error" : e.getMessage());
+                            e.printStackTrace();
+                        }
+                        // Send message for send image
+                        Message msg = new Message();
+                        msg.what = RetrofitConstants.ACTION_ERROR;
+                        msg.obj = RetrofitConstants.ERROR;
+                        handlerMessage.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete");
+                        Message message = new Message();
+                        message.what = action;
+                        handlerMessage.sendMessage(message);
+                    }
+                });
+    }
+
+    public static void getSummonerSpells(final int action, final Handler handlerMessage, final SuperApplication application) {
+
+        application.getRetrofitManager().getSummonerSpells()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<SummonerSpellsResponse>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe :" + d.toString());
+                    }
+
+                    @Override
+                    public void onNext(SummonerSpellsResponse summonerSpellsResponse) {
+                        if (summonerSpellsResponse != null) {
+                            Log.i(TAG, "onNext: " + summonerSpellsResponse);
+
+                            SummonerSpellUtils.insertSummonerSpellResponseInDB(
+                                    summonerSpellsResponse,
                                     SummonerToolDatabase.getInstance(application));
 
                         } else {

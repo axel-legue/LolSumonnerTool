@@ -9,24 +9,24 @@ import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 
-public class DescriptionConverters {
+public class IntegerListConverters {
 
     @TypeConverter
-    public static List<String> stringToDescriptionList(String description) {
+    public static List<Integer> integerToList(String value) {
         Gson gson = new Gson();
 
-        if (description == null) {
+        if (value == null) {
             return Collections.emptyList();
         }
 
-        Type listType = new TypeToken<List<String>>() {
+        Type listType = new TypeToken<List<Integer>>() {
         }.getType();
 
-        return gson.fromJson(description, listType);
+        return gson.fromJson(value, listType);
     }
 
     @TypeConverter
-    public static String descriptionListToString(List<String> descriptions) {
+    public static String ListToString(List<Integer> descriptions) {
         Gson gson = new Gson();
         return gson.toJson(descriptions);
     }

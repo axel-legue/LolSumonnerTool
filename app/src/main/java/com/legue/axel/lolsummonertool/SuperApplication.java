@@ -3,7 +3,7 @@ package com.legue.axel.lolsummonertool;
 import android.app.Application;
 
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
-import com.legue.axel.lolsummonertool.retrofit.RetrofitManager;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitManager;
 
 public class SuperApplication extends Application {
 

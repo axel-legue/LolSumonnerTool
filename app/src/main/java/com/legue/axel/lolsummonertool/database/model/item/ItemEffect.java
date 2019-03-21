@@ -6,12 +6,15 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "item_effects",
         foreignKeys = {
                 @ForeignKey(
                         entity = Item.class,
                         parentColumns = "id",
-                        childColumns = "itemId"
+                        childColumns = "itemId",
+                        onDelete = CASCADE
                 )}
 )
 public class ItemEffect {

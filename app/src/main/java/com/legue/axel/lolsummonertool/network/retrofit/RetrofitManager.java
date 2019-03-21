@@ -1,9 +1,11 @@
-package com.legue.axel.lolsummonertool.retrofit;
+package com.legue.axel.lolsummonertool.network.retrofit;
 
 
+import com.google.gson.GsonBuilder;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
+import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -34,7 +36,7 @@ public class RetrofitManager {
                 .baseUrl(RetrofitConstants.API_DRAGON_BASE_CDN)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().serializeNulls().create()))
                 .build();
 
         riotService = retrofitDataDragon.create(RiotService.class);
@@ -54,6 +56,11 @@ public class RetrofitManager {
     public Observable<MasteryResponse> getMasteries() {
         String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_MASTERY_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "mastery.json";
         return riotService.getMasteries(url);
+    }
+
+    public Observable<SummonerSpellsResponse> getSummonerSpells() {
+        String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_MASTERY_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "summoner.json";
+        return riotService.getSummonerSpells(url);
     }
 
 

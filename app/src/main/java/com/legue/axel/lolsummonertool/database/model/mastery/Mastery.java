@@ -5,7 +5,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
-import com.legue.axel.lolsummonertool.database.converter.DescriptionConverters;
+import com.legue.axel.lolsummonertool.database.converter.StringListConverters;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Mastery {
     @PrimaryKey
     public int id;
     public String name;
-    @TypeConverters(DescriptionConverters.class)
+    @TypeConverters(StringListConverters.class)
     public List<String> description;
     public int ranks;
     public String prereq;

@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.retrofit;
+package com.legue.axel.lolsummonertool.network.retrofit;
 
 public class RetrofitConstants {
 
@@ -18,6 +18,7 @@ public class RetrofitConstants {
     public static final String API_TYPE_CHAMPION = "champion";
     public static final String API_TYPE_ITEM = "item";
     public static final String API_TYPE_MASTERY = "mastery";
+    public static final String API_TYPE_SPELL = "spell";
     public static final String LANGUAGE_KEY = "en_GB";
     public static final String API_KEY = "api_key";
 

@@ -6,11 +6,14 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "passives",
         foreignKeys = @ForeignKey(
                 entity = Champion.class,
                 parentColumns = "key",
-                childColumns = "championId"
+                childColumns = "championId",
+                onDelete = CASCADE
         ))
 public class Passive {
     @PrimaryKey(autoGenerate = true)

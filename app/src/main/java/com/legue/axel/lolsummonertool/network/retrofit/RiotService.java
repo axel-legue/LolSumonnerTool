@@ -1,8 +1,9 @@
-package com.legue.axel.lolsummonertool.retrofit;
+package com.legue.axel.lolsummonertool.network.retrofit;
 
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
+import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -18,4 +19,7 @@ public interface RiotService {
 
     @GET
     Observable<MasteryResponse> getMasteries(@Url String url);
+
+    @GET
+    Observable<SummonerSpellsResponse> getSummonerSpells(@Url String url);
 }

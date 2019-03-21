@@ -20,8 +20,8 @@ import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.adapter.ItemAdapter;
 import com.legue.axel.lolsummonertool.database.model.item.Item;
 import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel;
-import com.legue.axel.lolsummonertool.retrofit.RetrofitConstants;
-import com.legue.axel.lolsummonertool.retrofit.RetrofitHelper;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.utils.Constants;
 
 import java.util.ArrayList;
