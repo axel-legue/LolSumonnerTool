@@ -3,37 +3,46 @@ package com.legue.axel.lolsummonertool.network.response.champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
+import com.legue.axel.lolsummonertool.database.model.champion.Passive;
+import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 
 import java.util.List;
 
-public class ChampionDetailResponse {
+public class ChampionInfoDetailResponse {
 
     private String key;
     private String id;
     private String name;
     private String title;
+    private String lore;
     private String blurb;
+    private String partype;
     private ChampionInfo info;
     private ChampionImage image;
     private List<String> tags;
     private ChampionStats stats;
+    private Passive passive;
+    private List<Spell> spells;
 
-
-    public ChampionDetailResponse() {
+    public ChampionInfoDetailResponse() {
     }
 
-
-    public ChampionDetailResponse(String key, String id, String name, String title, String blurb, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats) {
+    public ChampionInfoDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats, Passive passive, List<Spell> spells) {
         this.key = key;
         this.id = id;
         this.name = name;
         this.title = title;
+        this.lore = lore;
         this.blurb = blurb;
+        this.partype = partype;
         this.info = info;
         this.image = image;
         this.tags = tags;
         this.stats = stats;
+        this.passive = passive;
+        this.spells = spells;
     }
+
 
     public String getKey() {
         return key;
@@ -67,12 +76,28 @@ public class ChampionDetailResponse {
         this.title = title;
     }
 
+    public String getLore() {
+        return lore;
+    }
+
+    public void setLore(String lore) {
+        this.lore = lore;
+    }
+
     public String getBlurb() {
         return blurb;
     }
 
     public void setBlurb(String blurb) {
         this.blurb = blurb;
+    }
+
+    public String getPartype() {
+        return partype;
+    }
+
+    public void setPartype(String partype) {
+        this.partype = partype;
     }
 
     public ChampionInfo getInfo() {
@@ -107,4 +132,19 @@ public class ChampionDetailResponse {
         this.stats = stats;
     }
 
+    public Passive getPassive() {
+        return passive;
+    }
+
+    public void setPassive(Passive passive) {
+        this.passive = passive;
+    }
+
+    public List<Spell> getSpells() {
+        return spells;
+    }
+
+    public void setSpells(List<Spell> spells) {
+        this.spells = spells;
+    }
 }

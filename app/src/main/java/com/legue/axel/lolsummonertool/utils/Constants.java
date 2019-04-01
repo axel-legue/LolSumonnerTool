@@ -14,5 +14,7 @@ public class Constants {
     public final static String WIKI_PAGE_MASTERY = "Mastery";
     public final static String WIKI_PAGE_SPELL = "Spell";
 
+    public final static String WIKI_CHAMPION_ID = "champion_id";
+
 
 }

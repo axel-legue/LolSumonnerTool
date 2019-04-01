@@ -1,6 +1,7 @@
 package com.legue.axel.lolsummonertool.wiki;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -48,6 +49,9 @@ public class WikiChampionFragment extends Fragment {
         @Override
         public void championSelected(int position, Champion champion) {
             Toast.makeText(application, "Champion a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), WikiChampionInformations.class);
+            intent.putExtra(Constants.WIKI_CHAMPION_ID, champion.id);
+            startActivity(intent);
         }
     };
 

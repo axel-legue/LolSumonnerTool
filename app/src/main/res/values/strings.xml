@@ -30,5 +30,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="health_regen">Health regen</string>
+    <string name="health">Health</string>
+    <string name="role">Role</string>
+    <string name="name">Name</string>
+    <string name="nickname">Nickname</string>
+    <string name="range">Range</string>
+    <string name="mana_regen">Mana Regen</string>
+    <string name="mana">Mana</string>
+    <string name="magic_resist">Magic resist.</string>
+    <string name="move_speed">Move speed</string>
 
 </resources>

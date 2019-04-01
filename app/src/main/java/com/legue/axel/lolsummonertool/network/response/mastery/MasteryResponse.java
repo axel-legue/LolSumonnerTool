@@ -1,21 +1,25 @@
 package com.legue.axel.lolsummonertool.network.response.mastery;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.LinkedHashMap;
+import java.util.List;
 
 public class MasteryResponse {
-    public String type;
-    public String version;
-    @SerializedName("data")
-    public LinkedHashMap<String, MasteryDetailResponse> masteryDetailResponse;
+    public int id;
+    public String name;
+    public String majorChangePatchVersion ;
+    public String toolTip ;
+    public String shortDesc ;
+    public String longDesc ;
+    // Exemple translation :
+    // https://raw.communitydragon.org/9.6/game/assets/perks/styles/resolve/demolish/demolish.png
+    public String iconPath ;
+    public List<String> endOfGameStatDescs;
+
+
+
+
 
     public MasteryResponse() {
     }
 
-    public MasteryResponse(String type, String version, LinkedHashMap<String, MasteryDetailResponse> masteryDetailResponse) {
-        this.type = type;
-        this.version = version;
-        this.masteryDetailResponse = masteryDetailResponse;
-    }
+
 }

@@ -2,6 +2,7 @@ package com.legue.axel.lolsummonertool.network.retrofit;
 
 
 import com.google.gson.GsonBuilder;
+import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoResponse;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
@@ -46,6 +47,11 @@ public class RetrofitManager {
     public Observable<ChampionsResponse> getChampions() {
         String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "champion.json";
         return riotService.getChampions(url);
+    }
+
+    public Observable<ChampionInfoResponse> getChampionByName(String championId) {
+        String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_CHAMPION_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + RetrofitConstants.API_TYPE_CHAMPION + "/" + championId + ".json";
+        return riotService.getChampionByName(url);
     }
 
     public Observable<ItemsResponse> getItems() {
