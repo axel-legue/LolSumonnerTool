@@ -21,6 +21,9 @@ public interface ChampionStatDao {
     @Query("SELECT * FROM champion_stats WHERE id = :championStatId")
     LiveData<ChampionStats> getChampionStatsById(int championStatId);
 
+    @Query("SELECT * FROM champion_stats WHERE championId = :championKeyId")
+    LiveData<ChampionStats> getChampionStatsByChampionKey(int championKeyId);
+
     @Insert
     void insertChampionStats(ChampionStats championStats);
 

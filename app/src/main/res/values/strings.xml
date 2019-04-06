@@ -23,6 +23,7 @@
     <string name="content_description_item_image">item image</string>
     <string name="content_description_mastery_image">mastery image</string>
     <string name="content_description_summoner_spell_image">summoner spell image</string>
+    <string name="content_description_champion_spell_image">champion spell image</string>
 
     <!-- Ads-->
     <string name="banner_main_activity">ca-app-pub-4205057744646990/5030663119</string>
@@ -40,5 +41,12 @@
     <string name="mana">Mana</string>
     <string name="magic_resist">Magic resist.</string>
     <string name="move_speed">Move speed</string>
+    <string name="attack_damage">Attack damage</string>
+    <string name="attack_speed">attack speed</string>
+    <string name="armor">Armor</string>
+    <string name="attack">Attack</string>
+    <string name="defense">Defense</string>
+    <string name="magic">Magic</string>
+    <string name="difficulty">Difficulty</string>
 
 </resources>

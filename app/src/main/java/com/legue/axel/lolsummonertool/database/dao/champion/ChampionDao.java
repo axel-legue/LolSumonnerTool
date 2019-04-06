@@ -15,11 +15,11 @@ import java.util.List;
 @Dao
 public interface ChampionDao {
 
-    @Query("SELECT * FROM champions ORDER BY id")
+    @Query("SELECT * FROM champions ORDER BY 'key'")
     LiveData<List<Champion>> getChampions();
 
-    @Query("SELECT * FROM champions WHERE id = :championId")
-    LiveData<Champion> getChampionById(int championId);
+    @Query("SELECT * FROM champions WHERE 'key' = :championKey")
+    LiveData<Champion> getChampionByKey(int championKey);
 
     @Insert
     void insertChampion(Champion champion);

@@ -50,6 +50,7 @@ public class WikiChampionFragment extends Fragment {
         public void championSelected(int position, Champion champion) {
             Toast.makeText(application, "Champion a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), WikiChampionInformations.class);
+            intent.putExtra(Constants.WIKI_CHAMPION_KEY, champion.key);
             intent.putExtra(Constants.WIKI_CHAMPION_ID, champion.id);
             startActivity(intent);
         }

@@ -13,7 +13,7 @@ import io.reactivex.annotations.NonNull;
 
 @Entity(tableName = "champions")
 public class Champion {
-    //TODO :Add recommended Object and relation if  enough time.
+    //TODO :Add recommended Object and relation if enough time.
 
     @PrimaryKey()
     @NonNull

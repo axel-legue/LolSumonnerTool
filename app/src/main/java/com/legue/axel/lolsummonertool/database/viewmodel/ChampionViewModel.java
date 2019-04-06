@@ -6,8 +6,10 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
-import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 
 import java.util.List;
 
@@ -27,8 +29,20 @@ public class ChampionViewModel extends AndroidViewModel {
         return champions;
     }
 
+    public LiveData<Champion> getChampionByKey(int championKey) {
+        return database.championDao().getChampionByKey(championKey);
+    }
+
     // TODO move that to RiotImageViewModel
-    public LiveData<ChampionImage> getChampionImage(int championId) {
-        return database.championImageDao().getChampionImageByChampionId(championId);
+    public LiveData<ChampionImage> getChampionImage(int championKey) {
+        return database.championImageDao().getChampionImageByChampionId(championKey);
+    }
+
+    public LiveData<ChampionInfo> getChampionInfo(int championKey) {
+        return database.championInfoDao().getChampionInfoByChampionKeyId(championKey);
+    }
+
+    public LiveData<ChampionStats> getChampionStat(int championKey) {
+        return database.championStatDao().getChampionStatsByChampionKey(championKey);
     }
 }
