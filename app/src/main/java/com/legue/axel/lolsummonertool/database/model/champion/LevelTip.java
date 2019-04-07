@@ -7,7 +7,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 
-import com.google.gson.annotations.SerializedName;
 import com.legue.axel.lolsummonertool.database.converter.StringListConverters;
 
 import java.util.List;
@@ -18,7 +17,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         foreignKeys = {
                 @ForeignKey(
                         entity = Spell.class,
-                        parentColumns = "key",
+                        parentColumns = "id",
                         childColumns = "spellId",
                         onDelete = CASCADE
                 )}
@@ -27,18 +26,18 @@ public class LevelTip {
     @PrimaryKey(autoGenerate = true)
     public int id;
     @TypeConverters(StringListConverters.class)
-    public String label;
+    public List<String> label;
     @TypeConverters(StringListConverters.class)
-    public String effect;
+    public List<String> effect;
     @ColumnInfo(index = true)
-    public int spellId;
+    public String spellId;
 
 
     @Ignore
     public LevelTip() {
     }
 
-    public LevelTip(int id, String label, String effect, int spellId) {
+    public LevelTip(int id, List<String> label, List<String> effect, String spellId) {
         this.id = id;
         this.label = label;
         this.effect = effect;

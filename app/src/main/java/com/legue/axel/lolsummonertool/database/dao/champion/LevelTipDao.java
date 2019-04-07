@@ -24,9 +24,18 @@ public interface LevelTipDao {
     @Insert
     void insertLevelTip(LevelTip levelTip);
 
+    @Insert
+    void insertLevelTips(List<LevelTip> levelTips);
+
+    @Query("DELETE FROM level_tip")
+    void deleteAll();
+
     @Delete
     void deleteLevelTip(LevelTip levelTip);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateLevelTip(LevelTip levelTip);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void updateLevelTips(List<LevelTip> levelTips);
 }

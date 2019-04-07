@@ -12,7 +12,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         foreignKeys = {
                 @ForeignKey(
                         entity = Spell.class,
-                        parentColumns = "key",
+                        parentColumns = "id",
                         childColumns = "spellId",
                         onDelete = CASCADE
                 )}
@@ -24,13 +24,13 @@ public class Var {
     public Float coeff;
     public String key;
     @ColumnInfo(index = true)
-    public int spellId;
+    public String spellId;
 
     @Ignore
     public Var() {
     }
 
-    public Var(int id, String link, Float coeff, String key, int spellId) {
+    public Var(int id, String link, Float coeff, String key, String spellId) {
         this.id = id;
         this.link = link;
         this.coeff = coeff;

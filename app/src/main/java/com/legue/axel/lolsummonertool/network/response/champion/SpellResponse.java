@@ -13,16 +13,16 @@ public class SpellResponse {
     private String toolTip;
     private LevelTipResponse leveltip;
     private int maxRank;
-    private List<Integer> cooldown;
+    private List<Float> cooldown;
     private String cooldownBurn;
-    private List<Integer> cost;
+    private List<Float> cost;
     private String costBurn;
-    private List<List<Integer>> effect;
+    private List<List<Float>> effect;
     private List<String> effectBurn;
     private List<Var> vars;
     private String costType;
     private String maxammo;
-    private List<Integer> range;
+    private List<Float> range;
     private String rangeBurn;
     private String resource;
     private SpellImage image;
@@ -30,7 +30,7 @@ public class SpellResponse {
     public SpellResponse() {
     }
 
-    public SpellResponse(String id, String name, String description, String toolTip, LevelTipResponse leveltip, int maxRank, List<Integer> cooldown, String cooldownBurn, List<Integer> cost, String costBurn, List<List<Integer>> effect, List<String> effectBurn, List<Var> vars, String costType, String maxammo, List<Integer> range, String rangeBurn, String resource, SpellImage image) {
+    public SpellResponse(String id, String name, String description, String toolTip, LevelTipResponse leveltip, int maxRank, List<Float> cooldown, String cooldownBurn, List<Float> cost, String costBurn, List<List<Float>> effect, List<String> effectBurn, List<Var> vars, String costType, String maxammo, List<Float> range, String rangeBurn, String resource, SpellImage image) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -100,11 +100,11 @@ public class SpellResponse {
         this.maxRank = maxRank;
     }
 
-    public List<Integer> getCooldown() {
+    public List<Float> getCooldown() {
         return cooldown;
     }
 
-    public void setCooldown(List<Integer> cooldown) {
+    public void setCooldown(List<Float> cooldown) {
         this.cooldown = cooldown;
     }
 
@@ -116,11 +116,11 @@ public class SpellResponse {
         this.cooldownBurn = cooldownBurn;
     }
 
-    public List<Integer> getCost() {
+    public List<Float> getCost() {
         return cost;
     }
 
-    public void setCost(List<Integer> cost) {
+    public void setCost(List<Float> cost) {
         this.cost = cost;
     }
 
@@ -132,11 +132,11 @@ public class SpellResponse {
         this.costBurn = costBurn;
     }
 
-    public List<List<Integer>> getEffect() {
+    public List<List<Float>> getEffect() {
         return effect;
     }
 
-    public void setEffect(List<List<Integer>> effect) {
+    public void setEffect(List<List<Float>> effect) {
         this.effect = effect;
     }
 
@@ -172,11 +172,11 @@ public class SpellResponse {
         this.maxammo = maxammo;
     }
 
-    public List<Integer> getRange() {
+    public List<Float> getRange() {
         return range;
     }
 
-    public void setRange(List<Integer> range) {
+    public void setRange(List<Float> range) {
         this.range = range;
     }
 

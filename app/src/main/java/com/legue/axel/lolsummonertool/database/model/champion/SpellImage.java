@@ -29,13 +29,13 @@ public class SpellImage {
     public int w;
     public int h;
     @ColumnInfo(index = true)
-    public int spellId;
+    public String spellId;
 
     @Ignore
     public SpellImage() {
     }
 
-    public SpellImage(int id, String full, String sprite, String group, int x, int y, int w, int h, int spellId) {
+    public SpellImage(int id, String full, String sprite, String group, int x, int y, int w, int h, String spellId) {
         this.id = id;
         this.full = full;
         this.sprite = sprite;

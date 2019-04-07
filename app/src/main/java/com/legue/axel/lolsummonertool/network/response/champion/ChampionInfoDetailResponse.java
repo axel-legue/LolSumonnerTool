@@ -22,12 +22,12 @@ public class ChampionInfoDetailResponse {
     private List<String> tags;
     private ChampionStats stats;
     private Passive passive;
-    private List<Spell> spells;
+    private List<SpellResponse> spells;
 
     public ChampionInfoDetailResponse() {
     }
 
-    public ChampionInfoDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats, Passive passive, List<Spell> spells) {
+    public ChampionInfoDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats, Passive passive, List<SpellResponse> spells) {
         this.key = key;
         this.id = id;
         this.name = name;
@@ -140,11 +140,11 @@ public class ChampionInfoDetailResponse {
         this.passive = passive;
     }
 
-    public List<Spell> getSpells() {
+    public List<SpellResponse> getSpells() {
         return spells;
     }
 
-    public void setSpells(List<Spell> spells) {
+    public void setSpells(List<SpellResponse> spells) {
         this.spells = spells;
     }
 }

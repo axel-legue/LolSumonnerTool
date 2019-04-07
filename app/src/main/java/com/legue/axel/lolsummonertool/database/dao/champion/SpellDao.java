@@ -21,13 +21,25 @@ public interface SpellDao {
     @Query("SELECT * FROM spells WHERE id = :spellId")
     LiveData<Spell> getSpellById(int spellId);
 
+    @Query("SELECT * FROM spells WHERE name = :spellName")
+    Spell getSpellByName(String spellName);
+
+    @Query("SELECT * FROM spells WHERE championId = :championId ORDER BY name")
+    LiveData<List<Spell>> getChampionSpells(int championId);
+
     @Insert
     void insertSpell(Spell spell);
+
+    @Insert
+    void insertSpells(List<Spell> spells);
 
     @Delete
     void deleteSpell(Spell spell);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSpell(Spell spell);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void updateSpells(List<Spell> spells);
 
 }

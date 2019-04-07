@@ -6,6 +6,7 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 import com.legue.axel.lolsummonertool.database.converter.FloatListConverters;
@@ -28,8 +29,8 @@ public class Spell {
 
     //TODO add relation beetween Spell and /Effect/EffectBurn
     //TODO : handle effect and effectBurns values ....
-    @PrimaryKey(autoGenerate = true)
-    public int key;
+    @PrimaryKey()
+    @NonNull
     public String id;
     public String name;
     public String description;
@@ -40,13 +41,13 @@ public class Spell {
     @TypeConverters(FloatListConverters.class)
     public List<Float> cooldown;
     public String cooldownBurn;
-    @TypeConverters(IntegerListConverters.class)
-    public List<Integer> cost;
+    @TypeConverters(FloatListConverters.class)
+    public List<Float> cost;
     public String costBurn;
     public String costType;
     public String maxammo;
-    @TypeConverters(IntegerListConverters.class)
-    public List<Integer> range;
+    @TypeConverters(FloatListConverters.class)
+    public List<Float> range;
     public String rangeBurn;
     public String resource;
     public int championId;
@@ -56,11 +57,10 @@ public class Spell {
     }
 
 
-    public Spell(int key, String id, String name, String description, String toolTip,
-                 int maxRank, List<Float> cooldown, String cooldownBurn, List<Integer> cost,
-                 String costBurn, String costType, String maxammo, List<Integer> range,
+    public Spell(String id, String name, String description, String toolTip,
+                 int maxRank, List<Float> cooldown, String cooldownBurn, List<Float> cost,
+                 String costBurn, String costType, String maxammo, List<Float> range,
                  String rangeBurn, String resource, int championId) {
-        this.key = key;
         this.id = id;
         this.name = name;
         this.description = description;

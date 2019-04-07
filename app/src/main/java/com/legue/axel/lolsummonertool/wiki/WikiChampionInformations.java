@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ImageView;
@@ -26,11 +27,15 @@ import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
+import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.utils.Constants;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +90,7 @@ public class WikiChampionInformations extends AppCompatActivity {
     private ChampionInfo mChampionInfos;
     private ChampionStats mChampionStats;
     private ChampionImage mChampionImage;
+    private List<Spell> mChampionSpells;
 
 
     private int mChampionKey;
@@ -112,10 +118,28 @@ public class WikiChampionInformations extends AppCompatActivity {
     }
 
     private void initData() {
+        if (mChampionSpells == null) {
+            mChampionSpells = new ArrayList<>();
+        }
         application = (SuperApplication) this.getApplication();
         loadChampion(mChampionId, mChampionKey);
+
+        adapter = new ChampionSpellAdapter(application, mChampionSpells, this);
+        rvSpells.setLayoutManager(new LinearLayoutManager(this));
+        rvSpells.setAdapter(adapter);
+        rvSpells.setHasFixedSize(true);
     }
 
+    private void updateChampion() {
+        if (mChampion != null) {
+            tvChampionName.setText(mChampion.name);
+            tvChampionNickname.setText(mChampion.title);
+            tvChampionRole.setText(mChampion.tags.get(0));
+            tvChampionLore.setText(mChampion.lore);
+        }
+
+
+    }
 
     private void updateChampionInfo() {
         if (mChampionInfos != null) {
@@ -173,16 +197,10 @@ public class WikiChampionInformations extends AppCompatActivity {
 
     }
 
-    private void updateChampion() {
-        if (mChampion != null) {
-            tvChampionName.setText(mChampion.name);
-            tvChampionNickname.setText(mChampion.title);
-            tvChampionRole.setText(mChampion.tags.get(0));
-            tvChampionLore.setText(mChampion.lore);
-        }
-
-
+    private void updateChampionSpells() {
+        adapter.notifyDataSetChanged();
     }
+
 
     private void loadChampion(String championId, int championKey) {
 
@@ -209,6 +227,7 @@ public class WikiChampionInformations extends AppCompatActivity {
                         getChampionInfo(mChampionViewModel, mChampion.key);
                         getChampionStat(mChampionViewModel, mChampion.key);
                         getChampionImage(mChampionViewModel, mChampion.key);
+                        getChampionSpells(mChampionViewModel, mChampion.key);
                     }
                 });
                 break;
@@ -242,6 +261,16 @@ public class WikiChampionInformations extends AppCompatActivity {
             if (championImage != null) {
                 mChampionImage = championImage;
                 updateChampionImage();
+            }
+        });
+    }
+
+    private void getChampionSpells(ChampionViewModel championViewModel, int championKey) {
+        championViewModel.getChampionSpells(championKey).observe(this, championSpells -> {
+            if (championSpells != null && championSpells.size() > 0) {
+                mChampionSpells.clear();
+                mChampionSpells.addAll(championSpells);
+                updateChampionSpells();
             }
         });
     }

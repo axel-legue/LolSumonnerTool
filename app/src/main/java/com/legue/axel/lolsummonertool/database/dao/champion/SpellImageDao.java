@@ -29,7 +29,7 @@ public interface SpellImageDao {
     void insertSpellImage(SpellImage spellImage);
 
     @Insert
-    void insertAllSpellImage(List<SpellImage> spellImages);
+    void insertSpellImages(List<SpellImage> spellImages);
 
     @Delete
     void deleteSpellImage(SpellImage spellImage);
@@ -39,4 +39,7 @@ public interface SpellImageDao {
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSpellImage(SpellImage spellImage);
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    void updateSpellImages(List<SpellImage> spellImages);
 }
