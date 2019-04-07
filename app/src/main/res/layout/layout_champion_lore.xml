@@ -17,8 +17,8 @@
     <TextView
         android:id="@+id/tv_lore"
         android:layout_width="411dp"
-        android:layout_height="126dp"
-        android:ems="10"
+        android:layout_height="wrap_content"
+        android:ems="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

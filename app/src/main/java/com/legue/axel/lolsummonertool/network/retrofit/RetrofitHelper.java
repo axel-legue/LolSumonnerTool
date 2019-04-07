@@ -80,7 +80,7 @@ public class RetrofitHelper {
                 });
     }
 
-    public static void getChampionByName(final int action, final String championId, final Handler handlerMessage, final SuperApplication application) {
+    public static void getChampionByName(final int action, final String championId, final int championKey, final Handler handlerMessage, final SuperApplication application) {
 
         application.getRetrofitManager().getChampionByName(championId)
                 .subscribeOn(Schedulers.newThread())
@@ -129,6 +129,7 @@ public class RetrofitHelper {
                         Log.i(TAG, "onComplete");
                         Message message = new Message();
                         message.what = action;
+                        message.arg1 = championKey;
                         handlerMessage.sendMessage(message);
                     }
                 });

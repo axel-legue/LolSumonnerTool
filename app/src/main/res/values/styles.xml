@@ -68,5 +68,43 @@
 
     <!-- END HARMONIZE THESES STYLES -->
 
+    <!-- TEXT Styles-->
+    <style name="big_title_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/title_1_text_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="title_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/title_2_text_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="subtitle_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/title_3_text_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="big_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/body_1_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="default_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/body_2_text_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="small_text">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/body_3_text_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
 
 </resources>

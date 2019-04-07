@@ -68,6 +68,7 @@ public class ChampionInfoUtils {
         champion.key = Integer.valueOf(championDetailResponse.getKey());
         champion.id = championDetailResponse.getId();
         champion.name = championDetailResponse.getName();
+        champion.lore = championDetailResponse.getLore();
         champion.title = championDetailResponse.getTitle();
         champion.blurb = championDetailResponse.getBlurb();
         List<String> tags = championDetailResponse.getTags();
