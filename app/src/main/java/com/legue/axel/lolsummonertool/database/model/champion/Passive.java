@@ -20,6 +20,7 @@ public class Passive {
     public int id;
     public String name;
     public String description;
+    public String image;
     @ColumnInfo(index = true)
     public int championId;
 

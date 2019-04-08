@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.adapter.ChampionSpellAdapter;
@@ -27,11 +28,12 @@ import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
+import com.legue.axel.lolsummonertool.database.model.champion.Passive;
+import com.legue.axel.lolsummonertool.database.model.champion.PassiveImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
-import com.legue.axel.lolsummonertool.utils.Constants;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
 
 import java.util.ArrayList;
@@ -47,13 +49,17 @@ public class WikiChampionInformations extends AppCompatActivity {
 
     @BindView(R.id.iv_champion)
     ImageView ivChampion;
+    @BindView(R.id.iv_passive)
+    ImageView ivPassive;
     @BindView(R.id.tv_name)
     TextView tvChampionName;
+    @BindView(R.id.tv_passive_description)
+    TextView tvPassiveDescription;
     @BindView(R.id.tv_nickname)
     TextView tvChampionNickname;
     @BindView(R.id.tv_role)
     TextView tvChampionRole;
-    @BindView(R.id.tv_lore)
+    @BindView(R.id.tv_description)
     TextView tvChampionLore;
     @BindView(R.id.tv_range_value)
     TextView tvRange;
@@ -75,14 +81,16 @@ public class WikiChampionInformations extends AppCompatActivity {
     TextView tvMagicResist;
     @BindView(R.id.tv_move_speed_value)
     TextView tvMovementSpeed;
+    @BindView(R.id.tv_passive_name)
+    TextView tvPassiveName;
+    @BindView(R.id.pb_difficulty)
+    ProgressBar pbDifficulty;
     @BindView(R.id.pb_attack)
     ProgressBar pbAttack;
     @BindView(R.id.pb_defense)
     ProgressBar pbDefense;
     @BindView(R.id.pb_magic)
     ProgressBar pbMagic;
-    @BindView(R.id.pb_difficulty)
-    ProgressBar pbDifficulty;
     @BindView(R.id.rv_spells)
     RecyclerView rvSpells;
 
@@ -90,6 +98,7 @@ public class WikiChampionInformations extends AppCompatActivity {
     private ChampionInfo mChampionInfos;
     private ChampionStats mChampionStats;
     private ChampionImage mChampionImage;
+    private Passive mChampionPassive;
     private List<Spell> mChampionSpells;
 
 
@@ -172,6 +181,38 @@ public class WikiChampionInformations extends AppCompatActivity {
         }
     }
 
+    private void updateChampionPassive() {
+        if (mChampionPassive != null) {
+            tvPassiveDescription.setText(mChampionPassive.description);
+            tvPassiveName.setText(mChampionPassive.name);
+            displayPassiveImage(mChampionPassive.image);
+        }
+    }
+
+    private void displayPassiveImage(String passiveImageEndPoint) {
+        if (passiveImageEndPoint != null) {
+            Glide.with(this)
+                    .load(ImageUtils.BuildPassiveIconUrl(passiveImageEndPoint))
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            //  progressBar.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            //   progressBar.setVisibility(View.GONE);
+                            //    imageView.setVisibility(View.VISIBLE);
+                            return false;
+                        }
+                    })
+                    .error(R.drawable.ic_placeholder_black_24dp)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(ivPassive);
+        }
+    }
+
     private void updateChampionImage() {
         if (mChampionImage != null) {
             Glide.with(this)
@@ -227,6 +268,7 @@ public class WikiChampionInformations extends AppCompatActivity {
                         getChampionInfo(mChampionViewModel, mChampion.key);
                         getChampionStat(mChampionViewModel, mChampion.key);
                         getChampionImage(mChampionViewModel, mChampion.key);
+                        getChampionPassive(mChampionViewModel, mChampion.key);
                         getChampionSpells(mChampionViewModel, mChampion.key);
                     }
                 });
@@ -261,6 +303,15 @@ public class WikiChampionInformations extends AppCompatActivity {
             if (championImage != null) {
                 mChampionImage = championImage;
                 updateChampionImage();
+            }
+        });
+    }
+
+    private void getChampionPassive(ChampionViewModel championViewModel, int championKey) {
+        championViewModel.getChampionPassive(championKey).observe(this, passive -> {
+            if (passive != null) {
+                mChampionPassive = passive;
+                updateChampionPassive();
             }
         });
     }

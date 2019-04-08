@@ -22,7 +22,7 @@ import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
 import com.legue.axel.lolsummonertool.database.viewmodel.MasteryViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
-import com.legue.axel.lolsummonertool.utils.Constants;
+import com.legue.axel.lolsummonertool.Constants;
 
 import java.util.ArrayList;
 import java.util.List;

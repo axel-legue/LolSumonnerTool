@@ -11,7 +11,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(tableName = "spell_images",
         foreignKeys = {
                 @ForeignKey(
-                        entity = Passive.class,
+                        entity = Spell.class,
                         parentColumns = "id",
                         childColumns = "spellId",
                         onDelete = CASCADE

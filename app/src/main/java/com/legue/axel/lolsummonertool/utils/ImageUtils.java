@@ -21,4 +21,13 @@ public class ImageUtils {
         return Uri.parse(RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_SUMMONER_VERSION + "/" + RetrofitConstants.API_TYPE_IMAGE + "/" + RetrofitConstants.API_TYPE_SPELL + "/" + endPointUrl);
     }
 
+    public static Uri BuildSpellIconUrl(String endPointUrl) {
+        return Uri.parse(RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_SPELL_VERSION + "/" + RetrofitConstants.API_TYPE_IMAGE + "/" + RetrofitConstants.API_TYPE_SPELL + "/" + endPointUrl);
+    }
+
+    public static Uri BuildPassiveIconUrl(String endPointUrl) {
+        return Uri.parse(RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_SPELL_VERSION + "/" + RetrofitConstants.API_TYPE_IMAGE + "/" + RetrofitConstants.API_TYPE_PASSIVE + "/" + endPointUrl);
+    }
+
+
 }

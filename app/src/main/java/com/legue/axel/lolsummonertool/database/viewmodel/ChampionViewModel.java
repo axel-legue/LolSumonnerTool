@@ -10,6 +10,7 @@ import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
+import com.legue.axel.lolsummonertool.database.model.champion.Passive;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 
 import java.util.List;
@@ -47,8 +48,18 @@ public class ChampionViewModel extends AndroidViewModel {
         return database.championStatDao().getChampionStatsByChampionKey(championKey);
     }
 
+    public LiveData<Passive> getChampionPassive(int championKey) {
+        return database.passiveDao().getPassiveByChampionId(championKey);
+    }
+
+//    public LiveData<PassiveImage> getChampionPassiveImage(int passiveId) {
+//        return database.passiveImageDao().getPassiveImageByPassiveId(passiveId);
+//    }
+
+
     public LiveData<List<Spell>> getChampionSpells(int championKey) {
         return database.spellDao().getChampionSpells(championKey);
     }
+
 
 }

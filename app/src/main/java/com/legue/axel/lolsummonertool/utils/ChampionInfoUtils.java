@@ -9,6 +9,8 @@ import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.LevelTip;
+import com.legue.axel.lolsummonertool.database.model.champion.Passive;
+import com.legue.axel.lolsummonertool.database.model.champion.PassiveImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.model.champion.SpellImage;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoDetailResponse;
@@ -29,6 +31,8 @@ public class ChampionInfoUtils {
     private static ChampionImage image;
     private static ChampionInfo championInfo;
     private static ChampionStats championStats;
+    private static Passive championPassive;
+    private static PassiveImage passiveImage;
     private static List<LevelTip> spellLevelTips;
     private static List<SpellImage> spellImages;
     private static List<Spell> spells;
@@ -55,15 +59,13 @@ public class ChampionInfoUtils {
                 }
                 AppExecutors.getInstance().getDiskIO().execute(() -> {
                     try {
-                        database.championInfoDao().deleteAll();
-                        database.championImageDao().deleteAll();
-                        database.championStatDao().deleteAll();
                         database.spellImageDao().deleteAll();
 
                         database.championDao().updateChampion(champion);
                         database.championInfoDao().updateChampionInfo(championInfo);
                         database.championStatDao().updateChampionStats(championStats);
                         database.championImageDao().updateChampionImage(image);
+                        database.passiveDao().insertPassive(championPassive);
 
                         database.spellDao().insertSpells(spells);
                         database.levelTipDao().insertLevelTips(spellLevelTips);
@@ -108,7 +110,6 @@ public class ChampionInfoUtils {
         championInfo = championDetailResponse.getInfo();
         championInfo.championId = Integer.valueOf(championDetailResponse.getKey());
 
-
         image = new ChampionImage();
         image = championDetailResponse.getImage();
         image.championId = Integer.valueOf(championDetailResponse.getKey());
@@ -116,6 +117,13 @@ public class ChampionInfoUtils {
         championStats = new ChampionStats();
         championStats = championDetailResponse.getStats();
         championStats.championId = Integer.valueOf(championDetailResponse.getKey());
+
+        championPassive = new Passive();
+        championPassive.description = championDetailResponse.getPassive().description;
+        championPassive.name = championDetailResponse.getPassive().name;
+        championPassive.image = championDetailResponse.getPassive().image.full;
+        championPassive.championId = Integer.valueOf(championDetailResponse.getKey());
+
 
         List<SpellResponse> spellResponseList = championDetailResponse.getSpells();
         if (spellResponseList != null && spellResponseList.size() > 0) {

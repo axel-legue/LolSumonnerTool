@@ -22,7 +22,7 @@ import com.legue.axel.lolsummonertool.database.model.item.Item;
 import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
-import com.legue.axel.lolsummonertool.utils.Constants;
+import com.legue.axel.lolsummonertool.Constants;
 
 import java.util.ArrayList;
 import java.util.List;

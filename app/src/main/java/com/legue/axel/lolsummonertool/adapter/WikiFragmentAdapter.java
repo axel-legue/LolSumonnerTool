@@ -6,8 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
-import com.legue.axel.lolsummonertool.utils.Constants;
-import com.legue.axel.lolsummonertool.wiki.BlankFragment;
+import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.wiki.WikiItemFragment;
 import com.legue.axel.lolsummonertool.wiki.WikiChampionFragment;
 import com.legue.axel.lolsummonertool.wiki.WikiMasteryFragment;

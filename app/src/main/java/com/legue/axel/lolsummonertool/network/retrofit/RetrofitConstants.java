@@ -10,6 +10,8 @@ public class RetrofitConstants {
     public static final String API_MASTERY_VERSION = "7.23.1";
     public static final String API_SUMMONER_VERSION = "9.6.1";
     public static final String API_CHAMPION_VERSION = "9.6.1";
+    public static final String API_SPELL_VERSION = "9.6.1";
+    public static final String API_PASSIVE_VERSION = "9.6.1";
     public static final String API_PROFIL_ICON_VERSION = "9.6.1";
     public static final String API_MAP_VERSION = "9.6.1";
     public static final String API_LANGUAGE_VERSION = "9.6.1";
@@ -20,6 +22,7 @@ public class RetrofitConstants {
     public static final String API_TYPE_ITEM = "item";
     public static final String API_TYPE_MASTERY = "mastery";
     public static final String API_TYPE_SPELL = "spell";
+    public static final String API_TYPE_PASSIVE = "passive";
     public static final String LANGUAGE_KEY = "en_GB";
     public static final String API_KEY = "api_key";
     // Regex from Riot Developer : ^[0-9\\p{L} _\\.]+$

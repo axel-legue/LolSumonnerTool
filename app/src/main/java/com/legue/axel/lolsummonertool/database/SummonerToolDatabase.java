@@ -13,7 +13,6 @@ import com.legue.axel.lolsummonertool.database.dao.champion.ChampionInfoDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.ChampionStatDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.LevelTipDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.PassiveDao;
-import com.legue.axel.lolsummonertool.database.dao.champion.PassiveImageDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.RecommendedDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.SkinDao;
 import com.legue.axel.lolsummonertool.database.dao.champion.SpellDao;
@@ -37,7 +36,6 @@ import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.LevelTip;
 import com.legue.axel.lolsummonertool.database.model.champion.Passive;
-import com.legue.axel.lolsummonertool.database.model.champion.PassiveImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Recommended;
 import com.legue.axel.lolsummonertool.database.model.champion.Skin;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
@@ -61,7 +59,7 @@ import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
                 Recommended.class, Skin.class, Spell.class, Var.class,
                 ChampionImage.class, Item.class, ItemEffect.class, ItemGold.class, ItemImage.class,
                 ItemMap.class, ItemStat.class, ItemTag.class, Mastery.class, MasteryImage.class,
-                SummonerSpell.class, SummonerSpellImage.class, PassiveImage.class, SpellImage.class
+                SummonerSpell.class, SummonerSpellImage.class, SpellImage.class
         },
         version = 1,
         exportSchema = false)
@@ -97,7 +95,7 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
 
     public abstract ChampionStatDao championStatDao();
 
-    public abstract PassiveImageDao passiveImageDao();
+//    public abstract PassiveImageDao passiveImageDao();
 
     public abstract SpellImageDao spellImageDao();
 

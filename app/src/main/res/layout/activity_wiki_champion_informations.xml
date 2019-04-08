@@ -19,6 +19,8 @@
 
         <include layout="@layout/layout_champion_difficulty" />
 
+        <include layout="@layout/layout_champion_passive" />
+
         <include layout="@layout/layout_champion_spells" />
 
     </LinearLayout>

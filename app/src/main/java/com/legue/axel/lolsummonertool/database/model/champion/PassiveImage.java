@@ -8,15 +8,16 @@ import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "passive_images",
-        foreignKeys = {
-                @ForeignKey(
-                        entity = Passive.class,
-                        parentColumns = "id",
-                        childColumns = "passiveId",
-                        onDelete = CASCADE
-                )}
-)
+//@Entity(tableName = "passive_images",
+//        foreignKeys = {
+//                @ForeignKey(
+//                        entity = Passive.class,
+//                        parentColumns = "id",
+//                        childColumns = "passiveId",
+//                        onDelete = CASCADE
+//                )}
+//)
+@Deprecated
 public class PassiveImage {
 
     @PrimaryKey(autoGenerate = true)

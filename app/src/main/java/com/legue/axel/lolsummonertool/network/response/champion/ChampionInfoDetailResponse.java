@@ -3,8 +3,6 @@ package com.legue.axel.lolsummonertool.network.response.champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
-import com.legue.axel.lolsummonertool.database.model.champion.Passive;
-import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 
 import java.util.List;
 
@@ -21,13 +19,13 @@ public class ChampionInfoDetailResponse {
     private ChampionImage image;
     private List<String> tags;
     private ChampionStats stats;
-    private Passive passive;
+    private PassiveResponse passive;
     private List<SpellResponse> spells;
 
     public ChampionInfoDetailResponse() {
     }
 
-    public ChampionInfoDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats, Passive passive, List<SpellResponse> spells) {
+    public ChampionInfoDetailResponse(String key, String id, String name, String title, String lore, String blurb, String partype, ChampionInfo info, ChampionImage image, List<String> tags, ChampionStats stats, PassiveResponse passive, List<SpellResponse> spells) {
         this.key = key;
         this.id = id;
         this.name = name;
@@ -132,11 +130,11 @@ public class ChampionInfoDetailResponse {
         this.stats = stats;
     }
 
-    public Passive getPassive() {
+    public PassiveResponse getPassive() {
         return passive;
     }
 
-    public void setPassive(Passive passive) {
+    public void setPassive(PassiveResponse passive) {
         this.passive = passive;
     }
 

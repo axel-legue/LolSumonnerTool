@@ -21,6 +21,9 @@ public interface PassiveDao {
     @Query("SELECT * FROM passives WHERE id = :passiveId")
     LiveData<Passive> getPassiveById(int passiveId);
 
+    @Query("SELECT * FROM passives WHERE championId = :championId")
+    LiveData<Passive> getPassiveByChampionId(int championId);
+
     @Insert
     void insertPassive(Passive passive);
 

@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.utils;
+package com.legue.axel.lolsummonertool;
 
 public class Constants {
 

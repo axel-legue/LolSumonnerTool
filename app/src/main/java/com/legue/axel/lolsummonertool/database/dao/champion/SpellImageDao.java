@@ -23,7 +23,7 @@ public interface SpellImageDao {
     LiveData<SpellImage> getSpellImageById(int spellImageId);
 
     @Query("SELECT * FROM spell_images WHERE spellId = :spellId")
-    LiveData<SpellImage> getSpellImageBySpellId(int spellId);
+    LiveData<SpellImage> getSpellImageBySpellId(String spellId);
 
     @Insert
     void insertSpellImage(SpellImage spellImage);

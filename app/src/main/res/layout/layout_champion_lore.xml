@@ -11,11 +11,11 @@
         android:background="@drawable/wiki_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lore" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
 
     <TextView
-        android:id="@+id/tv_lore"
+        android:id="@+id/tv_description"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
         android:ems="5"

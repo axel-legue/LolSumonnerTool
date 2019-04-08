@@ -1,5 +1,6 @@
 package com.legue.axel.lolsummonertool.adapter;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -23,6 +24,9 @@ import com.bumptech.glide.request.target.Target;
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.model.champion.SpellImage;
+import com.legue.axel.lolsummonertool.database.viewmodel.SpellViewModel;
+import com.legue.axel.lolsummonertool.utils.ImageUtils;
+import com.legue.axel.lolsummonertool.utils.Utils;
 import com.legue.axel.lolsummonertool.wiki.WikiChampionInformations;
 
 import java.util.List;
@@ -57,19 +61,23 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
 
         if (spell != null) {
 
-//            ChampionViewModel championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel.class);
-//            championViewModel.getChampionImage(champion.key).observe(mFragment, championImage -> {
-//                if (championImage != null) {
-//                    mSpellImage = championImage;
-//                    displayImage(mSpellImage.full, holder.ivSpell, holder.pbSpell);
-//                }
-//            });
+            SpellViewModel spellViewModel = ViewModelProviders.of(mActivity).get(SpellViewModel.class);
+            spellViewModel.getSpellImage(spell.id).observe(mActivity, spellImage -> {
+                if (spellImage != null) {
+                    mSpellImage = spellImage;
+                    displayImage(mSpellImage.full, holder.ivSpell, holder.pbSpell);
+                }
+            });
 
             //TODO complete info
 
 
             if (spell.name != null && !TextUtils.isEmpty(spell.name)) {
                 holder.tvName.setText(spell.name);
+                holder.tvCost.setText(Utils.converFloatListToString(spell.cost));
+                holder.tvCooldown.setText(Utils.converFloatListToString(spell.cooldown));
+                holder.tvRange.setText(Utils.converFloatListToString(spell.range));
+                holder.tvLore.setText(spell.description);
             }
 
 
@@ -80,17 +88,16 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
     }
 
 
-
     @Override
     public int getItemCount() {
         return mSpells.size();
     }
 
+
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         if (mSpellImage != null) {
             Glide.with(mContext)
-//                    .load(ImageUtils.BuildChampionIconUrl(url))
-                    .load("")
+                    .load(ImageUtils.BuildSpellIconUrl(url))
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -105,7 +112,6 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
                             return false;
                         }
                     })
-                    .circleCrop()
                     .error(R.drawable.ic_placeholder_black_24dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(imageView);
@@ -127,7 +133,7 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
         TextView tvCost;
         @BindView(R.id.tv_cooldown)
         TextView tvCooldown;
-        @BindView(R.id.tv_lore)
+        @BindView(R.id.tv_description)
         TextView tvLore;
         @BindView(R.id.pb_spell)
         ProgressBar pbSpell;
