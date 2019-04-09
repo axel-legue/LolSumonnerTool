@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki;
+package com.legue.axel.lolsummonertool.wiki.fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;

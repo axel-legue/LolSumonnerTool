@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki;
+package com.legue.axel.lolsummonertool.wiki.fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -17,9 +17,9 @@ import android.widget.Toast;
 
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.SuperApplication;
-import com.legue.axel.lolsummonertool.adapter.ItemAdapter;
-import com.legue.axel.lolsummonertool.database.model.item.Item;
-import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel;
+import com.legue.axel.lolsummonertool.adapter.SummonerSpellAdapter;
+import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell;
+import com.legue.axel.lolsummonertool.database.viewmodel.SummonerSpellViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.Constants;
@@ -30,40 +30,37 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WikiItemFragment extends Fragment {
+public class WikiSummonerSpellFragment extends Fragment {
 
-    private final static String TAG = WikiItemFragment.class.getName();
+    private final static String TAG = WikiSummonerSpellFragment.class.getName();
 
     @BindView(R.id.rv_wiki_data)
-    RecyclerView rvItemWiki;
+    RecyclerView rvWikiData;
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
 
-    private ItemAdapter adapter;
+    private SummonerSpellAdapter adapter;
     private SuperApplication application;
-    private WikiItemFragment fragment;
-    private List<Item> itemList;
+    private WikiSummonerSpellFragment fragment;
+    private List<SummonerSpell> summonerSpellList;
 
-
-    ItemAdapter.ItemListener itemListener = new ItemAdapter.ItemListener() {
+    SummonerSpellAdapter.SummonerSpellListener summonerSpellListener = new SummonerSpellAdapter.SummonerSpellListener() {
         @Override
-        public void itemSelected(int position, Item item) {
-            Toast.makeText(application, "Item a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
-
+        public void SummonerSpellSelected(int position, SummonerSpell summonerSpell) {
+            Toast.makeText(application, "SummonerSpell a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
         }
     };
 
-    public static WikiItemFragment newInstance(int page, String title) {
-        WikiItemFragment itemsFragment = new WikiItemFragment();
+    public static WikiSummonerSpellFragment newInstance(int page, String title) {
+        WikiSummonerSpellFragment wikiMasteryFragment = new WikiSummonerSpellFragment();
         Bundle args = new Bundle();
         args.putInt(Constants.KEY_WIKI_PAGE_NUMBER, page);
         args.putString(Constants.KEY_WIKI_PAGE_NAME, title);
-        itemsFragment.setArguments(args);
-        return itemsFragment;
+        wikiMasteryFragment.setArguments(args);
+        return wikiMasteryFragment;
     }
 
-    public WikiItemFragment() {
-        // Required empty public constructor
+    public WikiSummonerSpellFragment() {
     }
 
     @Nullable
@@ -85,33 +82,35 @@ public class WikiItemFragment extends Fragment {
     }
 
     private void initData() {
-        if (itemList == null) {
-            itemList = new ArrayList<>();
+        if (summonerSpellList == null) {
+            summonerSpellList = new ArrayList<>();
         }
-        loadItems();
+        loadData();
 
-        adapter = new ItemAdapter(application, itemList, itemListener, fragment);
-        rvItemWiki.setLayoutManager(new GridLayoutManager(application, 4));
-        rvItemWiki.setAdapter(adapter);
-        rvItemWiki.setHasFixedSize(true);
+        adapter = new SummonerSpellAdapter(application, summonerSpellList, summonerSpellListener, fragment);
+        rvWikiData.setLayoutManager(new GridLayoutManager(application, 4));
+        rvWikiData.setAdapter(adapter);
+        rvWikiData.setHasFixedSize(true);
     }
 
-    private void loadItems() {
-        RetrofitHelper.getItems(
+
+    private void loadData() {
+        RetrofitHelper.getSummonerSpells(
                 RetrofitConstants.ACTION_COMPLETE,
-                itemHandler,
+                summonerHandler,
                 application);
     }
 
-    private Handler itemHandler = new Handler(msg -> {
+    private Handler summonerHandler = new Handler(msg -> {
         switch (msg.what) {
             case RetrofitConstants.ACTION_COMPLETE:
                 Log.i(TAG, "ACTION_COMPLETE ");
-                ItemViewModel itemViewModel = ViewModelProviders.of(fragment).get(ItemViewModel.class);
-                itemViewModel.getItems().observe(fragment, items -> {
-                    if (items != null && items.size() > 0) {
-                        itemList.clear();
-                        itemList.addAll(items);
+
+                SummonerSpellViewModel summonerSpellViewModel = ViewModelProviders.of(fragment).get(SummonerSpellViewModel.class);
+                summonerSpellViewModel.getSummonerSpells().observe(fragment, summonerSpells -> {
+                    if (summonerSpells != null && summonerSpells.size() > 0) {
+                        summonerSpellList.clear();
+                        summonerSpellList.addAll(summonerSpells);
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -122,4 +121,5 @@ public class WikiItemFragment extends Fragment {
         }
         return true;
     });
+
 }

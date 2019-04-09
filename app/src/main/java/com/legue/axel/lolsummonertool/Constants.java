@@ -17,5 +17,8 @@ public class Constants {
     public final static String WIKI_CHAMPION_KEY = "champion_key";
     public final static String WIKI_CHAMPION_ID = "champion_id";
 
+    public final static String WIKI_ITEM_KEY = "item_key";
+    public final static String WIKI_ITEM_ID = "item_id";
+
 
 }

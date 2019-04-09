@@ -26,6 +26,10 @@ public class ItemViewModel extends AndroidViewModel {
         return items;
     }
 
+    public LiveData<Item> getItemById(int itemId) {
+        return database.itemDao().getItemById(itemId);
+    }
+
     public LiveData<ItemImage> getItemImage(int itemId) {
         return database.itemImageDao().getItemImageByItemId(itemId);
     }

@@ -7,10 +7,10 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
 import com.legue.axel.lolsummonertool.Constants;
-import com.legue.axel.lolsummonertool.wiki.WikiItemFragment;
-import com.legue.axel.lolsummonertool.wiki.WikiChampionFragment;
-import com.legue.axel.lolsummonertool.wiki.WikiMasteryFragment;
-import com.legue.axel.lolsummonertool.wiki.WikiSummonerSpellFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiItemFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiMasteryFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment;
 
 public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
     private final static String TAG = "WikiFragmentAdapter";

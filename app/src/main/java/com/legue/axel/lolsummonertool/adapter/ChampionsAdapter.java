@@ -27,7 +27,7 @@ import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
-import com.legue.axel.lolsummonertool.wiki.WikiChampionFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment;
 
 import java.util.List;
 

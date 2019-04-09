@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/iv_item"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="10dp"
+        tools:srcCompat="@tools:sample/avatars[2]" />
+
+    <TextView
+        android:id="@+id/tv_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/iv_item"
+        tools:text="The LightBringer" />
+
+    <TextView
+        android:id="@+id/tv_item_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_name"
+        android:layout_toEndOf="@+id/iv_item"
+        tools:text="2350g(350g)" />
+</RelativeLayout>

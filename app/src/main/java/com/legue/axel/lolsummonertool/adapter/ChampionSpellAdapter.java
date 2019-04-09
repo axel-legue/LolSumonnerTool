@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,7 +28,7 @@ import com.legue.axel.lolsummonertool.database.model.champion.SpellImage;
 import com.legue.axel.lolsummonertool.database.viewmodel.SpellViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
 import com.legue.axel.lolsummonertool.utils.Utils;
-import com.legue.axel.lolsummonertool.wiki.WikiChampionInformations;
+import com.legue.axel.lolsummonertool.wiki.activity.WikiChampionInformations;
 
 import java.util.List;
 
@@ -74,10 +75,20 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
 
             if (spell.name != null && !TextUtils.isEmpty(spell.name)) {
                 holder.tvName.setText(spell.name);
-                holder.tvCost.setText(Utils.converFloatListToString(spell.cost));
+
+                if (shouldConvertListToString(spell.cost)) {
+                    holder.tvCost.setText(Utils.converFloatListToString(spell.cost));
+                } else {
+                    holder.tvCost.setText(String.valueOf(Math.round(spell.cost.get(0))));
+                }
+
+                if (shouldConvertListToString(spell.range)) {
+                    holder.tvRange.setText(Utils.converFloatListToString(spell.range));
+                } else {
+                    holder.tvRange.setText(String.valueOf(Math.round(spell.range.get(0))));
+                }
                 holder.tvCooldown.setText(Utils.converFloatListToString(spell.cooldown));
-                holder.tvRange.setText(Utils.converFloatListToString(spell.range));
-                holder.tvLore.setText(spell.description);
+                holder.tvLore.setText(Html.fromHtml(spell.description, Html.FROM_HTML_MODE_COMPACT));
             }
 
 
@@ -91,6 +102,20 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
     @Override
     public int getItemCount() {
         return mSpells.size();
+    }
+
+    private boolean shouldConvertListToString(List<Float> list) {
+        Float value = list.get(0);
+        boolean isDifferent = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (value.equals(list.get(i))) {
+                isDifferent = false;
+            } else {
+                isDifferent = true;
+                return isDifferent;
+            }
+        }
+        return isDifferent;
     }
 
 

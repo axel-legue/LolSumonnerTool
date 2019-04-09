@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki;
+package com.legue.axel.lolsummonertool.wiki.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -29,7 +30,6 @@ import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.Passive;
-import com.legue.axel.lolsummonertool.database.model.champion.PassiveImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
@@ -168,22 +168,22 @@ public class WikiChampionInformations extends AppCompatActivity {
 
     private void updateChampionStat() {
         if (mChampionStats != null) {
-            tvRange.setText(String.valueOf(mChampionStats.attackRange));
-            tvArmor.setText(String.valueOf(mChampionStats.armor));
-            tvAttackDamage.setText(String.valueOf(mChampionStats.attackDamage));
+            tvRange.setText(String.valueOf(Math.round(mChampionStats.attackRange)));
+            tvArmor.setText(String.valueOf(Math.round(mChampionStats.armor)));
+            tvAttackDamage.setText(String.valueOf(Math.round(mChampionStats.attackDamage)));
             tvAttackSpeed.setText(String.valueOf(mChampionStats.attackSpeed));
-            tvMana.setText(String.valueOf(mChampionStats.mp));
-            tvManaRegen.setText(String.valueOf(mChampionStats.mpRegen));
-            tvHealth.setText(String.valueOf(mChampionStats.hp));
+            tvMana.setText(String.valueOf(Math.round(mChampionStats.mp)));
+            tvManaRegen.setText(String.valueOf(Math.round(mChampionStats.mpRegen)));
+            tvHealth.setText(String.valueOf(Math.round(mChampionStats.hp)));
             tvHealthRegen.setText(String.valueOf(mChampionStats.hpRegen));
-            tvMagicResist.setText(String.valueOf(mChampionStats.spellBlock));
-            tvMovementSpeed.setText(String.valueOf(mChampionStats.moveSpeed));
+            tvMagicResist.setText(String.valueOf(Math.round(mChampionStats.spellBlock)));
+            tvMovementSpeed.setText(String.valueOf(Math.round(mChampionStats.moveSpeed)));
         }
     }
 
     private void updateChampionPassive() {
         if (mChampionPassive != null) {
-            tvPassiveDescription.setText(mChampionPassive.description);
+            tvPassiveDescription.setText(Html.fromHtml(mChampionPassive.description, Html.FROM_HTML_MODE_COMPACT));
             tvPassiveName.setText(mChampionPassive.name);
             displayPassiveImage(mChampionPassive.image);
         }

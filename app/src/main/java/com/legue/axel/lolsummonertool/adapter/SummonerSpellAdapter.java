@@ -27,7 +27,7 @@ import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpellImage;
 import com.legue.axel.lolsummonertool.database.viewmodel.SummonerSpellViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
-import com.legue.axel.lolsummonertool.wiki.WikiSummonerSpellFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment;
 
 
 import java.util.List;

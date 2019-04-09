@@ -27,7 +27,7 @@ import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
 import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage;
 import com.legue.axel.lolsummonertool.database.viewmodel.MasteryViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
-import com.legue.axel.lolsummonertool.wiki.WikiMasteryFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiMasteryFragment;
 
 import java.util.List;
 

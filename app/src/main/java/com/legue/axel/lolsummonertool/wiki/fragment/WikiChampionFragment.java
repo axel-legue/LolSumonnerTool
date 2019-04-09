@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki;
+package com.legue.axel.lolsummonertool.wiki.fragment;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.Constants;
+import com.legue.axel.lolsummonertool.wiki.activity.WikiChampionInformations;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.legue.axel.lolsummonertool.wiki.WikiFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiFragment;
 
 import butterknife.BindView;
 
