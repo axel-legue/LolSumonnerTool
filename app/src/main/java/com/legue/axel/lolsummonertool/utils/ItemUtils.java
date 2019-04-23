@@ -42,15 +42,6 @@ public class ItemUtils {
 
             AppExecutors.getInstance().getDiskIO().execute(() -> {
                 try {
-                    //TODO : find a way to avoid this delete every time
-                    database.itemDao().deleteAll();
-                    database.itemEffectDao().deleteAll();
-                    database.itemGoldDao().deleteAll();
-                    database.itemImageDao().deleteAll();
-                    database.itemMapDao().deleteAll();
-                    database.itemStatDao().deleteAll();
-                    database.itemTagDao().deleteAll();
-
                     database.itemDao().insertAllItem(items);
                     database.itemEffectDao().insertAllItemEffect(itemEffects);
                     database.itemGoldDao().insertAllItemGold(itemGolds);

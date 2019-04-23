@@ -23,23 +23,16 @@ public class SummonerSpellUtils {
         summonerSpellImages = new ArrayList<>();
 
 
-
         if (summonerSpellsResponse != null) {
             extractSummonerSpellDetails(summonerSpellsResponse.summonerSpellList);
 
             AppExecutors.getInstance().getDiskIO().execute(() -> {
                 try {
-                    //TODO : find a way to avoid this delete every time
-                    database.summonerSpellDao().deleteAll();
-                    database.summonerSpellImageDao().deleteAll();
-
                     database.summonerSpellDao().insertAllSummonerSpells(summonerSpells);
                     database.summonerSpellImageDao().insertAllSummonerSpellImages(summonerSpellImages);
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             });
         }
     }
@@ -53,7 +46,6 @@ public class SummonerSpellUtils {
             extractMastery((SummonerSpellDetailsResponse) pair.getValue());
             it.remove();
         }
-
     }
 
     private static void extractMastery(SummonerSpellDetailsResponse value) {
@@ -77,7 +69,6 @@ public class SummonerSpellUtils {
         summonerSpell.range = value.range;
         summonerSpell.rangeBurn = value.rangeBurn;
         summonerSpell.resource = value.resource;
-        summonerSpells.add(summonerSpell);
 
         SummonerSpellImage image = new SummonerSpellImage();
         image.full = value.image.full;
@@ -88,7 +79,12 @@ public class SummonerSpellUtils {
         image.w = value.image.w;
         image.h = value.image.h;
         image.summonerSpellId = value.key;
-        summonerSpellImages.add(image);
+
+
+        if (!summonerSpell.name.contains("Disabled")) {
+            summonerSpells.add(summonerSpell);
+            summonerSpellImages.add(image);
+        }
 
     }
 

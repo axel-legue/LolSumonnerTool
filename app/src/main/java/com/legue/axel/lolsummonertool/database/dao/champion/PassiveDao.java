@@ -24,7 +24,7 @@ public interface PassiveDao {
     @Query("SELECT * FROM passives WHERE championId = :championId")
     LiveData<Passive> getPassiveByChampionId(int championId);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPassive(Passive passive);
 
     @Delete

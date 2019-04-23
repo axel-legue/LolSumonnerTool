@@ -21,4 +21,14 @@ public class Constants {
     public final static String WIKI_ITEM_ID = "item_id";
 
 
+    public final static String ITEM_FLAT_HP = "FlatHPPoolMod";
+    public final static String ITEM_FLAT_MP = "FlatMPPoolMod";
+    public final static String ITEM_FLAT_ARMOR = "FlatArmorMod";
+    public final static String ITEM_FLAT_MAGIC_RESIST = "FlatSpellBlockMod";
+    public final static String ITEM_FLAT_ATTACK_DAMAGE = "FlatPhysicalDamageMod";
+    public final static String ITEM_ATTACK_SPEED = "PercentAttackSpeedMod";
+    public final static String ITEM_FLAT_MAGIC_DAMAGE = "FlatMagicDamageMod";
+    public final static String ITEM_PERCENT_LIFE_STEAL = "PercentLifeStealMod";
+    public final static String ITEM_FLAT_HP_REGEN = "FlatHPRegenMod";
+
 }

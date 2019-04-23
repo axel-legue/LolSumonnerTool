@@ -87,11 +87,12 @@ public class WikiItemFragment extends Fragment {
     }
 
     private void initData() {
+        Log.i(TAG, "initData: ");
         if (itemList == null) {
             itemList = new ArrayList<>();
         }
+        
         loadItems();
-
         adapter = new ItemAdapter(application, itemList, itemListener, fragment);
         rvItemWiki.setLayoutManager(new GridLayoutManager(application, 4));
         rvItemWiki.setAdapter(adapter);
@@ -99,10 +100,19 @@ public class WikiItemFragment extends Fragment {
     }
 
     private void loadItems() {
+        Log.i(TAG, "loadItems: ");
         RetrofitHelper.getItems(
                 RetrofitConstants.ACTION_COMPLETE,
                 itemHandler,
                 application);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy: ");
+        itemList.clear();
+        itemList = null;
     }
 
     private Handler itemHandler = new Handler(msg -> {

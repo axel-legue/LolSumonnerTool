@@ -27,7 +27,7 @@ public interface ChampionImageDao {
     @Insert
     void insertChampionImage(ChampionImage championImage);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampionImage(List<ChampionImage> championImageList);
 
     @Delete

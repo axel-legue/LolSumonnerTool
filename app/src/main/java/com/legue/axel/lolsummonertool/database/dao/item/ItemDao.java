@@ -23,7 +23,7 @@ public interface ItemDao {
     @Insert
     void insertItem(Item item);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItem(List<Item> items);
 
     @Delete

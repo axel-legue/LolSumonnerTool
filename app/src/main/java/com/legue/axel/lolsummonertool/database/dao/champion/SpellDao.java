@@ -30,11 +30,14 @@ public interface SpellDao {
     @Insert
     void insertSpell(Spell spell);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertSpells(List<Spell> spells);
 
     @Delete
     void deleteSpell(Spell spell);
+
+    @Delete
+    void deleteSpells(List<Spell> spells);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateSpell(Spell spell);

@@ -41,12 +41,6 @@ public class ChampionUtils {
                 }
                 AppExecutors.getInstance().getDiskIO().execute(() -> {
                     try {
-                        //TODO : find a way to avoid this delete every time
-                        database.championDao().deleteAll();
-                        database.championInfoDao().deleteAll();
-                        database.championImageDao().deleteAll();
-                        database.championStatDao().deleteAll();
-
                         database.championDao().insertAllChampion(champions);
                         database.championInfoDao().insertAllChampionInfo(championInfos);
                         database.championImageDao().insertAllChampionImage(images);

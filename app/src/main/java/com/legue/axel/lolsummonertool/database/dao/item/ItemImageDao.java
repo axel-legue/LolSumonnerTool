@@ -27,7 +27,7 @@ public interface ItemImageDao {
     @Insert
     void insertItemImage(ItemImage itemImage);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItemImage(List<ItemImage> itemImages);
 
     @Delete

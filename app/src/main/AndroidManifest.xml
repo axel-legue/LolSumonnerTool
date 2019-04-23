@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".wiki.activity.WikiItemInformation"></activity>
+        <activity android:name=".wiki.activity.WikiItemInformation" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -46,7 +46,9 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".wiki.activity.WikiItemInformations" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c93ec26e30f5cde18b8277039df85d8ce712685e" />
     </application>
 
 </manifest>

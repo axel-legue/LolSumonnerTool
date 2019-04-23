@@ -48,5 +48,22 @@
     <string name="defense">Defense</string>
     <string name="magic">Magic</string>
     <string name="difficulty">Difficulty</string>
+    <string name="from">From</string>
+    <string name="into">Builds Into</string>
+
+    <string name="item_cost">Total %1$d (Base %2$dg)(Sell %3$dg)</string>
+
+    <string name="stats_flat_ad">+%1$s Attack Damage</string>
+    <string name="stats_flat_ap">+%1$s Ability Power Damage</string>
+    <string name="stats_flat_mana">+%1$s Mana</string>
+    <string name="stats_flat_health">+%1$s Health</string>
+    <string name="stats_flat_mana_regen">+%1$s Base Mana Regen</string>
+    <string name="stats_flat_health_regen">+%1$s Base Health Regen</string>
+    <string name="stats_flat_attack_speed">+%1$s Attack Speed</string>
+    <string name="stats_flat_cooldown_reduction">+%1$s Cooldown Reduction</string>
+    <string name="stats_flat_armor">+%1$s Armor</string>
+    <string name="stats_flat_magic_resist">+%1$s Magic Resist</string>
+    <string name="stats_flat_life_steal">+%1$s Magic Resist</string>
+
 
 </resources>

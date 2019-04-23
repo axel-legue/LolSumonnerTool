@@ -24,7 +24,7 @@ public interface SummonerSpellDao {
     @Insert
     void insertSummonerSpell(SummonerSpell summonerSpell);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllSummonerSpells(List<SummonerSpell> summonerSpells);
 
     @Delete

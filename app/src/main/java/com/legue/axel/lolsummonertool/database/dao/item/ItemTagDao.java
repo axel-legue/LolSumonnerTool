@@ -24,7 +24,7 @@ public interface ItemTagDao {
     @Insert
     void insertItemTag(ItemTag itemTag);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItemTag(List<ItemTag> itemTags);
 
     @Delete

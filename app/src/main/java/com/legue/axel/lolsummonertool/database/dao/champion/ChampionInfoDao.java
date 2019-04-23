@@ -27,7 +27,7 @@ public interface ChampionInfoDao {
     @Insert
     void insertChampionInfo(ChampionInfo championInfo);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampionInfo(List<ChampionInfo> championInfoList);
 
     @Query("DELETE FROM champion_infos")

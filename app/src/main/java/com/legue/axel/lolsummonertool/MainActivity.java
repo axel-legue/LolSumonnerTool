@@ -31,12 +31,10 @@ public class MainActivity extends AppCompatActivity
 
     AdView adView;
 
-
     private FirebaseAnalytics mFirebaseAnalytics;
     private Context mContext;
     SuperApplication application;
 
-    //TODO : General : add relation in Models and add default Dao CRUD
     //TODO : General : add a WorkManager for Database Insertion ?
 
     @Override
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mContext = this;
         application = (SuperApplication) this.getApplication();
-//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

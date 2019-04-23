@@ -21,10 +21,13 @@ public interface ItemGoldDao {
     @Query("SELECT * FROM item_golds WHERE id = :itemGoldId")
     LiveData<ItemGold> getItemGoldById(int itemGoldId);
 
+    @Query("SELECT * FROM item_golds WHERE itemId = :itemId")
+    LiveData<ItemGold> getItemGoldByItemId(int itemId);
+
     @Insert
     void insertItemGold(ItemGold itemGold);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItemGold(List<ItemGold> itemGolds);
 
     @Delete

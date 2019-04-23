@@ -77,8 +77,6 @@ dependencies {
     // Butterknife dependencies
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterKnifeVersion"
-    // GraphView Dependency
-    implementation "de.blox:graphview:$rootProject.ext.graphViewVersion"
     // Test dependencies
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"

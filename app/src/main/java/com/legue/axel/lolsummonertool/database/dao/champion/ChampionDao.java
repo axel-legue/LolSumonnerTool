@@ -24,7 +24,7 @@ public interface ChampionDao {
     @Insert
     void insertChampion(Champion champion);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampion(List<Champion> champions);
 
     @Delete
