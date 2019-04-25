@@ -9,6 +9,7 @@
     <string name="action_sort_by">Sort by</string>
     <string name="action_search">search</string>
     <string name="action_filter">filter</string>
+    <string name="action_hint_search">Summoner\'s name</string>
 
     <!-- Action Drawer Menu-->
     <string name="nav_builds">Builds</string>

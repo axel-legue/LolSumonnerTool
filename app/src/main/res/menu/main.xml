@@ -12,7 +12,8 @@
         android:orderInCategory="100"
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/action_search"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.widget.SearchView" />
 
     <item
         android:id="@+id/action_filter"
@@ -20,4 +21,11 @@
         android:icon="@drawable/ic_filter_data_black_24dp"
         android:title="@string/action_filter"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_region"
+        android:orderInCategory="100"
+        android:visible="false"
+        android:icon="@drawable/ic_earth_black_24dp"
+        app:showAsAction="always" />
 </menu>

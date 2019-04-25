@@ -1,23 +1,31 @@
 package com.legue.axel.lolsummonertool;
 
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.legue.axel.lolsummonertool.profil.ProfilFragment;
+import com.legue.axel.lolsummonertool.utils.Utils;
 import com.legue.axel.lolsummonertool.wiki.fragment.WikiFragment;
 
 import butterknife.BindView;
@@ -25,7 +33,6 @@ import butterknife.BindView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final String TAG = MainActivity.class.getName();
-
     @BindView(R.id.fl_content)
     FrameLayout flContent;
 
@@ -65,6 +72,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
 
     @Override
     public void onBackPressed() {
@@ -80,6 +92,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        // Do something that differs the Activity's menu here
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setIconifiedByDefault(true);
+        searchView.setMaxWidth(Utils.convertDpToPixel(300, this));
+        if (searchManager != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        }
         return true;
     }
 
@@ -104,7 +124,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         displaySelectedScreen(id);
+        displayTitleName(id);
         return true;
+    }
+
+    private void displayTitleName(int id) {
+        if (id != R.id.nav_profil) {
+            getSupportActionBar().setTitle(getString(R.string.app_name));
+        } else {
+            getSupportActionBar().setTitle(null);
+        }
     }
 
     private void displaySelectedScreen(int id) {
@@ -116,7 +145,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_profil:
                 // TODO : replace with correct fragment
-                fragment = new WikiFragment();
+
+                fragment = new ProfilFragment();
                 break;
             case R.id.nav_bans:
                 // TODO : replace with correct fragment
@@ -147,5 +177,14 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Toast.makeText(mContext, "query" + query, Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "handleIntent: ");
+        }
+
+    }
 
 }
