@@ -57,6 +57,10 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c93ec26e30f5cde18b8277039df85d8ce712685e" />
+
+        <provider
+            android:name=".ProfilSuggestionProvider"
+            android:authorities="com.legue.axel.lolsummonertool.ProfilSuggestionProvider" />
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.legue.axel.lolsummonertool.network.retrofit;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -21,6 +22,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
 public class RetrofitHelper {
@@ -263,6 +265,69 @@ public class RetrofitHelper {
                             SummonerSpellUtils.insertSummonerSpellResponseInDB(
                                     summonerSpellsResponse,
                                     SummonerToolDatabase.getInstance(application));
+
+                        } else {
+                            Log.i(TAG, "onNext: getMasteries response is null");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            HttpException httpException = (HttpException) e;
+                            int code = httpException.code();
+                            Log.i(TAG, "Server respond with code : " + code);
+                            Log.i(TAG, "Response : " + httpException.getMessage());
+                        } else {
+                            Log.i(TAG, e.getMessage() == null ? "unknown error" : e.getMessage());
+                            e.printStackTrace();
+                        }
+                        // Send message for send image
+                        Message msg = new Message();
+                        msg.what = RetrofitConstants.ACTION_ERROR;
+                        msg.obj = RetrofitConstants.ERROR;
+                        handlerMessage.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete");
+                        Message message = new Message();
+                        message.what = action;
+                        handlerMessage.sendMessage(message);
+                    }
+                });
+    }
+
+    public static void getSummonerName(final int action, final Activity activity, final String summonerName, final Handler handlerMessage, final SuperApplication application) {
+        application.getRetrofitManager().getSummonerProfil(activity, summonerName)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe :" + d.toString());
+                    }
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        if (responseBody != null) {
+                            Log.i(TAG, "onNext: " + responseBody);
+                            // TODO: 27/04/2019 Change ResponseBody with SummonerObject 
+                            // TODO: 27/04/2019 Implement Mechanism for saving only 1 Profil in database
+                            // TODO: 27/04/2019  /lol/match/v4/matchlists/by-account/{encryptedAccountId}
+                            // QueryParams : champion
+                            //optional
+                            //		Set[int] 	Set of champion IDs for filtering the matchlist.
+                            //queue
+                            //optional
+                            //		Set[int] 	Set of queue IDs for filtering the matchlist.
+                            //season
+                            //optional
+                            //		Set[int] 	Set of season IDs for filtering the matchlist.
+                            //
+
 
                         } else {
                             Log.i(TAG, "onNext: getMasteries response is null");

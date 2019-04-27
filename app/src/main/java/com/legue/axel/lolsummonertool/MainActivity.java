@@ -4,11 +4,12 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.SearchRecentSuggestions;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,11 +20,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.profil.ProfilFragment;
 import com.legue.axel.lolsummonertool.utils.Utils;
 import com.legue.axel.lolsummonertool.wiki.fragment.WikiFragment;
@@ -144,8 +146,6 @@ public class MainActivity extends AppCompatActivity
                 fragment = new WikiFragment();
                 break;
             case R.id.nav_profil:
-                // TODO : replace with correct fragment
-
                 fragment = new ProfilFragment();
                 break;
             case R.id.nav_bans:
@@ -181,10 +181,39 @@ public class MainActivity extends AppCompatActivity
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Toast.makeText(mContext, "query" + query, Toast.LENGTH_SHORT).show();
-            Log.i(TAG, "handleIntent: ");
-        }
 
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    ProfilSuggestionProvider.AUTHORITY, ProfilSuggestionProvider.MODE);
+            suggestions.saveRecentQuery(query, null);
+
+
+            findSummoner();
+
+        }
     }
+
+    private void findSummoner() {
+        RetrofitHelper.getSummonerName(
+                RetrofitConstants.ACTION_COMPLETE,
+                this,
+                "SkiTTles",
+                summonerhandler,
+                (SuperApplication) getApplication()
+        );
+    }
+
+    private Handler summonerhandler = new Handler(msg -> {
+
+        switch (msg.what) {
+            case RetrofitConstants.ACTION_COMPLETE:
+                Log.i(TAG, "ACTION_COMPLETE ");
+
+                break;
+
+            case RetrofitConstants.ACTION_ERROR:
+                break;
+        }
+        return true;
+    });
 
 }

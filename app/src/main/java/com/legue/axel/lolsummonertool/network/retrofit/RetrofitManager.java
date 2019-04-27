@@ -1,15 +1,24 @@
 package com.legue.axel.lolsummonertool.network.retrofit;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.google.gson.GsonBuilder;
+import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoResponse;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -67,6 +76,23 @@ public class RetrofitManager {
     public Observable<SummonerSpellsResponse> getSummonerSpells() {
         String url = RetrofitConstants.API_DRAGON_BASE_CDN + RetrofitConstants.API_MASTERY_VERSION + "/" + RetrofitConstants.API_TYPE_DATA + "/" + RetrofitConstants.LANGUAGE_KEY + "/" + "summoner.json";
         return riotService.getSummonerSpells(url);
+    }
+
+    public Observable<ResponseBody> getSummonerProfil(Activity activity, String summonerName) {
+        SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
+        String prefixRegion = sharedPreferences.getString(Constants.KEY_PREFIX_SELECTED_REGION, "EUW1");
+        String url = RetrofitConstants.API_HTTPS
+                + prefixRegion
+                + RetrofitConstants.API_RIOTGAMES_BASE
+                + RetrofitConstants.API_SUMMONER_NAME_V4_BY_NAME
+                + summonerName;
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, "RGAPI-8f3165cb-e8e9-46e5-95bc-f4ea276cf640");
+
+        return riotService.getSummonerProfil(url, queryParams);
+
+
     }
 
 

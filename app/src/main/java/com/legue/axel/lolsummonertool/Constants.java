@@ -31,4 +31,7 @@ public class Constants {
     public final static String ITEM_PERCENT_LIFE_STEAL = "PercentLifeStealMod";
     public final static String ITEM_FLAT_HP_REGEN = "FlatHPRegenMod";
 
+    public final static String KEY_INDEX_SELECTED_REGION = "RegionSelectedIndex";
+    public final static String KEY_PREFIX_SELECTED_REGION = "RegionSelectedPrefix";
+
 }

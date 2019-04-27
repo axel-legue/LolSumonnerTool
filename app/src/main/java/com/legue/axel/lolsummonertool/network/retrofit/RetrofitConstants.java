@@ -27,21 +27,6 @@ public class RetrofitConstants {
     public static final String API_TYPE_PASSIVE = "passive";
     public static final String LANGUAGE_KEY = "en_GB";
 
-
-    public static final HashMap<String, String> API_SERVICE_PROXIES = new HashMap<String, String>() {{
-        put("NA1", "North America");
-        put("EUW1", "Europe West");
-        put("BR1", "Brasil");
-        put("EUN1", "Europe Nordic & East");
-        put("JP1", "Japan");
-        put("KR", "Korea");
-        put("LA1", "LAN");
-        put("LA2", "LAS");
-        put("OC1", "Oceania");
-        put("TR1", "Turkey");
-        put("RU", "Russia");
-        put("PBE1", "Public Beta");
-    }};
     public static final String API_HTTPS = "https://";
     public static final String API_RIOTGAMES_BASE = ".api.riotgames.com";
     public static final String API_SUMMONER_NAME_V4_BY_NAME = "/lol/summoner/v4/summoners/by-name/";
@@ -52,7 +37,7 @@ public class RetrofitConstants {
 
 
     // Regex from Riot Developer : ^[0-9\\p{L} _\\.]+$
-    public static final String REGEX_VALIDATION_NAME = "^[0-9\\\\p{L} _\\\\.]+$";
+    public static final String REGEX_VALIDATION_NAME = "^[0-9\\p{L} _\\.]+$";
 
 
     // COMMUNITY DRAGON API
