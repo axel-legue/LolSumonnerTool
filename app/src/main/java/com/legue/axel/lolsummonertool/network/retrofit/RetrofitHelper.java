@@ -5,12 +5,15 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.legue.axel.lolsummonertool.AppExecutors;
 import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
+import com.legue.axel.lolsummonertool.database.model.summoner.Summoner;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoResponse;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
+import com.legue.axel.lolsummonertool.network.response.match.MatcheResponse;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 import com.legue.axel.lolsummonertool.utils.ChampionInfoUtils;
 import com.legue.axel.lolsummonertool.utils.ChampionUtils;
@@ -18,11 +21,12 @@ import com.legue.axel.lolsummonertool.utils.ItemUtils;
 import com.legue.axel.lolsummonertool.utils.MasteryUtils;
 import com.legue.axel.lolsummonertool.utils.SummonerSpellUtils;
 
+import java.util.List;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.ResponseBody;
 import retrofit2.HttpException;
 
 public class RetrofitHelper {
@@ -267,7 +271,7 @@ public class RetrofitHelper {
                                     SummonerToolDatabase.getInstance(application));
 
                         } else {
-                            Log.i(TAG, "onNext: getMasteries response is null");
+                            Log.i(TAG, "onNext: getSummonerSpells response is null");
                         }
                     }
 
@@ -303,7 +307,7 @@ public class RetrofitHelper {
         application.getRetrofitManager().getSummonerProfil(activity, summonerName)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
+                .subscribe(new Observer<Summoner>() {
 
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -311,26 +315,70 @@ public class RetrofitHelper {
                     }
 
                     @Override
-                    public void onNext(ResponseBody responseBody) {
-                        if (responseBody != null) {
-                            Log.i(TAG, "onNext: " + responseBody);
-                            // TODO: 27/04/2019 Change ResponseBody with SummonerObject 
-                            // TODO: 27/04/2019 Implement Mechanism for saving only 1 Profil in database
-                            // TODO: 27/04/2019  /lol/match/v4/matchlists/by-account/{encryptedAccountId}
-                            // QueryParams : champion
-                            //optional
-                            //		Set[int] 	Set of champion IDs for filtering the matchlist.
-                            //queue
-                            //optional
-                            //		Set[int] 	Set of queue IDs for filtering the matchlist.
-                            //season
-                            //optional
-                            //		Set[int] 	Set of season IDs for filtering the matchlist.
-                            //
-
+                    public void onNext(Summoner summoner) {
+                        if (summoner != null) {
+                            Log.i(TAG, "onNext: " + summoner);
+                            AppExecutors.getInstance().getDiskIO().execute(() -> {
+                                try {
+                                    SummonerToolDatabase database = SummonerToolDatabase.getInstance(application);
+                                    database.summonerDao().deleteAll();
+                                    database.summonerDao().insertSummoner(summoner);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
 
                         } else {
-                            Log.i(TAG, "onNext: getMasteries response is null");
+                            Log.i(TAG, "onNext: getSummonerName response is null");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            HttpException httpException = (HttpException) e;
+                            int code = httpException.code();
+                            Log.i(TAG, "Server respond with code : " + code);
+                            Log.i(TAG, "Response : " + httpException.getMessage());
+                        } else {
+                            Log.i(TAG, e.getMessage() == null ? "unknown error" : e.getMessage());
+                            e.printStackTrace();
+                        }
+                        // Send message for send image
+                        Message msg = new Message();
+                        msg.what = RetrofitConstants.ACTION_ERROR;
+                        msg.obj = RetrofitConstants.ERROR;
+                        handlerMessage.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete");
+                        Message message = new Message();
+                        message.what = action;
+                        handlerMessage.sendMessage(message);
+                    }
+                });
+    }
+
+    public static void getSummonerMatches(final int action, final Activity activity, final String accountId, final int endIndex, final int beginIndex, final Handler handlerMessage, final SuperApplication application) {
+        application.getRetrofitManager().getSummonerMatches(activity, accountId, endIndex, beginIndex)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MatcheResponse>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe :" + d.toString());
+                    }
+
+                    @Override
+                    public void onNext(MatcheResponse matcheResponse) {
+                        if (matcheResponse != null) {
+                            Log.i(TAG, "onNext: " + matcheResponse);
+
+                        } else {
+                            Log.i(TAG, "onNext: matcheResponseList response is null");
                         }
                     }
 

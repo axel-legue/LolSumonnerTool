@@ -1,7 +1,5 @@
 package com.legue.axel.lolsummonertool.network.retrofit;
 
-import java.util.HashMap;
-
 public class RetrofitConstants {
 
     // Content Delivery Network
@@ -30,10 +28,12 @@ public class RetrofitConstants {
     public static final String API_HTTPS = "https://";
     public static final String API_RIOTGAMES_BASE = ".api.riotgames.com";
     public static final String API_SUMMONER_NAME_V4_BY_NAME = "/lol/summoner/v4/summoners/by-name/";
-    public static final String API_SUMMONER_NAME_V4_BY_ACCOUNT = "/lol/summoner/v4/summoners/by-account/";
-    public static final String API_SUMMONER_NAME_V4_BY_PUUID = "/lol/summoner/v4/summoners/by-puuid/";
-    public static final String API_SUMMONER_NAME_V4_ENCRYPTED = "/lol/summoner/v4/summoners/";
+    public static final String API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID = "/lol/match/v4/matchlists/by-account/";
+
     public static final String API_KEY_PARAMETER = "api_key";
+    public static final String API_KEY_BEGIN_INDEX = "beginIndex";
+    public static final String API_KEY_END_INDEX = "endIndex";
+
 
 
     // Regex from Riot Developer : ^[0-9\\p{L} _\\.]+$
@@ -53,6 +53,8 @@ public class RetrofitConstants {
 
     public static final int ACTION_ERROR = 200;
     public static final int ACTION_COMPLETE = 201;
+    public static final int ACTION_GET_SUMMONER = 202;
+    public static final int ACTION_GET_SUMMONER_MACTHES = 203;
 
 
     public static final String ERROR = "Error";

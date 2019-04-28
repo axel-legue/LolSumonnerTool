@@ -24,6 +24,7 @@ import android.widget.SearchView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
 import com.legue.axel.lolsummonertool.profil.ProfilFragment;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity
     SuperApplication application;
 
     //TODO : General : add a WorkManager for Database Insertion ?
+    // TODO: 27/04/2019 Change ResponseBody with SummonerObject
+    // TODO: 27/04/2019 Implement Mechanism for saving only 1 Profil in database
+    // TODO: 27/04/2019  /lol/match/v4/matchlists/by-account/{encryptedAccountId}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,17 +190,16 @@ public class MainActivity extends AppCompatActivity
                     ProfilSuggestionProvider.AUTHORITY, ProfilSuggestionProvider.MODE);
             suggestions.saveRecentQuery(query, null);
 
-
-            findSummoner();
+            findSummoner(query);
 
         }
     }
 
-    private void findSummoner() {
+    private void findSummoner(String summonerName) {
         RetrofitHelper.getSummonerName(
-                RetrofitConstants.ACTION_COMPLETE,
+                RetrofitConstants.ACTION_GET_SUMMONER,
                 this,
-                "SkiTTles",
+                summonerName,
                 summonerhandler,
                 (SuperApplication) getApplication()
         );
@@ -205,8 +208,19 @@ public class MainActivity extends AppCompatActivity
     private Handler summonerhandler = new Handler(msg -> {
 
         switch (msg.what) {
-            case RetrofitConstants.ACTION_COMPLETE:
-                Log.i(TAG, "ACTION_COMPLETE ");
+            case RetrofitConstants.ACTION_GET_SUMMONER:
+                Log.i(TAG, "ACTION_GET_SUMMONER ");
+
+                // Here we can only have 1 summoner save in database
+                SummonerToolDatabase.getInstance(this).summonerDao().getSummoners().observe(this, summoners -> {
+                    if (summoners != null && summoners.size() == 1) {
+                        loadSummonerMatches(summoners.get(0).accountId);
+                    }
+                });
+
+                break;
+            case RetrofitConstants.ACTION_GET_SUMMONER_MACTHES:
+                Log.i(TAG, "ACTION_GET_SUMMONER_MACTHES ");
 
                 break;
 
@@ -215,5 +229,17 @@ public class MainActivity extends AppCompatActivity
         }
         return true;
     });
+
+    private void loadSummonerMatches(String accountId) {
+        RetrofitHelper.getSummonerMatches(
+                RetrofitConstants.ACTION_GET_SUMMONER_MACTHES,
+                this,
+                accountId,
+                10,
+                0,
+                summonerhandler,
+                (SuperApplication) getApplication()
+        );
+    }
 
 }

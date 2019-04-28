@@ -133,7 +133,7 @@ public class ProfilFragment extends Fragment {
         }
 
         if (mSharedPreferences.contains(Constants.KEY_PREFIX_SELECTED_REGION)) {
-            mRegionPrefix = mSharedPreferences.getString(Constants.KEY_INDEX_SELECTED_REGION, null);
+            mRegionPrefix = mSharedPreferences.getString(Constants.KEY_PREFIX_SELECTED_REGION, null);
         } else {
             mEditor.putString(Constants.KEY_PREFIX_SELECTED_REGION, "EUW1");
             mEditor.apply();

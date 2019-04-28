@@ -27,6 +27,7 @@ import com.legue.axel.lolsummonertool.database.dao.item.ItemStatDao;
 import com.legue.axel.lolsummonertool.database.dao.item.ItemTagDao;
 import com.legue.axel.lolsummonertool.database.dao.mastery.MasteryDao;
 import com.legue.axel.lolsummonertool.database.dao.mastery.MasteryImageDao;
+import com.legue.axel.lolsummonertool.database.dao.summoner.SummonerDao;
 import com.legue.axel.lolsummonertool.database.dao.summonerspell.SummonerSpellDao;
 import com.legue.axel.lolsummonertool.database.dao.summonerspell.SummonerSpellImageDao;
 import com.legue.axel.lolsummonertool.database.model.champion.Block;
@@ -50,6 +51,7 @@ import com.legue.axel.lolsummonertool.database.model.item.ItemStat;
 import com.legue.axel.lolsummonertool.database.model.item.ItemTag;
 import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
 import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage;
+import com.legue.axel.lolsummonertool.database.model.summoner.Summoner;
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell;
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpellImage;
 
@@ -59,7 +61,7 @@ import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
                 Recommended.class, Skin.class, Spell.class, Var.class,
                 ChampionImage.class, Item.class, ItemEffect.class, ItemGold.class, ItemImage.class,
                 ItemMap.class, ItemStat.class, ItemTag.class, Mastery.class, MasteryImage.class,
-                SummonerSpell.class, SummonerSpellImage.class, SpellImage.class
+                SummonerSpell.class, SummonerSpellImage.class, SpellImage.class, Summoner.class
         },
         version = 1,
         exportSchema = false)
@@ -134,6 +136,8 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
     public abstract SummonerSpellDao summonerSpellDao();
 
     public abstract SummonerSpellImageDao summonerSpellImageDao();
+
+    public abstract SummonerDao summonerDao();
 
 
 }
