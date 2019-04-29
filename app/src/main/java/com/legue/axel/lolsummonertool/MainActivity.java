@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     //TODO : General : add a WorkManager for Database Insertion ?
     // TODO: 27/04/2019 Change ResponseBody with SummonerObject
     // TODO: 27/04/2019 Implement Mechanism for saving only 1 Profil in database
-    // TODO: 27/04/2019  /lol/match/v4/matchlists/by-account/{encryptedAccountId}
+    // TODO: 27/04/2019  /lol/Match/v4/matchlists/by-account/{encryptedAccountId}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,6 +221,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case RetrofitConstants.ACTION_GET_SUMMONER_MACTHES:
                 Log.i(TAG, "ACTION_GET_SUMMONER_MACTHES ");
+                //todo replace with RxCode for chaining api calls
+                loadMatchesDetails();
+                break;
+
+            case RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS:
+                Log.i(TAG, "ACTION_GET_MATCH_INFORMATIONS ");
 
                 break;
 
@@ -241,5 +247,16 @@ public class MainActivity extends AppCompatActivity
                 (SuperApplication) getApplication()
         );
     }
+
+    private void loadMatchesDetails() {
+        RetrofitHelper.getMatchInformations(
+                RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS,
+                this,
+                "3965327237",
+                summonerhandler,
+                (SuperApplication) getApplication()
+        );
+    }
+
 
 }

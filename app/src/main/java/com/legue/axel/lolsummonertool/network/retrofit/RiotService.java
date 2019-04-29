@@ -5,10 +5,10 @@ import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoResp
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
-import com.legue.axel.lolsummonertool.network.response.match.MatcheResponse;
+import com.legue.axel.lolsummonertool.network.response.match.MatchDto;
+import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -37,5 +37,8 @@ public interface RiotService {
     Observable<Summoner> getSummonerProfil(@Url String url, @QueryMap Map<String, String> paramsMap);
 
     @GET
-    Observable<MatcheResponse> getSummonerMatches(@Url String url, @QueryMap Map<String, String> paramsMap);
+    Observable<MatchlistDto> getSummonerMatches(@Url String url, @QueryMap Map<String, String> paramsMap);
+
+    @GET
+    Observable<MatchDto> getMatchInformations(@Url String url, @QueryMap Map<String, String> paramsMap);
 }

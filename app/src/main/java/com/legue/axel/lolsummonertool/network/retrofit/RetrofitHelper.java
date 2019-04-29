@@ -13,15 +13,14 @@ import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoResp
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
-import com.legue.axel.lolsummonertool.network.response.match.MatcheResponse;
+import com.legue.axel.lolsummonertool.network.response.match.MatchDto;
+import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 import com.legue.axel.lolsummonertool.utils.ChampionInfoUtils;
 import com.legue.axel.lolsummonertool.utils.ChampionUtils;
 import com.legue.axel.lolsummonertool.utils.ItemUtils;
 import com.legue.axel.lolsummonertool.utils.MasteryUtils;
 import com.legue.axel.lolsummonertool.utils.SummonerSpellUtils;
-
-import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -365,7 +364,7 @@ public class RetrofitHelper {
         application.getRetrofitManager().getSummonerMatches(activity, accountId, endIndex, beginIndex)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MatcheResponse>() {
+                .subscribe(new Observer<MatchlistDto>() {
 
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -373,9 +372,9 @@ public class RetrofitHelper {
                     }
 
                     @Override
-                    public void onNext(MatcheResponse matcheResponse) {
-                        if (matcheResponse != null) {
-                            Log.i(TAG, "onNext: " + matcheResponse);
+                    public void onNext(MatchlistDto matchlistDto) {
+                        if (matchlistDto != null) {
+                            Log.i(TAG, "onNext: " + matchlistDto);
 
                         } else {
                             Log.i(TAG, "onNext: matcheResponseList response is null");
@@ -410,4 +409,53 @@ public class RetrofitHelper {
                 });
     }
 
+    public static void getMatchInformations(final int action, final Activity activity, final String matchId, final Handler handlerMessage, final SuperApplication application) {
+        application.getRetrofitManager().getMatchInformations(activity, matchId)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MatchDto>() {
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        Log.i(TAG, "onSubscribe :" + d.toString());
+                    }
+
+                    @Override
+                    public void onNext(MatchDto matchDto) {
+                        if (matchDto != null) {
+                            Log.i(TAG, "onNext: " + matchDto);
+
+
+                        } else {
+                            Log.i(TAG, "onNext: getMatchInformations response is null");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (e instanceof HttpException) {
+                            HttpException httpException = (HttpException) e;
+                            int code = httpException.code();
+                            Log.i(TAG, "Server respond with code : " + code);
+                            Log.i(TAG, "Response : " + httpException.getMessage());
+                        } else {
+                            Log.i(TAG, e.getMessage() == null ? "unknown error" : e.getMessage());
+                            e.printStackTrace();
+                        }
+                        // Send message for send image
+                        Message msg = new Message();
+                        msg.what = RetrofitConstants.ACTION_ERROR;
+                        msg.obj = RetrofitConstants.ERROR;
+                        handlerMessage.sendMessage(msg);
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.i(TAG, "onComplete");
+                        Message message = new Message();
+                        message.what = action;
+                        handlerMessage.sendMessage(message);
+                    }
+                });
+    }
 }

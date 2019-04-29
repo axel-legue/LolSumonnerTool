@@ -28,7 +28,9 @@ public class RetrofitConstants {
     public static final String API_HTTPS = "https://";
     public static final String API_RIOTGAMES_BASE = ".api.riotgames.com";
     public static final String API_SUMMONER_NAME_V4_BY_NAME = "/lol/summoner/v4/summoners/by-name/";
-    public static final String API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID = "/lol/match/v4/matchlists/by-account/";
+    public static final String API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID = "/lol/Match/v4/matchlists/by-account/";
+    public static final String API_MATCH_V4_MATCH_ID = "/lol/Match/v4/matches/";
+    public static final String API_KEY_VALUE = "RGAPI-deea04df-f505-4eb9-b5cf-fcbf2eff0509";
 
     public static final String API_KEY_PARAMETER = "api_key";
     public static final String API_KEY_BEGIN_INDEX = "beginIndex";
@@ -55,6 +57,7 @@ public class RetrofitConstants {
     public static final int ACTION_COMPLETE = 201;
     public static final int ACTION_GET_SUMMONER = 202;
     public static final int ACTION_GET_SUMMONER_MACTHES = 203;
+    public static final int ACTION_GET_MATCH_INFORMATIONS = 204;
 
 
     public static final String ERROR = "Error";

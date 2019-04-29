@@ -51,6 +51,13 @@ import com.legue.axel.lolsummonertool.database.model.item.ItemStat;
 import com.legue.axel.lolsummonertool.database.model.item.ItemTag;
 import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
 import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage;
+import com.legue.axel.lolsummonertool.database.model.match.Match;
+import com.legue.axel.lolsummonertool.database.model.match.Participant;
+import com.legue.axel.lolsummonertool.database.model.match.ParticipantStat;
+import com.legue.axel.lolsummonertool.database.model.match.ParticipantTimeline;
+import com.legue.axel.lolsummonertool.database.model.match.PlayerIdentity;
+import com.legue.axel.lolsummonertool.database.model.match.TeamBan;
+import com.legue.axel.lolsummonertool.database.model.match.TeamStat;
 import com.legue.axel.lolsummonertool.database.model.summoner.Summoner;
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell;
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpellImage;
@@ -61,7 +68,9 @@ import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
                 Recommended.class, Skin.class, Spell.class, Var.class,
                 ChampionImage.class, Item.class, ItemEffect.class, ItemGold.class, ItemImage.class,
                 ItemMap.class, ItemStat.class, ItemTag.class, Mastery.class, MasteryImage.class,
-                SummonerSpell.class, SummonerSpellImage.class, SpellImage.class, Summoner.class
+                SummonerSpell.class, SummonerSpellImage.class, SpellImage.class, Summoner.class,
+                Match.class, Participant.class, ParticipantStat.class, ParticipantTimeline.class,
+                PlayerIdentity.class, TeamBan.class, TeamStat.class
         },
         version = 1,
         exportSchema = false)

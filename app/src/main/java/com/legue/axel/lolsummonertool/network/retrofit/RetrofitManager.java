@@ -7,17 +7,16 @@ import android.content.SharedPreferences;
 
 import com.google.gson.GsonBuilder;
 import com.legue.axel.lolsummonertool.Constants;
-import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
 import com.legue.axel.lolsummonertool.database.model.summoner.Summoner;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoResponse;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
-import com.legue.axel.lolsummonertool.network.response.match.MatcheResponse;
+import com.legue.axel.lolsummonertool.network.response.match.MatchDto;
+import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -91,7 +90,7 @@ public class RetrofitManager {
                 + summonerName;
 
         Map<String, String> queryParams = new HashMap<>();
-        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, "RGAPI-490a4c7a-8fa4-4b14-abff-073235f570e5");
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
 
         return riotService.getSummonerProfil(url, queryParams);
     }
@@ -101,9 +100,9 @@ public class RetrofitManager {
      * @param summonerAccountId summonerAccountId
      * @param endIndex          must be superior to beginIndex
      * @param beginIndex        must be inferior to endIndex
-     * @return List<MatcheResponse>
+     * @return List<MatchlistDto>
      */
-    public Observable<MatcheResponse> getSummonerMatches(Activity activity, String summonerAccountId, int endIndex, int beginIndex) {
+    public Observable<MatchlistDto> getSummonerMatches(Activity activity, String summonerAccountId, int endIndex, int beginIndex) {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
         String prefixRegion = sharedPreferences.getString(Constants.KEY_PREFIX_SELECTED_REGION, "EUW1");
         String url = RetrofitConstants.API_HTTPS
@@ -115,9 +114,24 @@ public class RetrofitManager {
         Map<String, String> queryParams = new HashMap<>();
         queryParams.put(RetrofitConstants.API_KEY_END_INDEX, String.valueOf(endIndex));
         queryParams.put(RetrofitConstants.API_KEY_BEGIN_INDEX, String.valueOf(beginIndex));
-        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, "RGAPI-490a4c7a-8fa4-4b14-abff-073235f570e5");
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
 
         return riotService.getSummonerMatches(url, queryParams);
+    }
+
+    public Observable<MatchDto> getMatchInformations(Activity activity, String matchId) {
+        SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
+        String prefixRegion = sharedPreferences.getString(Constants.KEY_PREFIX_SELECTED_REGION, "EUW1");
+        String url = RetrofitConstants.API_HTTPS
+                + prefixRegion
+                + RetrofitConstants.API_RIOTGAMES_BASE
+                + RetrofitConstants.API_MATCH_V4_MATCH_ID
+                + matchId;
+
+        Map<String, String> queryParams = new HashMap<>();
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
+
+        return riotService.getMatchInformations(url, queryParams);
     }
 
 
