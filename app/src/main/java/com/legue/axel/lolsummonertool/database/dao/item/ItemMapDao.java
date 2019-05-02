@@ -24,7 +24,7 @@ public interface ItemMapDao {
     @Insert
     void insertItemMap(ItemMap itemMap);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItemMap(List<ItemMap> itemMaps);
 
     @Delete

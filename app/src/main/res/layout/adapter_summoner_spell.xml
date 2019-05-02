@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_wrapper_summoner_spell"
+    style="@style/summoner_spell_adapter_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_summoner_spell"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/content_description_summoner_spell_image"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/pb_summoner_spell"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/summoner_spell_adapter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

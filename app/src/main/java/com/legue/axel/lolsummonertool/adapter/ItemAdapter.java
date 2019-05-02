@@ -27,7 +27,7 @@ import com.legue.axel.lolsummonertool.database.model.item.Item;
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage;
 import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
-import com.legue.axel.lolsummonertool.wiki.WikiItemFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiItemFragment;
 
 import java.util.List;
 

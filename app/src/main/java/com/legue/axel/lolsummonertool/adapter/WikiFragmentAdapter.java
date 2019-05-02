@@ -6,11 +6,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
-import com.legue.axel.lolsummonertool.utils.Constants;
-import com.legue.axel.lolsummonertool.wiki.BlankFragment;
-import com.legue.axel.lolsummonertool.wiki.WikiItemFragment;
-import com.legue.axel.lolsummonertool.wiki.WikiChampionFragment;
-import com.legue.axel.lolsummonertool.wiki.WikiMasteryFragment;
+import com.legue.axel.lolsummonertool.Constants;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiItemFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiMasteryFragment;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment;
 
 public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
     private final static String TAG = "WikiFragmentAdapter";
@@ -36,7 +36,7 @@ public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
                 return WikiMasteryFragment.newInstance(2, Constants.WIKI_PAGE_MASTERY);
             case 3:
                 Log.i(TAG, "getItem: 3");
-                return BlankFragment.newInstance("", Constants.WIKI_PAGE_CHAMPIONS);
+                return WikiSummonerSpellFragment.newInstance(3, Constants.WIKI_PAGE_SPELL);
             default:
                 return null;
         }

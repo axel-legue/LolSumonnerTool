@@ -6,7 +6,6 @@ import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
-import com.legue.axel.lolsummonertool.database.model.champion.Tag;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionDetailResponse;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionsResponse;
 
@@ -22,7 +21,6 @@ public class ChampionUtils {
     private static List<ChampionImage> images;
     private static List<ChampionInfo> championInfos;
     private static List<ChampionStats> championStatsList;
-    private static List<Tag> tagList;
 
     public static void insertChampionResponseInDB(ChampionsResponse championsResponse, SummonerToolDatabase database) {
 
@@ -30,8 +28,6 @@ public class ChampionUtils {
         images = new ArrayList<>();
         championInfos = new ArrayList<>();
         championStatsList = new ArrayList<>();
-        tagList = new ArrayList<>();
-
 
         if (championsResponse != null) {
             LinkedHashMap<String, ChampionDetailResponse> championDetailsList = championsResponse.getChampionList();
@@ -45,18 +41,10 @@ public class ChampionUtils {
                 }
                 AppExecutors.getInstance().getDiskIO().execute(() -> {
                     try {
-                        //TODO : find a way to avoid this delete every time
-                        database.championDao().deleteAll();
-                        database.championInfoDao().deleteAll();
-                        database.championImageDao().deleteAll();
-                        database.championStatDao().deleteAll();
-                        database.tagDao().deleteAll();
-
                         database.championDao().insertAllChampion(champions);
                         database.championInfoDao().insertAllChampionInfo(championInfos);
                         database.championImageDao().insertAllChampionImage(images);
                         database.championStatDao().insertAllChampionStats(championStatsList);
-                        database.tagDao().insertAllTag(tagList);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -85,9 +73,11 @@ public class ChampionUtils {
         champion.id = championDetailResponse.getId();
         champion.name = championDetailResponse.getName();
         champion.title = championDetailResponse.getTitle();
-        champion.lore = championDetailResponse.getLore();
         champion.blurb = championDetailResponse.getBlurb();
-        champion.partype = championDetailResponse.getPartype();
+        List<String> tags = championDetailResponse.getTags();
+        if (tags != null && tags.size() > 0) {
+            champion.tags = tags;
+        }
         champions.add(champion);
 
 
@@ -103,19 +93,6 @@ public class ChampionUtils {
         ChampionStats championStats = championDetailResponse.getStats();
         championStats.championId = Integer.valueOf(championDetailResponse.getKey());
         championStatsList.add(championStats);
-
-
-        List<String> tags = championDetailResponse.getTags();
-        if (tags != null && tags.size() > 0) {
-
-            for (String string : tags) {
-                Tag tag = new Tag();
-                tag.tag = string;
-                tag.championId = Integer.valueOf(championDetailResponse.getKey());
-                tagList.add(tag);
-            }
-        }
-
     }
 
 }

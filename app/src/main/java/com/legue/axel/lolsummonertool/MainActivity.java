@@ -1,7 +1,11 @@
 package com.legue.axel.lolsummonertool;
 
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.SearchRecentSuggestions;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,33 +15,40 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.SearchView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.legue.axel.lolsummonertool.wiki.WikiFragment;
+import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
+import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
+import com.legue.axel.lolsummonertool.profil.ProfilFragment;
+import com.legue.axel.lolsummonertool.utils.Utils;
+import com.legue.axel.lolsummonertool.wiki.fragment.WikiFragment;
 
 import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private final String TAG = MainActivity.class.getName();
-
     @BindView(R.id.fl_content)
     FrameLayout flContent;
 
     AdView adView;
 
-
     private FirebaseAnalytics mFirebaseAnalytics;
     private Context mContext;
     SuperApplication application;
 
-    //TODO : General : add relation in Models and add default Dao CRUD
     //TODO : General : add a WorkManager for Database Insertion ?
+    // TODO: 27/04/2019 Change ResponseBody with SummonerObject
+    // TODO: 27/04/2019 Implement Mechanism for saving only 1 Profil in database
+    // TODO: 27/04/2019  /lol/Match/v4/matchlists/by-account/{encryptedAccountId}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mContext = this;
         application = (SuperApplication) this.getApplication();
-//        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -67,6 +78,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
 
     @Override
     public void onBackPressed() {
@@ -82,6 +98,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        // Do something that differs the Activity's menu here
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setIconifiedByDefault(true);
+        searchView.setMaxWidth(Utils.convertDpToPixel(300, this));
+        if (searchManager != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        }
         return true;
     }
 
@@ -106,7 +130,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         displaySelectedScreen(id);
+        displayTitleName(id);
         return true;
+    }
+
+    private void displayTitleName(int id) {
+        if (id != R.id.nav_profil) {
+            getSupportActionBar().setTitle(getString(R.string.app_name));
+        } else {
+            getSupportActionBar().setTitle(null);
+        }
     }
 
     private void displaySelectedScreen(int id) {
@@ -117,8 +150,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new WikiFragment();
                 break;
             case R.id.nav_profil:
-                // TODO : replace with correct fragment
-                fragment = new WikiFragment();
+                fragment = new ProfilFragment();
                 break;
             case R.id.nav_bans:
                 // TODO : replace with correct fragment
@@ -147,6 +179,83 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+    }
+
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    ProfilSuggestionProvider.AUTHORITY, ProfilSuggestionProvider.MODE);
+            suggestions.saveRecentQuery(query, null);
+
+            findSummoner(query);
+
+        }
+    }
+
+    private void findSummoner(String summonerName) {
+        RetrofitHelper.getSummonerName(
+                RetrofitConstants.ACTION_GET_SUMMONER,
+                this,
+                summonerName,
+                summonerhandler,
+                (SuperApplication) getApplication()
+        );
+    }
+
+    private Handler summonerhandler = new Handler(msg -> {
+
+        switch (msg.what) {
+            case RetrofitConstants.ACTION_GET_SUMMONER:
+                Log.i(TAG, "ACTION_GET_SUMMONER ");
+
+                // Here we can only have 1 summoner save in database
+                SummonerToolDatabase.getInstance(this).summonerDao().getSummoners().observe(this, summoners -> {
+                    if (summoners != null && summoners.size() == 1) {
+                        loadSummonerMatches(summoners.get(0).accountId);
+                    }
+                });
+
+                break;
+            case RetrofitConstants.ACTION_GET_SUMMONER_MACTHES:
+                Log.i(TAG, "ACTION_GET_SUMMONER_MACTHES ");
+                //todo replace with RxCode for chaining api calls
+                loadMatchesDetails();
+                break;
+
+            case RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS:
+                Log.i(TAG, "ACTION_GET_MATCH_INFORMATIONS ");
+
+                break;
+
+            case RetrofitConstants.ACTION_ERROR:
+                break;
+        }
+        return true;
+    });
+
+    private void loadSummonerMatches(String accountId) {
+        RetrofitHelper.getSummonerMatches(
+                RetrofitConstants.ACTION_GET_SUMMONER_MACTHES,
+                this,
+                accountId,
+                10,
+                0,
+                summonerhandler,
+                (SuperApplication) getApplication()
+        );
+    }
+
+    private void loadMatchesDetails() {
+        RetrofitHelper.getMatchInformations(
+                RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS,
+                this,
+                "3965327237",
+                summonerhandler,
+                (SuperApplication) getApplication()
+        );
     }
 
 

@@ -21,10 +21,13 @@ public interface ChampionInfoDao {
     @Query("SELECT * FROM champion_infos WHERE id = :championInfoId")
     LiveData<ChampionInfo> getChampionInfoById(int championInfoId);
 
+    @Query("SELECT * FROM champion_infos WHERE championId = :championKey")
+    LiveData<ChampionInfo> getChampionInfoByChampionKeyId(int championKey);
+
     @Insert
     void insertChampionInfo(ChampionInfo championInfo);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampionInfo(List<ChampionInfo> championInfoList);
 
     @Query("DELETE FROM champion_infos")

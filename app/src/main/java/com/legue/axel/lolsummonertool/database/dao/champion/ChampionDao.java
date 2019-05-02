@@ -15,16 +15,16 @@ import java.util.List;
 @Dao
 public interface ChampionDao {
 
-    @Query("SELECT * FROM champions ORDER BY id")
+    @Query("SELECT * FROM champions ORDER BY name")
     LiveData<List<Champion>> getChampions();
 
-    @Query("SELECT * FROM champions WHERE id = :championId")
-    LiveData<Champion> getChampionById(int championId);
+    @Query("SELECT * FROM champions WHERE `key` = :championKey")
+    LiveData<Champion> getChampionByKey(int championKey);
 
     @Insert
     void insertChampion(Champion champion);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampion(List<Champion> champions);
 
     @Delete

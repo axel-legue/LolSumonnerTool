@@ -23,7 +23,7 @@ public interface ItemEffectDao {
     @Insert
     void insertItemEffect(ItemEffect itemEffect);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItemEffect(List<ItemEffect> itemEffects);
 
     @Delete

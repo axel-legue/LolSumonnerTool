@@ -42,15 +42,6 @@ public class ItemUtils {
 
             AppExecutors.getInstance().getDiskIO().execute(() -> {
                 try {
-                    //TODO : find a way to avoid this delete every time
-                    database.itemDao().deleteAll();
-                    database.itemEffectDao().deleteAll();
-                    database.itemGoldDao().deleteAll();
-                    database.itemImageDao().deleteAll();
-                    database.itemMapDao().deleteAll();
-                    database.itemStatDao().deleteAll();
-                    database.itemTagDao().deleteAll();
-
                     database.itemDao().insertAllItem(items);
                     database.itemEffectDao().insertAllItemEffect(itemEffects);
                     database.itemGoldDao().insertAllItemGold(itemGolds);
@@ -78,27 +69,57 @@ public class ItemUtils {
     }
 
     private static void extractItem(String key, ItemDetailResponse itemDetailResponse) {
-        Item item = new Item(Integer.valueOf(key), itemDetailResponse.name, itemDetailResponse.description, itemDetailResponse.colloq, itemDetailResponse.plaintext, itemDetailResponse.depth);
+        Item item = new Item();
+        item.id = Integer.valueOf(key);
+        if (itemDetailResponse.name != null) {
+            item.name = itemDetailResponse.name;
+        }
+        if (itemDetailResponse.description != null) {
+            item.description = itemDetailResponse.description;
+        }
+        if (itemDetailResponse.colloq != null) {
+            item.colloq = itemDetailResponse.colloq;
+        }
+        if (itemDetailResponse.plaintext != null) {
+            item.plaintext = itemDetailResponse.plaintext;
+        }
+
+        item.depth = itemDetailResponse.depth;
+
+        if (itemDetailResponse.from != null) {
+            item.from = itemDetailResponse.from;
+        }
+        if (itemDetailResponse.into != null) {
+            item.into = itemDetailResponse.into;
+        }
         items.add(item);
 
+
         ItemGold itemGold = new ItemGold();
-        itemGold.base = itemDetailResponse.gold.base;
-        itemGold.purchasable = itemDetailResponse.gold.purchasable;
-        itemGold.sell = itemDetailResponse.gold.sell;
-        itemGold.total = itemDetailResponse.gold.total;
-        itemGold.itemId = Integer.valueOf(key);
-        itemGolds.add(itemGold);
+
+        if (itemDetailResponse.gold != null) {
+            itemGold.base = itemDetailResponse.gold.base;
+            itemGold.purchasable = itemDetailResponse.gold.purchasable;
+            itemGold.sell = itemDetailResponse.gold.sell;
+            itemGold.total = itemDetailResponse.gold.total;
+            itemGold.itemId = Integer.valueOf(key);
+            itemGolds.add(itemGold);
+        }
+
 
         ItemImage itemImage = new ItemImage();
-        itemImage.full = itemDetailResponse.itemImage.full;
-        itemImage.group = itemDetailResponse.itemImage.group;
-        itemImage.sprite = itemDetailResponse.itemImage.sprite;
-        itemImage.x = itemDetailResponse.itemImage.x;
-        itemImage.y = itemDetailResponse.itemImage.y;
-        itemImage.h = itemDetailResponse.itemImage.h;
-        itemImage.w = itemDetailResponse.itemImage.w;
-        itemImage.itemId = Integer.valueOf(key);
-        itemImages.add(itemImage);
+        if (itemDetailResponse.itemImage != null) {
+            itemImage.full = itemDetailResponse.itemImage.full;
+            itemImage.group = itemDetailResponse.itemImage.group;
+            itemImage.sprite = itemDetailResponse.itemImage.sprite;
+            itemImage.x = itemDetailResponse.itemImage.x;
+            itemImage.y = itemDetailResponse.itemImage.y;
+            itemImage.h = itemDetailResponse.itemImage.h;
+            itemImage.w = itemDetailResponse.itemImage.w;
+            itemImage.itemId = Integer.valueOf(key);
+            itemImages.add(itemImage);
+        }
+
 
         if (itemDetailResponse.tags != null && itemDetailResponse.tags.size() > 0) {
             for (String string : itemDetailResponse.tags) {
@@ -109,10 +130,10 @@ public class ItemUtils {
             }
         }
 
+        if (itemDetailResponse.effect != null) {
+            HashMap<String, String> effectResponse = itemDetailResponse.effect;
 
-        HashMap<String, String> effectResponse = itemDetailResponse.effect;
-        Iterator it = null;
-        if (effectResponse != null) {
+            Iterator it = null;
             it = effectResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
@@ -125,8 +146,9 @@ public class ItemUtils {
             }
         }
 
-        HashMap<String, Float> statResponse = itemDetailResponse.stats;
-        if (statResponse != null) {
+        if (itemDetailResponse.stats != null) {
+            HashMap<String, Float> statResponse = itemDetailResponse.stats;
+            Iterator it = null;
             it = statResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
@@ -139,8 +161,9 @@ public class ItemUtils {
             }
         }
 
-        HashMap<String, Boolean> mapResponse = itemDetailResponse.maps;
-        if (mapResponse != null) {
+        if (itemDetailResponse.maps != null) {
+            HashMap<String, Boolean> mapResponse = itemDetailResponse.maps;
+            Iterator it = null;
             it = mapResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
@@ -152,7 +175,6 @@ public class ItemUtils {
                 it.remove();
             }
         }
-
 
     }
 }

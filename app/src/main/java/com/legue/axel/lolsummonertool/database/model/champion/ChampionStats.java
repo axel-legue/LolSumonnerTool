@@ -8,11 +8,14 @@ import android.arch.persistence.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "champion_stats",
         foreignKeys = @ForeignKey(
                 entity = Champion.class,
                 parentColumns = "key",
-                childColumns = "championId"
+                childColumns = "championId",
+                onDelete = CASCADE
         ))
 public class ChampionStats {
     @PrimaryKey(autoGenerate = true)

@@ -21,13 +21,13 @@ public interface ChampionImageDao {
     @Query("SELECT * FROM images WHERE id = :riotImageId")
     LiveData<ChampionImage> getChampionImageById(int riotImageId);
 
-    @Query("SELECT * FROM images WHERE championId = :championId")
-    LiveData<ChampionImage> getChampionImageByChampionId(int championId);
+    @Query("SELECT * FROM images WHERE championId = :championKey")
+    LiveData<ChampionImage> getChampionImageByChampionId(int championKey);
 
     @Insert
     void insertChampionImage(ChampionImage championImage);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampionImage(List<ChampionImage> championImageList);
 
     @Delete

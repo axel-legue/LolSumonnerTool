@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.0'
         classpath 'com.google.gms:google-services:4.2.0'
 
 
@@ -43,8 +43,9 @@ ext {
     rxAndroidVersion = '2.0.1'
     lifecycleVersion = '1.1.1'
     roomVersion = '1.1.1'
-    firebaseVersion = '16.0.7'
+    firebaseVersion = '16.0.8'
     firebaseAdsVersion = '17.2.0'
     firebaseCrashLyticsVersion = '16.2.1'
+    graphViewVersion = '0.6.0'
 }
 

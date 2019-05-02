@@ -21,10 +21,13 @@ public interface ItemStatDao {
     @Query("SELECT * FROM item_stats WHERE id = :itemStatId")
     LiveData<ItemStat> getItemStatById(int itemStatId);
 
+    @Query("SELECT * FROM item_stats WHERE itemId = :itemId")
+    LiveData<ItemStat> getItemStatByItemId(int itemId);
+
     @Insert
     void insertItemStat(ItemStat itemStat);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllItemStat(List<ItemStat> itemStats);
 
     @Delete

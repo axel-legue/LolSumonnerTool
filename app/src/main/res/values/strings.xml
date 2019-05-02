@@ -9,6 +9,7 @@
     <string name="action_sort_by">Sort by</string>
     <string name="action_search">search</string>
     <string name="action_filter">filter</string>
+    <string name="action_hint_search">Summoner\'s name</string>
 
     <!-- Action Drawer Menu-->
     <string name="nav_builds">Builds</string>
@@ -22,6 +23,8 @@
     <string name="content_description_champion_image">champion image</string>
     <string name="content_description_item_image">item image</string>
     <string name="content_description_mastery_image">mastery image</string>
+    <string name="content_description_summoner_spell_image">summoner spell image</string>
+    <string name="content_description_champion_spell_image">champion spell image</string>
 
     <!-- Ads-->
     <string name="banner_main_activity">ca-app-pub-4205057744646990/5030663119</string>
@@ -29,5 +32,71 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="health_regen">Health regen</string>
+    <string name="health">Health</string>
+    <string name="role">Role</string>
+    <string name="name">Name</string>
+    <string name="nickname">Nickname</string>
+    <string name="range">Range</string>
+    <string name="mana_regen">Mana Regen</string>
+    <string name="mana">Mana</string>
+    <string name="magic_resist">Magic resist.</string>
+    <string name="move_speed">Move speed</string>
+    <string name="attack_damage">Attack damage</string>
+    <string name="attack_speed">attack speed</string>
+    <string name="armor">Armor</string>
+    <string name="attack">Attack</string>
+    <string name="defense">Defense</string>
+    <string name="magic">Magic</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="from">From</string>
+    <string name="into">Builds Into</string>
+
+    <string name="item_cost">Total %1$d (Base %2$dg)(Sell %3$dg)</string>
+
+    <string name="stats_flat_ad">+%1$s Attack Damage</string>
+    <string name="stats_flat_ap">+%1$s Ability Power Damage</string>
+    <string name="stats_flat_mana">+%1$s Mana</string>
+    <string name="stats_flat_health">+%1$s Health</string>
+    <string name="stats_flat_mana_regen">+%1$s Base Mana Regen</string>
+    <string name="stats_flat_health_regen">+%1$s Base Health Regen</string>
+    <string name="stats_flat_attack_speed">+%1$s Attack Speed</string>
+    <string name="stats_flat_cooldown_reduction">+%1$s Cooldown Reduction</string>
+    <string name="stats_flat_armor">+%1$s Armor</string>
+    <string name="stats_flat_magic_resist">+%1$s Magic Resist</string>
+    <string name="stats_flat_life_steal">+%1$s Magic Resist</string>
+
+    <string name="search_error_title">Incorrect input</string>
+    <string name="search_error_message">Only letters and numbers are allowed</string>
+
+    <string-array name="regions_array">
+        <item>North America</item>
+        <item>Europe West</item>
+        <item>Brasil</item>
+        <item>Europe Nordic &amp; East</item>
+        <item>Japan</item>
+        <item>Korea</item>
+        <item>LAN</item>
+        <item>LAS</item>
+        <item>Oceania</item>
+        <item>Turkey</item>
+        <item>Russia</item>
+        <item>Public Beta</item>
+    </string-array>
+
+    <string-array name="regions_index_array">
+        <item>NA1</item>
+        <item>EUW1</item>
+        <item>BR1</item>
+        <item>EUN1</item>
+        <item>JP1</item>
+        <item>KR</item>
+        <item>LA1</item>
+        <item>LA2</item>
+        <item>OC1</item>
+        <item>TR1</item>
+        <item>RU</item>
+        <item>PBE1</item>
+    </string-array>
 
 </resources>
