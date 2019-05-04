@@ -1,8 +1,10 @@
 package com.legue.axel.lolsummonertool.database.model.match;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -12,7 +14,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         tableName = "participants",
         foreignKeys = @ForeignKey(
                 entity = Match.class,
-                parentColumns = "id",
+                parentColumns = "gameId",
                 childColumns = "matchId",
                 onDelete = CASCADE)
 )
@@ -26,6 +28,7 @@ public class Participant {
     public String highestAchievedSeasonTier; // Legal values: CHALLENGER, MASTER, DIAMOND, PLATINUM, GOLD, SILVER, BRONZE, UNRANKED.
     public int spell1Id;
     public int championId;
+    @ColumnInfo(index = true)
     public int matchId;
 
     @Ignore

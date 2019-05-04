@@ -1,9 +1,11 @@
 package com.legue.axel.lolsummonertool.database.model.match;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -18,6 +20,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 public class PlayerIdentity {
 
     @PrimaryKey
+    @NonNull
     public String accountId;
     public int participantId;
     public String currentPlatformId;
@@ -27,6 +30,7 @@ public class PlayerIdentity {
     public String currentAccountId;
     public int profileIcon;
     public String summonerId;
+    @ColumnInfo(index = true)
     public int matchId;
 
     @Ignore

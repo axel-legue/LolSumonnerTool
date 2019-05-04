@@ -1,7 +1,9 @@
 package com.legue.axel.lolsummonertool.database.model.match;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -21,8 +23,10 @@ public class TeamBan {
     public int id;
     public int pickTurn;
     public int championId;
+    @ColumnInfo(index = true)
     public int teamStatId;
 
+    @Ignore
     public TeamBan() {
     }
 

@@ -1,7 +1,9 @@
 package com.legue.axel.lolsummonertool.database.model.match;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
@@ -10,7 +12,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
         tableName = "teamStats",
         foreignKeys = @ForeignKey(
                 entity = Match.class,
-                parentColumns = "id",
+                parentColumns = "gameId",
                 childColumns = "matchId",
                 onDelete = CASCADE)
 )
@@ -33,8 +35,11 @@ public class TeamStat {
     public int dominionVictoryScore;
     public String win; // String indicating whether or not the team won. There are only two values visibile in public Match history. (Legal values: Fail, Win)
     public int dragonKills;
+    @ColumnInfo(index = true)
     public int matchId;
 
+
+    @Ignore
     public TeamStat() {
     }
 
