@@ -29,7 +29,7 @@ public class Participant {
     public int spell1Id;
     public int championId;
     @ColumnInfo(index = true)
-    public int matchId;
+    public long matchId;
 
     @Ignore
     public Participant() {
@@ -37,7 +37,7 @@ public class Participant {
 
     public Participant(int id, int participantId, int teamId, int spell2Id,
                        String highestAchievedSeasonTier, int spell1Id, int championId,
-                       int matchId) {
+                       long matchId) {
         this.id = id;
         this.participantId = participantId;
         this.teamId = teamId;

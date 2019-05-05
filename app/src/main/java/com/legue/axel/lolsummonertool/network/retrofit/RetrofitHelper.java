@@ -14,6 +14,7 @@ import com.legue.axel.lolsummonertool.network.response.champion.ChampionsRespons
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
 import com.legue.axel.lolsummonertool.network.response.match.MatchDto;
+import com.legue.axel.lolsummonertool.network.response.match.MatchReferenceDto;
 import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 import com.legue.axel.lolsummonertool.utils.ChampionInfoUtils;
@@ -22,6 +23,9 @@ import com.legue.axel.lolsummonertool.utils.ItemUtils;
 import com.legue.axel.lolsummonertool.utils.MasteryUtils;
 import com.legue.axel.lolsummonertool.utils.SummonerSpellUtils;
 
+import java.util.List;
+
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -45,16 +49,11 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(ChampionsResponse championsResponse) {
-                        if (championsResponse != null) {
-                            Log.i(TAG, "onNext: " + championsResponse);
+                        Log.i(TAG, "onNext: " + championsResponse);
+                        ChampionUtils.insertChampionResponseInDB(
+                                championsResponse,
+                                SummonerToolDatabase.getInstance(application));
 
-                            ChampionUtils.insertChampionResponseInDB(
-                                    championsResponse,
-                                    SummonerToolDatabase.getInstance(application));
-
-                        } else {
-                            Log.i(TAG, "onNext: getChampions response is null");
-                        }
                     }
 
                     @Override
@@ -99,16 +98,11 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(ChampionInfoResponse championInfoResponse) {
-                        if (championInfoResponse != null) {
-                            Log.i(TAG, "onNext: " + championInfoResponse);
+                        Log.i(TAG, "onNext: " + championInfoResponse);
+                        ChampionInfoUtils.updateChampionResponseInDB(
+                                championInfoResponse,
+                                SummonerToolDatabase.getInstance(application));
 
-                            ChampionInfoUtils.updateChampionResponseInDB(
-                                    championInfoResponse,
-                                    SummonerToolDatabase.getInstance(application));
-
-                        } else {
-                            Log.i(TAG, "onNext: getChampions response is null");
-                        }
                     }
 
                     @Override
@@ -154,16 +148,11 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(ItemsResponse itemsResponse) {
-                        if (itemsResponse != null) {
-                            Log.i(TAG, "onNext: " + itemsResponse);
 
-                            ItemUtils.insertItemResponseInDB(
-                                    itemsResponse,
-                                    SummonerToolDatabase.getInstance(application));
-
-                        } else {
-                            Log.i(TAG, "onNext: getItems response is null");
-                        }
+                        Log.i(TAG, "onNext: " + itemsResponse);
+                        ItemUtils.insertItemResponseInDB(
+                                itemsResponse,
+                                SummonerToolDatabase.getInstance(application));
                     }
 
                     @Override
@@ -208,16 +197,10 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(MasteryResponse masteryResponse) {
-                        if (masteryResponse != null) {
-                            Log.i(TAG, "onNext: " + masteryResponse);
-
-                            MasteryUtils.insertMasteryResponseInDB(
-                                    masteryResponse,
-                                    SummonerToolDatabase.getInstance(application));
-
-                        } else {
-                            Log.i(TAG, "onNext: getMasteries response is null");
-                        }
+                        Log.i(TAG, "onNext: " + masteryResponse);
+                        MasteryUtils.insertMasteryResponseInDB(
+                                masteryResponse,
+                                SummonerToolDatabase.getInstance(application));
                     }
 
                     @Override
@@ -262,16 +245,13 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(SummonerSpellsResponse summonerSpellsResponse) {
-                        if (summonerSpellsResponse != null) {
-                            Log.i(TAG, "onNext: " + summonerSpellsResponse);
 
-                            SummonerSpellUtils.insertSummonerSpellResponseInDB(
-                                    summonerSpellsResponse,
-                                    SummonerToolDatabase.getInstance(application));
+                        Log.i(TAG, "onNext: " + summonerSpellsResponse);
 
-                        } else {
-                            Log.i(TAG, "onNext: getSummonerSpells response is null");
-                        }
+                        SummonerSpellUtils.insertSummonerSpellResponseInDB(
+                                summonerSpellsResponse,
+                                SummonerToolDatabase.getInstance(application));
+
                     }
 
                     @Override
@@ -315,21 +295,16 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(Summoner summoner) {
-                        if (summoner != null) {
-                            Log.i(TAG, "onNext: " + summoner);
-                            AppExecutors.getInstance().getDiskIO().execute(() -> {
-                                try {
-                                    SummonerToolDatabase database = SummonerToolDatabase.getInstance(application);
-                                    database.summonerDao().deleteAll();
-                                    database.summonerDao().insertSummoner(summoner);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
-
-                        } else {
-                            Log.i(TAG, "onNext: getSummonerName response is null");
-                        }
+                        Log.i(TAG, "onNext: " + summoner);
+                        AppExecutors.getInstance().getDiskIO().execute(() -> {
+                            try {
+                                SummonerToolDatabase database = SummonerToolDatabase.getInstance(application);
+                                database.summonerDao().deleteAll();
+                                database.summonerDao().insertSummoner(summoner);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
                     }
 
                     @Override
@@ -365,7 +340,6 @@ public class RetrofitHelper {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MatchlistDto>() {
-
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.i(TAG, "onSubscribe :" + d.toString());
@@ -373,12 +347,8 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(MatchlistDto matchlistDto) {
-                        if (matchlistDto != null) {
-                            Log.i(TAG, "onNext: " + matchlistDto);
-
-                        } else {
-                            Log.i(TAG, "onNext: matcheResponseList response is null");
-                        }
+                        Log.i(TAG, "onNext: " + matchlistDto);
+                        // TODO: 05/05/2019 Here i want to able to chain request from List contain in "matchlistDto" response
                     }
 
                     @Override
@@ -410,6 +380,7 @@ public class RetrofitHelper {
     }
 
     public static void getMatchInformations(final int action, final Activity activity, final String matchId, final Handler handlerMessage, final SuperApplication application) {
+
         application.getRetrofitManager().getMatchInformations(activity, matchId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -422,13 +393,7 @@ public class RetrofitHelper {
 
                     @Override
                     public void onNext(MatchDto matchDto) {
-                        if (matchDto != null) {
-                            Log.i(TAG, "onNext: " + matchDto);
-
-
-                        } else {
-                            Log.i(TAG, "onNext: getMatchInformations response is null");
-                        }
+                        Log.i(TAG, "onNext: " + matchDto);
                     }
 
                     @Override
@@ -458,4 +423,6 @@ public class RetrofitHelper {
                     }
                 });
     }
+
+
 }

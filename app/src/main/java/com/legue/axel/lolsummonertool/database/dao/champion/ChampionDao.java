@@ -21,14 +21,8 @@ public interface ChampionDao {
     @Query("SELECT * FROM champions WHERE `key` = :championKey")
     LiveData<Champion> getChampionByKey(int championKey);
 
-    @Insert
-    void insertChampion(Champion champion);
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllChampion(List<Champion> champions);
-
-    @Delete
-    void deleteChampion(Champion champion);
 
     @Query("DELETE FROM champions")
     void deleteAll();

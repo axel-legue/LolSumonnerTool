@@ -9,7 +9,8 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.legue.axel.lolsummonertool.database.converter.DoubleMapConverters;
 
-import java.util.HashMap;
+
+import java.util.Map;
 
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
@@ -26,20 +27,20 @@ public class ParticipantTimeline {
     public String lane; //(Legal values: MID, MIDDLE, TOP, JUNGLE, BOT, BOTTOM)
     public int participantId;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> csDiffPerMinDeltas;
+    public Map<String, Double> csDiffPerMinDeltas;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> goldPerMinDeltas;
+    public Map<String, Double> goldPerMinDeltas;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> xpDiffPerMinDeltas;
+    public Map<String, Double> xpDiffPerMinDeltas;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> creepsPerMinDeltas;
+    public Map<String, Double> creepsPerMinDeltas;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> xpPerMinDeltas;
+    public Map<String, Double> xpPerMinDeltas;
     public String role;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> damageTakenDiffPerMinDeltas;
+    public Map<String, Double> damageTakenDiffPerMinDeltas;
     @TypeConverters(DoubleMapConverters.class)
-    public HashMap<String, Double> damageTakenPerMinDeltas;
+    public Map<String, Double> damageTakenPerMinDeltas;
 
     @ColumnInfo(index = true)
     public int participantKey;
@@ -50,14 +51,14 @@ public class ParticipantTimeline {
 
     public ParticipantTimeline(int id, String lane,
                                int participantId,
-                               HashMap<String, Double> csDiffPerMinDeltas,
-                               HashMap<String, Double> goldPerMinDeltas,
-                               HashMap<String, Double> xpDiffPerMinDeltas,
-                               HashMap<String, Double> creepsPerMinDeltas,
-                               HashMap<String, Double> xpPerMinDeltas,
+                               Map<String, Double> csDiffPerMinDeltas,
+                               Map<String, Double> goldPerMinDeltas,
+                               Map<String, Double> xpDiffPerMinDeltas,
+                               Map<String, Double> creepsPerMinDeltas,
+                               Map<String, Double> xpPerMinDeltas,
                                String role,
-                               HashMap<String, Double> damageTakenDiffPerMinDeltas,
-                               HashMap<String, Double> damageTakenPerMinDeltas,
+                               Map<String, Double> damageTakenDiffPerMinDeltas,
+                               Map<String, Double> damageTakenPerMinDeltas,
                                int participantKey) {
         this.id = id;
         this.lane = lane;

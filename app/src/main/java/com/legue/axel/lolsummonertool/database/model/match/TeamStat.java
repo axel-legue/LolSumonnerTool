@@ -36,7 +36,7 @@ public class TeamStat {
     public String win; // String indicating whether or not the team won. There are only two values visibile in public Match history. (Legal values: Fail, Win)
     public int dragonKills;
     @ColumnInfo(index = true)
-    public int matchId;
+    public long matchId;
 
 
     @Ignore
@@ -47,7 +47,7 @@ public class TeamStat {
                     boolean firstRiftHerald, boolean firstBaron, int riftHeraldKills,
                     boolean firstBlood, int teamId, boolean firstTower, int vilemawKills,
                     int inhibitorKills, int towerKills, int dominionVictoryScore, String win,
-                    int dragonKills, int matchId) {
+                    int dragonKills, long matchId) {
         this.id = id;
         this.firstDragon = firstDragon;
         this.firstInhibitor = firstInhibitor;

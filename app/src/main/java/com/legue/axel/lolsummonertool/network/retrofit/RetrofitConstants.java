@@ -30,7 +30,7 @@ public class RetrofitConstants {
     public static final String API_SUMMONER_NAME_V4_BY_NAME = "/lol/summoner/v4/summoners/by-name/";
     public static final String API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID = "/lol/Match/v4/matchlists/by-account/";
     public static final String API_MATCH_V4_MATCH_ID = "/lol/Match/v4/matches/";
-    public static final String API_KEY_VALUE = "RGAPI-deea04df-f505-4eb9-b5cf-fcbf2eff0509";
+    public static final String API_KEY_VALUE = "RGAPI-6676215d-5cce-49c6-8694-6d8c4704b7ca";
 
     public static final String API_KEY_PARAMETER = "api_key";
     public static final String API_KEY_BEGIN_INDEX = "beginIndex";

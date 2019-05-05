@@ -27,6 +27,13 @@ import com.legue.axel.lolsummonertool.database.dao.item.ItemStatDao;
 import com.legue.axel.lolsummonertool.database.dao.item.ItemTagDao;
 import com.legue.axel.lolsummonertool.database.dao.mastery.MasteryDao;
 import com.legue.axel.lolsummonertool.database.dao.mastery.MasteryImageDao;
+import com.legue.axel.lolsummonertool.database.dao.match.MatchDao;
+import com.legue.axel.lolsummonertool.database.dao.match.ParticipantDao;
+import com.legue.axel.lolsummonertool.database.dao.match.ParticipantStatDao;
+import com.legue.axel.lolsummonertool.database.dao.match.ParticipantTimelineDao;
+import com.legue.axel.lolsummonertool.database.dao.match.PlayerIdentityDao;
+import com.legue.axel.lolsummonertool.database.dao.match.TeamBanDao;
+import com.legue.axel.lolsummonertool.database.dao.match.TeamStatDao;
 import com.legue.axel.lolsummonertool.database.dao.summoner.SummonerDao;
 import com.legue.axel.lolsummonertool.database.dao.summonerspell.SummonerSpellDao;
 import com.legue.axel.lolsummonertool.database.dao.summonerspell.SummonerSpellImageDao;
@@ -147,6 +154,20 @@ public abstract class SummonerToolDatabase extends RoomDatabase {
     public abstract SummonerSpellImageDao summonerSpellImageDao();
 
     public abstract SummonerDao summonerDao();
+
+    public abstract MatchDao matchDao();
+
+    public abstract ParticipantDao participantDao();
+
+    public abstract ParticipantStatDao participantStatDao();
+
+    public abstract ParticipantTimelineDao participantTimelineDao();
+
+    public abstract PlayerIdentityDao playerIdentityDao();
+
+    public abstract TeamBanDao teamBanDao();
+
+    public abstract TeamStatDao teamStatDao();
 
 
 }
