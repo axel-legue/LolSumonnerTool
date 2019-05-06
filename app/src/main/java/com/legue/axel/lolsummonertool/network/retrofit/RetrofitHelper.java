@@ -29,6 +29,7 @@ import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 
@@ -339,53 +340,11 @@ public class RetrofitHelper {
         application.getRetrofitManager().getSummonerMatches(activity, accountId, endIndex, beginIndex)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MatchlistDto>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.i(TAG, "onSubscribe :" + d.toString());
-                    }
-
-                    @Override
-                    public void onNext(MatchlistDto matchlistDto) {
-                        Log.i(TAG, "onNext: " + matchlistDto);
-                        // TODO: 05/05/2019 Here i want to able to chain request from List contain in "matchlistDto" response
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        if (e instanceof HttpException) {
-                            HttpException httpException = (HttpException) e;
-                            int code = httpException.code();
-                            Log.i(TAG, "Server respond with code : " + code);
-                            Log.i(TAG, "Response : " + httpException.getMessage());
-                        } else {
-                            Log.i(TAG, e.getMessage() == null ? "unknown error" : e.getMessage());
-                            e.printStackTrace();
-                        }
-                        // Send message for send image
-                        Message msg = new Message();
-                        msg.what = RetrofitConstants.ACTION_ERROR;
-                        msg.obj = RetrofitConstants.ERROR;
-                        handlerMessage.sendMessage(msg);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.i(TAG, "onComplete");
-                        Message message = new Message();
-                        message.what = action;
-                        handlerMessage.sendMessage(message);
-                    }
-                });
-    }
-
-    public static void getMatchInformations(final int action, final Activity activity, final String matchId, final Handler handlerMessage, final SuperApplication application) {
-
-        application.getRetrofitManager().getMatchInformations(activity, matchId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+                .flatMapIterable(matchlistDto -> matchlistDto.matches)
+                .flatMap(matchReferenceDto -> application.getRetrofitManager().getMatchInformations(activity, matchReferenceDto)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread()))
                 .subscribe(new Observer<MatchDto>() {
-
                     @Override
                     public void onSubscribe(Disposable d) {
                         Log.i(TAG, "onSubscribe :" + d.toString());
@@ -423,6 +382,5 @@ public class RetrofitHelper {
                     }
                 });
     }
-
 
 }

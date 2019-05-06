@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity
                 // Here we can only have 1 summoner save in database
                 SummonerToolDatabase.getInstance(this).summonerDao().getSummoners().observe(this, summoners -> {
                     if (summoners != null && summoners.size() == 1) {
-                        loadSummonerMatches(summoners.get(0).accountId);
+                        loadMatchesDetails(summoners.get(0).accountId);
                     }
                 });
 
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity
             case RetrofitConstants.ACTION_GET_SUMMONER_MACTHES:
                 Log.i(TAG, "ACTION_GET_SUMMONER_MACTHES ");
                 //todo replace with RxCode for chaining api calls
-                loadMatchesDetails();
+                //  loadMatchesDetails();
                 break;
 
             case RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS:
@@ -248,11 +248,13 @@ public class MainActivity extends AppCompatActivity
         );
     }
 
-    private void loadMatchesDetails() {
-        RetrofitHelper.getMatchInformations(
-                RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS,
+    private void loadMatchesDetails(String accountId) {
+        RetrofitHelper.getSummonerMatches(
+                RetrofitConstants.ACTION_GET_SUMMONER_MACTHES,
                 this,
-                "3965327237",
+                accountId,
+                10,
+                0,
                 summonerhandler,
                 (SuperApplication) getApplication()
         );

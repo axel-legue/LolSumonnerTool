@@ -13,10 +13,12 @@ import com.legue.axel.lolsummonertool.network.response.champion.ChampionsRespons
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
 import com.legue.axel.lolsummonertool.network.response.match.MatchDto;
+import com.legue.axel.lolsummonertool.network.response.match.MatchReferenceDto;
 import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -111,7 +113,7 @@ public class RetrofitManager {
                 + RetrofitConstants.API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID
                 + summonerAccountId;
 
-        Map<String, String> queryParams = new HashMap<>();
+        LinkedHashMap<String, String> queryParams = new LinkedHashMap<>();
         queryParams.put(RetrofitConstants.API_KEY_END_INDEX, String.valueOf(endIndex));
         queryParams.put(RetrofitConstants.API_KEY_BEGIN_INDEX, String.valueOf(beginIndex));
         queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
@@ -119,20 +121,29 @@ public class RetrofitManager {
         return riotService.getSummonerMatches(url, queryParams);
     }
 
-    public Observable<MatchDto> getMatchInformations(Activity activity, String matchId) {
+    public Observable<MatchDto> getMatchInformations(Activity activity, MatchReferenceDto matchReferenceDto) {
         SharedPreferences sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
         String prefixRegion = sharedPreferences.getString(Constants.KEY_PREFIX_SELECTED_REGION, "EUW1");
         String url = RetrofitConstants.API_HTTPS
                 + prefixRegion
                 + RetrofitConstants.API_RIOTGAMES_BASE
                 + RetrofitConstants.API_MATCH_V4_MATCH_ID
-                + matchId;
+                + matchReferenceDto.gameId;
 
-        Map<String, String> queryParams = new HashMap<>();
+        LinkedHashMap<String, String> queryParams = new LinkedHashMap<>();
         queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
 
         return riotService.getMatchInformations(url, queryParams);
     }
+
+
+
+//DEVELOPPER ADRESS :
+// https://euw1.api.riotgames.com/lol/match/v4/matchlists/by-account/m4MEnTvwGD2_glWXi-_DgJCFKCnAWpFybNc64o-7DQooyA?endIndex=10&beginIndex=0&api_key=RGAPI-34f663dc-0c91-45dc-acdf-9126c91c00b2
+
+//Local ADRESS :
+// https://euw1.api.riotgames.com/lol/Match/v4/matchlists/by-account/m4MEnTvwGD2_glWXi-_DgJCFKCnAWpFybNc64o-7DQooyA?endIndex=10&beginIndex=0&api_key=RGAPI-34f663dc-0c91-45dc-acdf-9126c91c00b2
+
 
 
 }
