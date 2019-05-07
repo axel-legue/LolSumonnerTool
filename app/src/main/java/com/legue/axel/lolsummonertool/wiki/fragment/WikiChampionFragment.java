@@ -49,7 +49,6 @@ public class WikiChampionFragment extends Fragment {
     ChampionsAdapter.ChampionListener championListener = new ChampionsAdapter.ChampionListener() {
         @Override
         public void championSelected(int position, Champion champion) {
-            Toast.makeText(application, "Champion a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getActivity(), WikiChampionInformations.class);
             intent.putExtra(Constants.WIKI_CHAMPION_KEY, champion.key);
             intent.putExtra(Constants.WIKI_CHAMPION_ID, champion.id);
@@ -83,7 +82,6 @@ public class WikiChampionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //pbLoading.setVisibility(View.GONE);
 
         //TODO : testing purpose => update code and move it at a better place
         application = (SuperApplication) getActivity().getApplication();

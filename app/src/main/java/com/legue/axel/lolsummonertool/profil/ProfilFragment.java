@@ -90,12 +90,9 @@ public class ProfilFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_region:
-                displayRegion();
-                return true;
-            default:
-                break;
+        if (item.getItemId() == R.id.action_region) {
+            displayRegion();
+            return true;
         }
         return false;
     }
@@ -145,6 +142,7 @@ public class ProfilFragment extends Fragment {
     private void displayRegion() {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        // TODO: 5/7/19 Put text to String files
         builder.setTitle("Choose Regions");
 
         // add a checkbox list
