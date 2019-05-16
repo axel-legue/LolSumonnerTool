@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:appComponentFactory">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -33,7 +34,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/profil_search" />
@@ -46,7 +46,7 @@
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
+                android:name=".wiki.activity.WikiChampionInformations"
                 android:value=".MainActivity" />
         </activity>
 
@@ -57,7 +57,7 @@
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
+                android:name=".wiki.activity.WikiItemInformation"
                 android:value=".MainActivity" />
         </activity>
 
