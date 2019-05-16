@@ -10,9 +10,13 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.legue.axel.lolsummonertool.R;
@@ -66,6 +70,49 @@ public class WikiMasteryFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        Log.i(TAG, "onCreate: ");
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        MenuItem actionSettings = menu.findItem(R.id.action_settings);
+        actionSettings.setEnabled(false);
+        actionSettings.setVisible(false);
+
+        MenuItem actionFilter = menu.findItem(R.id.action_filter);
+        actionFilter.setEnabled(false);
+        actionFilter.setVisible(false);
+
+        MenuItem actionChooseRegion = menu.findItem(R.id.action_region);
+        actionChooseRegion.setVisible(false);
+        actionChooseRegion.setEnabled(false);
+
+        MenuItem actionSearch = menu.findItem(R.id.action_search);
+        actionSearch.setVisible(false);
+        actionSearch.setEnabled(false);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setVisibility(View.GONE);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                return true;
+            default:
+                break;
+        }
+        return false;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,7 +144,7 @@ public class WikiMasteryFragment extends Fragment {
     }
 
     private void loadData() {
-        RetrofitHelper.getItems(
+        RetrofitHelper.getMasteries(
                 RetrofitConstants.ACTION_COMPLETE,
                 masteryHandler,
                 application);

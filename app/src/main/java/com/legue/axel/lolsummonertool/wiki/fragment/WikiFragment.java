@@ -1,16 +1,26 @@
 package com.legue.axel.lolsummonertool.wiki.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.adapter.WikiFragmentAdapter;
@@ -20,6 +30,7 @@ import butterknife.ButterKnife;
 
 
 public class WikiFragment extends Fragment {
+
     private final static String TAG = WikiFragment.class.getName();
     private SuperApplication application;
 
@@ -28,13 +39,11 @@ public class WikiFragment extends Fragment {
     @BindView(R.id.tl_wiki)
     TabLayout tlWiki;
 
-    WikiFragmentAdapter mWikiFragmentAdapter;
-
+    private WikiFragmentAdapter mWikiFragmentAdapter;
 
     public WikiFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,9 +64,10 @@ public class WikiFragment extends Fragment {
 
         mWikiFragmentAdapter = new WikiFragmentAdapter(getChildFragmentManager());
         vpWiki.setAdapter(mWikiFragmentAdapter);
-
         tlWiki.setupWithViewPager(vpWiki);
 
         vpWiki.setCurrentItem(0);
     }
+
+
 }

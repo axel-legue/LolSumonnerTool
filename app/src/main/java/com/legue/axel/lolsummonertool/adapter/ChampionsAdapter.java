@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -23,20 +25,79 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.legue.axel.lolsummonertool.R;
-import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Champion;
+import com.legue.axel.lolsummonertool.database.model.champion.ChampionImage;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
 import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.ChampionHolder> {
+public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.ChampionHolder> implements Filterable {
 
     private static final String TAG = ChampionsAdapter.class.getName();
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                List<Champion> filteredResults = new ArrayList<>();
+                String reset = "all";
+                if (constraint.length() == 0) {
+                    filteredResults = mChampions;
+                } else {
+                    Set<Champion> championSet = getFilteredResults(constraint);
+                    if (championSet != null && championSet.size() > 0) {
+                        filteredResults.addAll(championSet);
+
+                        Collections.sort(filteredResults, (o1, o2) -> o1.name.compareToIgnoreCase(o2.name));
+                    }
+                }
+
+                FilterResults results = new FilterResults();
+                results.values = filteredResults;
+                return results;
+            }
+
+            @Override
+            @SuppressWarnings("unchecked")
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mChampionFiltered = new ArrayList<>();
+                if (results != null && results.values != null) {
+                    mChampionFiltered = (List<Champion>) results.values;
+                } else {
+                    mChampionFiltered = mChampions;
+                }
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
+    protected Set<Champion> getFilteredResults(CharSequence constraint) {
+        Set<Champion> results = new HashSet<>();
+
+        for (Champion champion : mChampions) {
+            for (String tag : champion.tags) {
+                if (tag.toLowerCase().contains(constraint)) {
+                    results.add(champion);
+                }
+                if (constraint.toString().equalsIgnoreCase("all")) {
+                    results.add(champion);
+                }
+            }
+        }
+        return results;
+    }
 
     public interface ChampionListener {
         void championSelected(int position, Champion champion);
@@ -44,6 +105,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
 
     private Context mContext;
     private List<Champion> mChampions;
+    private List<Champion> mChampionFiltered;
     private ChampionListener mChampionListener;
     private WikiChampionFragment mFragment;
     private ChampionImage mChampionImage;
@@ -52,6 +114,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
     public ChampionsAdapter(Context context, List<Champion> champions, ChampionListener championListener, WikiChampionFragment fragment) {
         mContext = context;
         mChampions = champions;
+        mChampionFiltered = champions;
         mChampionListener = championListener;
         mFragment = fragment;
     }
@@ -65,7 +128,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
 
     @Override
     public void onBindViewHolder(@NonNull ChampionHolder holder, int position) {
-        final Champion champion = mChampions.get(position);
+        final Champion champion = mChampionFiltered.get(position);
 
         if (champion != null) {
             ChampionViewModel championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel.class);
@@ -92,7 +155,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
 
     @Override
     public int getItemCount() {
-        return mChampions.size();
+        return mChampionFiltered.size();
     }
 
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {

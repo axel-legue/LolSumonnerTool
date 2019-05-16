@@ -34,4 +34,6 @@ public class Constants {
     public final static String KEY_INDEX_SELECTED_REGION = "RegionSelectedIndex";
     public final static String KEY_PREFIX_SELECTED_REGION = "RegionSelectedPrefix";
 
+    public final static String KEY_INDEX_SELECTED_OPTION_FILTER = "OptionFilterSelectedIndex";
+
 }

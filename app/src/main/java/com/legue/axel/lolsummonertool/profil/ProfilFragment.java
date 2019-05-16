@@ -67,6 +67,15 @@ public class ProfilFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        Log.i(TAG, "onCreate: ");
+
+
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
@@ -98,16 +107,6 @@ public class ProfilFragment extends Fragment {
                 break;
         }
         return false;
-    }
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-        Log.i(TAG, "onCreate: ");
-
-
     }
 
     @Override
@@ -153,7 +152,7 @@ public class ProfilFragment extends Fragment {
             mRegionSelected = regions[mIndexRegionSelected];
         }
 
-        if (mRegionPrefix == null) {
+        if (prefixRegions == null) {
             prefixRegions = getActivity().getResources().getStringArray(R.array.regions_index_array);
         }
 

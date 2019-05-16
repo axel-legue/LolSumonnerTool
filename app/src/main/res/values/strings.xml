@@ -99,4 +99,14 @@
         <item>PBE1</item>
     </string-array>
 
+    <string-array name="filter_options_array">
+        <item>All</item>
+        <item>Fighter</item>
+        <item>Tank</item>
+        <item>Mage</item>
+        <item>Assassin</item>
+        <item>Support</item>
+        <item>Marksman</item>
+    </string-array>
+
 </resources>
