@@ -6,8 +6,8 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="411dp"
-        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_1"
         android:background="@drawable/wiki_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/tv_description"
-        android:layout_width="411dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="5"
         app:layout_constraintEnd_toEndOf="parent"

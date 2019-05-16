@@ -9,16 +9,17 @@
     <ImageView
         android:id="@+id/iv_champion"
         style="@style/champion_adapter_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/image_champion_width"
+        android:layout_height="@dimen/image_champion_height"
         android:visibility="gone"
+        android:contentDescription="@string/content_description_champion_image"
         android:src="@drawable/ic_placeholder_black_24dp" />
 
     <ProgressBar
         android:id="@+id/pb_champion"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/image_champion_width"
+        android:layout_height="@dimen/image_champion_height"
         android:layout_gravity="center" />
 
     <TextView

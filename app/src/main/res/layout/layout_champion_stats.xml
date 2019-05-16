@@ -6,10 +6,10 @@
 
     <TextView
         android:id="@+id/tv_range_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_range"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/tv_range"
@@ -18,10 +18,10 @@
 
     <TextView
         android:id="@+id/tv_range"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/range"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,10 +29,10 @@
 
     <TextView
         android:id="@+id/tv_mana_regen_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_mana_regen"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/tv_mana_regen"
@@ -40,10 +40,10 @@
 
     <TextView
         android:id="@+id/tv_mana_regen"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/mana_regen"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +51,10 @@
 
     <TextView
         android:id="@+id/tv_mana_value"
-        android:layout_width="0dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_mana"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -62,10 +62,10 @@
 
     <TextView
         android:id="@+id/tv_mana"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/mana"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,10 +74,10 @@
 
     <TextView
         android:id="@+id/tv_health"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/health"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -86,10 +86,10 @@
 
     <TextView
         android:id="@+id/tv_health_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_health"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -105,10 +105,10 @@
 
     <TextView
         android:id="@+id/tv_health_regen"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/health_regen"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -117,10 +117,10 @@
 
     <TextView
         android:id="@+id/tv_health_regen_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_health_regen"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toEndOf="@+id/tv_health_regen"
@@ -142,7 +142,7 @@
 
     <TextView
         android:id="@+id/tv_attack_damage"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/attack_damage"
         app:layout_constraintBottom_toBottomOf="@+id/tv_health_value"
@@ -152,7 +152,7 @@
 
     <TextView
         android:id="@+id/tv_attack_speed"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/attack_speed"
         app:layout_constraintBottom_toBottomOf="@+id/tv_health_regen_value"
@@ -163,7 +163,7 @@
 
     <TextView
         android:id="@+id/tv_armor"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/armor"
         app:layout_constraintBottom_toBottomOf="@+id/tv_mana_value"
@@ -174,7 +174,7 @@
 
     <TextView
         android:id="@+id/tv_magic_resist"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/magic_resist"
         app:layout_constraintBottom_toBottomOf="@+id/tv_mana_regen_value"
@@ -186,7 +186,7 @@
 
     <TextView
         android:id="@+id/tv_move_speed"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
         android:text="@string/move_speed"
         app:layout_constraintBottom_toBottomOf="@+id/tv_range_value"
@@ -197,10 +197,10 @@
 
     <TextView
         android:id="@+id/tv_attack_damage_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_attack_damage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -208,10 +208,10 @@
 
     <TextView
         android:id="@+id/tv_attack_speed_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_attack_speed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_attack_speed"
@@ -219,10 +219,10 @@
 
     <TextView
         android:id="@+id/tv_armor_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_armor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_armor"
@@ -230,10 +230,10 @@
 
     <TextView
         android:id="@+id/tv_magic_resist_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_magic_resist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -241,10 +241,10 @@
 
     <TextView
         android:id="@+id/tv_move_speed_value"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/zero"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginEnd="@dimen/margin_component_s"
         app:layout_constraintBottom_toBottomOf="@+id/tv_move_speed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -252,9 +252,9 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/zero"
+        android:layout_height="@dimen/divider_1"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:background="@drawable/wiki_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,16 +8,16 @@
 
     <ImageView
         android:id="@+id/iv_item"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/image_adapter_item_width"
+        android:layout_height="@dimen/image_adapter_item_height"
         android:contentDescription="@string/content_description_item_image"
         android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/pb_item"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/image_adapter_item_width"
+        android:layout_height="@dimen/image_adapter_item_height"
         android:layout_gravity="center" />
 
     <TextView

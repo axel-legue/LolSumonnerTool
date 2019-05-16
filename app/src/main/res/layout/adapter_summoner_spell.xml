@@ -7,16 +7,16 @@
 
     <ImageView
         android:id="@+id/iv_summoner_spell"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/image_summoner_spell_width"
+        android:layout_height="@dimen/image_summoner_spell_height"
         android:contentDescription="@string/content_description_summoner_spell_image"
         android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/pb_summoner_spell"
         style="?android:attr/progressBarStyleLarge"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="@dimen/image_summoner_spell_width"
+        android:layout_height="@dimen/image_summoner_spell_height"
         android:layout_gravity="center" />
 
     <TextView

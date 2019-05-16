@@ -9,8 +9,8 @@
         android:id="@+id/tv_info_attack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/attack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -21,16 +21,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progressTint="@android:color/holo_red_dark"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_xs"
+        android:layout_marginEnd="@dimen/margin_component_s" />
 
     <TextView
         android:id="@+id/tv_info_defense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/defense" />
 
     <ProgressBar
@@ -39,16 +39,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progressTint="@android:color/holo_green_dark"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_xs"
+        android:layout_marginEnd="@dimen/margin_component_s" />
 
     <TextView
         android:id="@+id/tv_magic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/magic" />
 
     <ProgressBar
@@ -57,16 +57,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progressTint="@android:color/holo_blue_dark"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_xs"
+        android:layout_marginEnd="@dimen/margin_component_s" />
 
     <TextView
         android:id="@+id/tv_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_s"
         android:text="@string/difficulty" />
 
     <ProgressBar
@@ -75,8 +75,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progressTint="@android:color/holo_purple"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp" />
+        android:layout_marginStart="@dimen/margin_component_s"
+        android:layout_marginTop="@dimen/margin_component_xs"
+        android:layout_marginEnd="@dimen/margin_component_s" />
 
 </LinearLayout>
