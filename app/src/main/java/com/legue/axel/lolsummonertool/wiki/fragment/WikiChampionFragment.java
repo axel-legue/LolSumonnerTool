@@ -226,7 +226,9 @@ public class WikiChampionFragment extends Fragment {
                     if (champions != null && champions.size() > 0) {
                         championList.clear();
                         championList.addAll(champions);
-                        adapter.getFilter().filter(mfilterOptionSelected.toLowerCase());
+                        if (mfilterOptionSelected != null) {
+                            adapter.getFilter().filter(mfilterOptionSelected.toLowerCase());
+                        }
                         adapter.notifyDataSetChanged();
                     }
                 });
