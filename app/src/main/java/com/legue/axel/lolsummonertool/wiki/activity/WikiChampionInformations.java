@@ -193,20 +193,6 @@ public class WikiChampionInformations extends AppCompatActivity {
         if (passiveImageEndPoint != null) {
             Glide.with(this)
                     .load(ImageUtils.BuildPassiveIconUrl(passiveImageEndPoint))
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            //  progressBar.setVisibility(View.GONE);
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            //   progressBar.setVisibility(View.GONE);
-                            //    imageView.setVisibility(View.VISIBLE);
-                            return false;
-                        }
-                    })
                     .error(R.drawable.ic_placeholder_black_24dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(ivPassive);
@@ -217,20 +203,6 @@ public class WikiChampionInformations extends AppCompatActivity {
         if (mChampionImage != null) {
             Glide.with(this)
                     .load(ImageUtils.BuildChampionIconUrl(mChampionImage.full))
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            //  progressBar.setVisibility(View.GONE);
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            //   progressBar.setVisibility(View.GONE);
-                            //    imageView.setVisibility(View.VISIBLE);
-                            return false;
-                        }
-                    })
                     .error(R.drawable.ic_placeholder_black_24dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(ivChampion);

@@ -53,7 +53,6 @@ public class WikiMasteryFragment extends Fragment {
         @Override
         public void masterySelected(int position, Mastery mastery) {
             Toast.makeText(application, "Mastery a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
-
         }
     };
 

@@ -133,7 +133,7 @@ public class ItemUtils {
         if (itemDetailResponse.effect != null) {
             HashMap<String, String> effectResponse = itemDetailResponse.effect;
 
-            Iterator it = null;
+            Iterator it;
             it = effectResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
@@ -148,7 +148,7 @@ public class ItemUtils {
 
         if (itemDetailResponse.stats != null) {
             HashMap<String, Float> statResponse = itemDetailResponse.stats;
-            Iterator it = null;
+            Iterator it;
             it = statResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
@@ -163,7 +163,7 @@ public class ItemUtils {
 
         if (itemDetailResponse.maps != null) {
             HashMap<String, Boolean> mapResponse = itemDetailResponse.maps;
-            Iterator it = null;
+            Iterator it;
             it = mapResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();

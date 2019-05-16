@@ -106,16 +106,14 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
 
     private boolean shouldConvertListToString(List<Float> list) {
         Float value = list.get(0);
-        boolean isDifferent = false;
         for (int i = 0; i < list.size(); i++) {
             if (value.equals(list.get(i))) {
-                isDifferent = false;
+                //do nothing
             } else {
-                isDifferent = true;
-                return isDifferent;
+                return true;
             }
         }
-        return isDifferent;
+        return false;
     }
 
 
