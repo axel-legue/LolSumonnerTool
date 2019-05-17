@@ -1,17 +1,20 @@
 package com.legue.axel.lolsummonertool.wiki.fragment;
 
 import android.app.AlertDialog;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
+
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
@@ -31,6 +33,7 @@ import com.legue.axel.lolsummonertool.database.model.champion.Champion;
 import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
+import com.legue.axel.lolsummonertool.widget.ChampionWidget;
 import com.legue.axel.lolsummonertool.wiki.activity.WikiChampionInformations;
 
 import java.util.ArrayList;
@@ -230,6 +233,7 @@ public class WikiChampionFragment extends Fragment {
                             adapter.getFilter().filter(mfilterOptionSelected.toLowerCase());
                         }
                         adapter.notifyDataSetChanged();
+                        updateWidget();
                     }
                 });
                 break;
@@ -239,5 +243,14 @@ public class WikiChampionFragment extends Fragment {
         }
         return true;
     });
+
+    private void updateWidget() {
+        Log.i(TAG, "updateWidget: ");
+        Intent intent = new Intent(application.getApplicationContext(), ChampionWidget.class);
+        intent.setAction(Constants.ACTION_UPDATE_WIDGET);
+        int ids[] = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application,ChampionWidget.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        getActivity().sendBroadcast(intent);
+    }
 
 }

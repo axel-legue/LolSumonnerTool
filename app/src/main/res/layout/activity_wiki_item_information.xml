@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".wiki.activity.WikiItemInformation">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_passive"
             tools:text="From" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_from"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
             app:layout_constraintStart_toStartOf="@+id/rv_from"
             app:layout_constraintTop_toBottomOf="@+id/rv_from" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_into"
             android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
@@ -102,5 +102,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_title_into"
             app:layout_constraintTop_toBottomOf="@+id/tv_title_into" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

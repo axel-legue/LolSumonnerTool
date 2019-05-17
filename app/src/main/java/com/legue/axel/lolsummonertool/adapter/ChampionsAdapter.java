@@ -1,11 +1,11 @@
 package com.legue.axel.lolsummonertool.adapter;
 
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +33,6 @@ import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -183,7 +182,6 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
         } else {
             Log.i(TAG, "displayImage: null");
         }
-
     }
 
     class ChampionHolder extends RecyclerView.ViewHolder {

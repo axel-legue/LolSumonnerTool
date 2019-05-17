@@ -51,6 +51,7 @@
     <string name="difficulty">Difficulty</string>
     <string name="from">From</string>
     <string name="into">Builds Into</string>
+    <string name="is_empty">is empty</string>
 
     <string name="item_cost">Total %1$d (Base %2$dg)(Sell %3$dg)</string>
 
@@ -108,5 +109,8 @@
         <item>Support</item>
         <item>Marksman</item>
     </string-array>
+
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>

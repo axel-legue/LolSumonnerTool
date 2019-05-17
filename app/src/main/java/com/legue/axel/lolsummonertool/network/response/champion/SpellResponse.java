@@ -19,7 +19,7 @@ public class SpellResponse {
     private String costBurn;
     private List<List<Float>> effect;
     private List<String> effectBurn;
-    private List<Var> vars;
+//    private List<Var> vars;
     private String costType;
     private String maxammo;
     private List<Float> range;
@@ -43,7 +43,7 @@ public class SpellResponse {
         this.costBurn = costBurn;
         this.effect = effect;
         this.effectBurn = effectBurn;
-        this.vars = vars;
+//        this.vars = vars;
         this.costType = costType;
         this.maxammo = maxammo;
         this.range = range;
@@ -148,13 +148,13 @@ public class SpellResponse {
         this.effectBurn = effectBurn;
     }
 
-    public List<Var> getVars() {
-        return vars;
-    }
-
-    public void setVars(List<Var> vars) {
-        this.vars = vars;
-    }
+//    public List<Var> getVars() {
+//        return vars;
+//    }
+//
+//    public void setVars(List<Var> vars) {
+//        this.vars = vars;
+//    }
 
     public String getCostType() {
         return costType;

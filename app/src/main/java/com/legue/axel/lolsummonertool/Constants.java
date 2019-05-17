@@ -2,12 +2,15 @@ package com.legue.axel.lolsummonertool;
 
 public class Constants {
 
+
+    public final static String PACKAGE_NAME = "com.legue.axel.lolsummonertool";
     /**
      * Wiki Page Constants
      */
     public final static String KEY_WIKI_PAGE_NUMBER = "key_page_number";
     public final static String KEY_WIKI_PAGE_NAME = "key_page_name";
-
+    public final static String KEY_FAVORITE_CHAMPION = "key_favorite_champion";
+    public final static String ACTION_UPDATE_WIDGET = "android.appwidget.action.APPWIDGET_UPDATE";
 
     public final static String WIKI_PAGE_CHAMPIONS = "Champions";
     public final static String WIKI_PAGE_ITEMS = "Items";
