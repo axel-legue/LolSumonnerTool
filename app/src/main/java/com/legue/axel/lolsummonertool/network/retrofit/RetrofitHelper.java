@@ -39,7 +39,7 @@ public class RetrofitHelper {
     public static void getChampions(final int action, final Handler handlerMessage, final SuperApplication application) {
 
         application.getRetrofitManager().getChampions()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChampionsResponse>() {
 
@@ -88,7 +88,7 @@ public class RetrofitHelper {
     public static void getChampionByName(final int action, final String championId, final int championKey, final Handler handlerMessage, final SuperApplication application) {
 
         application.getRetrofitManager().getChampionByName(championId)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ChampionInfoResponse>() {
 
@@ -138,7 +138,7 @@ public class RetrofitHelper {
     public static void getItems(final int action, final Handler handlerMessage, final SuperApplication application) {
 
         application.getRetrofitManager().getItems()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ItemsResponse>() {
 
@@ -187,7 +187,7 @@ public class RetrofitHelper {
     public static void getMasteries(final int action, final Handler handlerMessage, final SuperApplication application) {
 
         application.getRetrofitManager().getMasteries()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<MasteryResponse>() {
 
@@ -235,7 +235,7 @@ public class RetrofitHelper {
     public static void getSummonerSpells(final int action, final Handler handlerMessage, final SuperApplication application) {
 
         application.getRetrofitManager().getSummonerSpells()
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<SummonerSpellsResponse>() {
 
@@ -285,7 +285,7 @@ public class RetrofitHelper {
 
     public static void getSummonerName(final int action, final Activity activity, final String summonerName, final Handler handlerMessage, final SuperApplication application) {
         application.getRetrofitManager().getSummonerProfil(activity, summonerName)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Summoner>() {
 
@@ -338,11 +338,11 @@ public class RetrofitHelper {
 
     public static void getSummonerMatches(final int action, final Activity activity, final String accountId, final int endIndex, final int beginIndex, final Handler handlerMessage, final SuperApplication application) {
         application.getRetrofitManager().getSummonerMatches(activity, accountId, endIndex, beginIndex)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMapIterable(matchlistDto -> matchlistDto.matches)
                 .flatMap(matchReferenceDto -> application.getRetrofitManager().getMatchInformations(activity, matchReferenceDto)
-                        .subscribeOn(Schedulers.newThread())
+                        .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread()))
                 .subscribe(new Observer<MatchDto>() {
                     @Override
