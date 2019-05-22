@@ -1,14 +1,8 @@
 package com.legue.axel.lolsummonertool.wiki.fragment;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
 import com.legue.axel.lolsummonertool.SuperApplication;
 import com.legue.axel.lolsummonertool.adapter.ItemAdapter;
@@ -26,7 +28,6 @@ import com.legue.axel.lolsummonertool.database.model.item.Item;
 import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper;
-import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.wiki.activity.WikiItemInformation;
 
 import java.util.ArrayList;
@@ -137,7 +138,7 @@ public class WikiItemFragment extends Fragment {
         if (itemList == null) {
             itemList = new ArrayList<>();
         }
-        
+
         loadItems();
         adapter = new ItemAdapter(application, itemList, itemListener, fragment);
         rvItemWiki.setLayoutManager(new GridLayoutManager(application, 4));

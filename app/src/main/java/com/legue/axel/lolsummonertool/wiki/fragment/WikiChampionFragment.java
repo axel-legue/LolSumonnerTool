@@ -163,7 +163,7 @@ public class WikiChampionFragment extends Fragment {
 
         initData();
     }
-
+    
     private void initData() {
         if (championList == null) {
             championList = new ArrayList<>();

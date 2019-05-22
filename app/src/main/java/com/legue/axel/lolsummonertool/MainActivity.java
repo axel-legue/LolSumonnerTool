@@ -6,23 +6,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
-import androidx.annotation.NonNull;
-import com.google.android.material.navigation.NavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
@@ -41,10 +42,10 @@ public class MainActivity extends AppCompatActivity
 
     AdView adView;
 
+    private Fragment currentFragment;
+    private String fragmentTag;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private Context mContext;
     SuperApplication application;
-
     //TODO : General : add a WorkManager for Database Insertion ?
     // TODO: 27/04/2019 Change ResponseBody with SummonerObject
     // TODO: 27/04/2019 Implement Mechanism for saving only 1 Profil in database
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        mContext = this;
         application = (SuperApplication) this.getApplication();
         //    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -69,13 +70,32 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        displaySelectedScreen(R.id.nav_builds);
+        if (savedInstanceState == null) {
+            displaySelectedScreen(R.id.nav_builds);
+        } else {
+            if (savedInstanceState.containsKey("frag")) {
+                fragmentTag = savedInstanceState.getString("frag");
+                currentFragment = getSupportFragmentManager().findFragmentByTag(fragmentTag);
+                if (currentFragment != null) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fl_content, currentFragment, fragmentTag)
+                            .commit();
+                }
+            }
+
+        }
 
         adView = findViewById(R.id.ad_banner);
 
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("frag", fragmentTag);
     }
 
     @Override
@@ -143,37 +163,44 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void displaySelectedScreen(int id) {
-        Fragment fragment = null;
+        if (currentFragment == null) {
+            switch (id) {
+                case R.id.nav_builds:
+                    fragmentTag = Constants.DRAWER_ITEM_BUILD;
+                    currentFragment = new WikiFragment();
+                    break;
+                case R.id.nav_profil:
+                    fragmentTag = Constants.DRAWER_ITEM_PROFIL;
+                    currentFragment = new ProfilFragment();
+                    break;
+                case R.id.nav_bans:
+                    fragmentTag = Constants.DRAWER_ITEM_BANS;
+                    // TODO : replace with correct fragment
+                    currentFragment = new WikiFragment();
+                    break;
+                case R.id.nav_wiki:
+                    fragmentTag = Constants.DRAWER_ITEM_WIKI;
+                    // TODO : replace with correct fragment
+                    currentFragment = new WikiFragment();
+                    break;
+                case R.id.nav_feedback:
+                    fragmentTag = Constants.DRAWER_ITEM_FEEDBACK;
+                    // TODO : replace with correct fragment
+                    currentFragment = new WikiFragment();
+                    break;
+                case R.id.nav_privacy:
+                    fragmentTag = Constants.DRAWER_ITEM_PRIVACY;
+                    // TODO : replace with correct fragment
+                    currentFragment = new WikiFragment();
+                    break;
+            }
 
-        switch (id) {
-            case R.id.nav_builds:
-                fragment = new WikiFragment();
-                break;
-            case R.id.nav_profil:
-                fragment = new ProfilFragment();
-                break;
-            case R.id.nav_bans:
-                // TODO : replace with correct fragment
-                fragment = new WikiFragment();
-                break;
-            case R.id.nav_wiki:
-                // TODO : replace with correct fragment
-                fragment = new WikiFragment();
-                break;
-            case R.id.nav_feedback:
-                // TODO : replace with correct fragment
-                fragment = new WikiFragment();
-                break;
-            case R.id.nav_privacy:
-                // TODO : replace with correct fragment
-                fragment = new WikiFragment();
-                break;
         }
 
-        if (fragment != null) {
+        if (currentFragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.fl_content, fragment)
+                    .replace(R.id.fl_content, currentFragment, fragmentTag)
                     .commit();
         }
 

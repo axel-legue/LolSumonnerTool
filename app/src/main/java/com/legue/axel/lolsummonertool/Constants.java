@@ -12,6 +12,13 @@ public class Constants {
     public final static String KEY_FAVORITE_CHAMPION = "key_favorite_champion";
     public final static String ACTION_UPDATE_WIDGET = "android.appwidget.action.APPWIDGET_UPDATE";
 
+    public final static String DRAWER_ITEM_BUILD = "drawer_item_build";
+    public final static String DRAWER_ITEM_PROFIL = "drawer_item_profil";
+    public final static String DRAWER_ITEM_BANS = "drawer_item_bans";
+    public final static String DRAWER_ITEM_WIKI = "drawer_item_wiki";
+    public final static String DRAWER_ITEM_FEEDBACK = "drawer_item_feedback";
+    public final static String DRAWER_ITEM_PRIVACY = "drawer_item_privacy";
+
     public final static String WIKI_PAGE_CHAMPIONS = "Champions";
     public final static String WIKI_PAGE_ITEMS = "Items";
     public final static String WIKI_PAGE_MASTERY = "Mastery";
