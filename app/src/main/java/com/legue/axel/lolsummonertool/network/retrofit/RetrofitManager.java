@@ -92,7 +92,7 @@ public class RetrofitManager {
                 + summonerName;
 
         Map<String, String> queryParams = new HashMap<>();
-        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE_LOL_SUMMONER_TOOL);
 
         return riotService.getSummonerProfil(url, queryParams);
     }
@@ -116,7 +116,7 @@ public class RetrofitManager {
         LinkedHashMap<String, String> queryParams = new LinkedHashMap<>();
         queryParams.put(RetrofitConstants.API_KEY_END_INDEX, String.valueOf(endIndex));
         queryParams.put(RetrofitConstants.API_KEY_BEGIN_INDEX, String.valueOf(beginIndex));
-        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE_LOL_SUMMONER_TOOL);
 
         return riotService.getSummonerMatches(url, queryParams);
     }
@@ -131,7 +131,7 @@ public class RetrofitManager {
                 + matchReferenceDto.gameId;
 
         LinkedHashMap<String, String> queryParams = new LinkedHashMap<>();
-        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE);
+        queryParams.put(RetrofitConstants.API_KEY_PARAMETER, RetrofitConstants.API_KEY_VALUE_LOL_SUMMONER_TOOL);
 
         return riotService.getMatchInformations(url, queryParams);
     }

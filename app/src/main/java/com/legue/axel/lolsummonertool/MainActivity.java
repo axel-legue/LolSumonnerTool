@@ -163,39 +163,38 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void displaySelectedScreen(int id) {
-        if (currentFragment == null) {
-            switch (id) {
-                case R.id.nav_builds:
-                    fragmentTag = Constants.DRAWER_ITEM_BUILD;
-                    currentFragment = new WikiFragment();
-                    break;
-                case R.id.nav_profil:
-                    fragmentTag = Constants.DRAWER_ITEM_PROFIL;
-                    currentFragment = new ProfilFragment();
-                    break;
-                case R.id.nav_bans:
-                    fragmentTag = Constants.DRAWER_ITEM_BANS;
-                    // TODO : replace with correct fragment
-                    currentFragment = new WikiFragment();
-                    break;
-                case R.id.nav_wiki:
-                    fragmentTag = Constants.DRAWER_ITEM_WIKI;
-                    // TODO : replace with correct fragment
-                    currentFragment = new WikiFragment();
-                    break;
-                case R.id.nav_feedback:
-                    fragmentTag = Constants.DRAWER_ITEM_FEEDBACK;
-                    // TODO : replace with correct fragment
-                    currentFragment = new WikiFragment();
-                    break;
-                case R.id.nav_privacy:
-                    fragmentTag = Constants.DRAWER_ITEM_PRIVACY;
-                    // TODO : replace with correct fragment
-                    currentFragment = new WikiFragment();
-                    break;
-            }
 
+        switch (id) {
+            case R.id.nav_builds:
+                fragmentTag = Constants.DRAWER_ITEM_BUILD;
+                currentFragment = new WikiFragment();
+                break;
+            case R.id.nav_profil:
+                fragmentTag = Constants.DRAWER_ITEM_PROFIL;
+                currentFragment = new ProfilFragment();
+                break;
+            case R.id.nav_bans:
+                fragmentTag = Constants.DRAWER_ITEM_BANS;
+                // TODO : replace with correct fragment
+                currentFragment = new WikiFragment();
+                break;
+            case R.id.nav_wiki:
+                fragmentTag = Constants.DRAWER_ITEM_WIKI;
+                // TODO : replace with correct fragment
+                currentFragment = new WikiFragment();
+                break;
+            case R.id.nav_feedback:
+                fragmentTag = Constants.DRAWER_ITEM_FEEDBACK;
+                // TODO : replace with correct fragment
+                currentFragment = new WikiFragment();
+                break;
+            case R.id.nav_privacy:
+                fragmentTag = Constants.DRAWER_ITEM_PRIVACY;
+                // TODO : replace with correct fragment
+                currentFragment = new WikiFragment();
+                break;
         }
+
 
         if (currentFragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();

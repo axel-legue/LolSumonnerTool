@@ -5,17 +5,17 @@ public class RetrofitConstants {
     // Content Delivery Network
     public static final String API_DRAGON_BASE_CDN = "https://ddragon.leagueoflegends.com/cdn/";
 
-    public static final String API_ITEM_VERSION = "9.6.1";
+    public static final String API_ITEM_VERSION = "9.10.1";
     public static final String API_RUNE_VERSION = "7.23.1";
     public static final String API_MASTERY_VERSION = "7.23.1";
-    public static final String API_SUMMONER_VERSION = "9.6.1";
-    public static final String API_CHAMPION_VERSION = "9.6.1";
-    public static final String API_SPELL_VERSION = "9.6.1";
-    public static final String API_PASSIVE_VERSION = "9.6.1";
-    public static final String API_PROFIL_ICON_VERSION = "9.6.1";
-    public static final String API_MAP_VERSION = "9.6.1";
-    public static final String API_LANGUAGE_VERSION = "9.6.1";
-    public static final String API_STICKER_VERSION = "9.6.1";
+    public static final String API_SUMMONER_VERSION = "9.10.1";
+    public static final String API_CHAMPION_VERSION = "9.10.1";
+    public static final String API_SPELL_VERSION = "9.10.1";
+    public static final String API_PASSIVE_VERSION = "9.10.1";
+    public static final String API_PROFIL_ICON_VERSION = "9.10.1";
+    public static final String API_MAP_VERSION = "9.10.1";
+    public static final String API_LANGUAGE_VERSION = "9.10.1";
+    public static final String API_STICKER_VERSION = "9.10.1";
     public static final String API_TYPE_DATA = "data";
     public static final String API_TYPE_IMAGE = "img";
     public static final String API_TYPE_CHAMPION = "champion";
@@ -30,18 +30,17 @@ public class RetrofitConstants {
     public static final String API_SUMMONER_NAME_V4_BY_NAME = "/lol/summoner/v4/summoners/by-name/";
     public static final String API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID = "/lol/match/v4/matchlists/by-account/";
     public static final String API_MATCH_V4_MATCH_ID = "/lol/match/v4/matches/";
-    public static final String API_KEY_VALUE = "RGAPI-34f663dc-0c91-45dc-acdf-9126c91c00b2";
+    public static final String API_KEY_VALUE_LOL_SUMMONER_TOOL = "RGAPI-5bfa06fe-7de1-47e1-9df8-b3c63fa61dd6";
 
     public static final String API_KEY_PARAMETER = "api_key";
     public static final String API_KEY_BEGIN_INDEX = "beginIndex";
     public static final String API_KEY_END_INDEX = "endIndex";
 
 
-
     // Regex from Riot Developer : ^[0-9\\p{L} _\\.]+$
     public static final String REGEX_VALIDATION_NAME = "^[0-9\\p{L} _\\.]+$";
 
-
+    // TODO: 23/05/2019 API for futur features
     // COMMUNITY DRAGON API
     //Runes reforged
     public static final String API_REFORGED_RUNES = "http://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perks.json";
