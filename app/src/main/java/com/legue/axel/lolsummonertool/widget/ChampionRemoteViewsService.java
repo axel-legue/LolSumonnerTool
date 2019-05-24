@@ -29,10 +29,7 @@ public class ChampionRemoteViewsService extends RemoteViewsService {
 class ChampionRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory {
     private final String TAG = ChampionRemoteViewFactory.class.getName();
     private Context mContext;
-    private List<Champion> championList;
     private List<Champion> randomChampionToDisplay;
-    private AppWidgetManager appWidgetManager;
-    private ComponentName componentName;
 
     public ChampionRemoteViewFactory(Context mContext) {
         Log.i(TAG, "ChampionRemoteViewFactory: ");
@@ -47,10 +44,10 @@ class ChampionRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory
     @Override
     public void onDataSetChanged() {
         Log.i(TAG, "onDataSetChanged: ");
-        appWidgetManager = AppWidgetManager.getInstance(mContext);
-        componentName = new ComponentName(mContext.getPackageName(), ChampionWidget.class.getName());
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+        ComponentName componentName = new ComponentName(mContext.getPackageName(), ChampionWidget.class.getName());
 
-        championList = SummonerToolDatabase.getInstance(mContext).championDao().getChampionsWidget();
+        List<Champion> championList = SummonerToolDatabase.getInstance(mContext).championDao().getChampionsWidget();
         Random random = new Random();
         int numberOfChampionToDisplay = 10;
         randomChampionToDisplay = new ArrayList<>();

@@ -3,13 +3,9 @@
 
     <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#C7C7C7C7</color>
-    <color name="colorPrimaryLight">#FFFFFF</color>
 
     <color name="colorAccent">#8C9EFF</color>
-    <color name="colorAccentLight">#C0CFFF</color>
-    <color name="colorAccentDark">#5870cb</color>
 
-    <color name="colorTextIcons">#212121</color>
     <color name="colorDivider">#BDBDBD</color>
 
     <color name="primaryText">#263238</color>

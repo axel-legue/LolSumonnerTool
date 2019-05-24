@@ -10,7 +10,6 @@ import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 
 import java.util.Map;
-import java.util.TreeMap;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

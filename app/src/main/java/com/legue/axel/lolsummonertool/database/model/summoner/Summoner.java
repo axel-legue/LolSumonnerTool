@@ -23,7 +23,7 @@ public class Summoner {
     public Summoner() {
     }
 
-    public Summoner(String id, String name, String puuid, int summonerLevel, String accountId, long revisionDate, int profileIconId) {
+    public Summoner( String id, String name, String puuid, int summonerLevel, String accountId, long revisionDate, int profileIconId) {
         this.id = id;
         this.name = name;
         this.puuid = puuid;

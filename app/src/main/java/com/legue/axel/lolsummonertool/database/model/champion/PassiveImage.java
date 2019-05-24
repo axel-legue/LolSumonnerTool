@@ -1,12 +1,8 @@
 package com.legue.axel.lolsummonertool.database.model.champion;
 
 import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import static androidx.room.ForeignKey.CASCADE;
 
 //@Entity(tableName = "passive_images",
 //        foreignKeys = {

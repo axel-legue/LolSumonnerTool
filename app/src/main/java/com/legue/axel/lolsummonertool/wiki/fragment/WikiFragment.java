@@ -23,14 +23,11 @@ import butterknife.ButterKnife;
 public class WikiFragment extends Fragment {
 
     private final static String TAG = WikiFragment.class.getName();
-    private SuperApplication application;
 
     @BindView(R.id.vp_wiki)
     ViewPager vpWiki;
     @BindView(R.id.tl_wiki)
     TabLayout tlWiki;
-
-    private WikiFragmentAdapter mWikiFragmentAdapter;
 
     public WikiFragment() {
         // Required empty public constructor
@@ -51,9 +48,9 @@ public class WikiFragment extends Fragment {
         //pbLoading.setVisibility(View.GONE);
 
         //TODO : testing purpose => update code and move it at a better place
-        application = (SuperApplication) getActivity().getApplication();
+        SuperApplication application = (SuperApplication) getActivity().getApplication();
 
-        mWikiFragmentAdapter = new WikiFragmentAdapter(getChildFragmentManager());
+        WikiFragmentAdapter mWikiFragmentAdapter = new WikiFragmentAdapter(getChildFragmentManager());
         vpWiki.setAdapter(mWikiFragmentAdapter);
         tlWiki.setupWithViewPager(vpWiki);
 

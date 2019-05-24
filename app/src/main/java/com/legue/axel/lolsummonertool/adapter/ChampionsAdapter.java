@@ -143,9 +143,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
                 holder.tvName.setText(champion.name);
             }
 
-            holder.llWrapper.setOnClickListener(v -> {
-                mChampionListener.championSelected(position, champion);
-            });
+            holder.llWrapper.setOnClickListener(v -> mChampionListener.championSelected(position, champion));
 
         } else {
             Log.i(TAG, "onBindViewHolder: champion is null");

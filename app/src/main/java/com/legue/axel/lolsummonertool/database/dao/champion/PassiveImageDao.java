@@ -1,11 +1,6 @@
 package com.legue.axel.lolsummonertool.database.dao.champion;
 
 import androidx.lifecycle.LiveData;
-import androidx.room.Delete;
-import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
-import androidx.room.Query;
-import androidx.room.Update;
 
 import com.legue.axel.lolsummonertool.database.model.champion.PassiveImage;
 

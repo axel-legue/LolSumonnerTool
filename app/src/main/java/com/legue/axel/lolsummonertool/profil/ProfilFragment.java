@@ -5,9 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,6 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
@@ -107,7 +108,7 @@ public class ProfilFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profil, container, false);
@@ -131,7 +132,7 @@ public class ProfilFragment extends Fragment {
         if (mSharedPreferences.contains(Constants.KEY_PREFIX_SELECTED_REGION)) {
             mRegionPrefix = mSharedPreferences.getString(Constants.KEY_PREFIX_SELECTED_REGION, null);
         } else {
-            mEditor.putString(Constants.KEY_PREFIX_SELECTED_REGION, "EUW1");
+            mEditor.putString(Constants.KEY_PREFIX_SELECTED_REGION, getString(R.string.default_region));
             mEditor.apply();
         }
 
@@ -141,8 +142,7 @@ public class ProfilFragment extends Fragment {
     private void displayRegion() {
         // setup the alert builder
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        // TODO: 5/7/19 Put text to String files
-        builder.setTitle("Choose Regions");
+        builder.setTitle(getString(R.string.choose_region));
 
         // add a checkbox list
         if (regions == null) {

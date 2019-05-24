@@ -10,7 +10,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath 'com.google.gms:google-services:4.2.0'
 
 
@@ -48,7 +48,7 @@ ext {
     lifecycleVersion = '1.1.1'
     roomVersion = '1.1.1'
     firebaseVersion = '16.0.9'
-    firebaseAdsVersion = '17.2.0'
+    firebaseAdsVersion = '17.2.1'
     firebaseCrashLyticsVersion = '16.2.1'
     graphViewVersion = '0.6.0'
 }

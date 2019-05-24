@@ -4,6 +4,7 @@ import com.legue.axel.lolsummonertool.AppExecutors;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.database.model.mastery.Mastery;
 import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage;
+import com.legue.axel.lolsummonertool.network.response.mastery.MasteryDetailResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class MasteryUtils {
 
 
         if (masteryResponse != null) {
-      //      extractMasteryDetails(masteryResponse);
+            extractMasteryDetails(masteryResponse.masteryDetailResponse);
 
             AppExecutors.getInstance().getDiskIO().execute(() -> {
                 try {
@@ -42,36 +43,36 @@ public class MasteryUtils {
         }
     }
 
-    private static void extractMasteryDetails( LinkedHashMap<String, Object> responseLinkedHashMap) {
+    private static void extractMasteryDetails(LinkedHashMap<String, MasteryDetailResponse> responseLinkedHashMap) {
 
         Iterator it = responseLinkedHashMap.entrySet().iterator();
         while (it.hasNext()) {
             HashMap.Entry pair = (HashMap.Entry) it.next();
             String key = (String) pair.getKey();
-   //         extractMastery((MasteryDetailResponse) pair.getValue());
+            extractMastery((MasteryDetailResponse) pair.getValue());
             it.remove();
         }
     }
 
-    private static void extractMastery(Object masteryDetailResponse) {
-   //     Mastery mastery = new Mastery();
-   //     mastery.id = masteryDetailResponse.id;
-   //     mastery.description = masteryDetailResponse.description;
-   //     mastery.name = masteryDetailResponse.name;
-   //     mastery.prereq = masteryDetailResponse.prereq;
-   //     mastery.ranks = masteryDetailResponse.ranks;
-   //     masteries.add(mastery);
-//
-   //     MasteryImage masteryImage = new MasteryImage();
-   //     masteryImage.full = masteryDetailResponse.image.full;
-   //     masteryImage.group = masteryDetailResponse.image.group;
-   //     masteryImage.sprite = masteryDetailResponse.image.sprite;
-   //     masteryImage.x = masteryDetailResponse.image.x;
-   //     masteryImage.y = masteryDetailResponse.image.y;
-   //     masteryImage.h = masteryDetailResponse.image.h;
-   //     masteryImage.w = masteryDetailResponse.image.w;
-   //     masteryImage.masteryId = masteryDetailResponse.id;
-   //     masteryImages.add(masteryImage);
+    private static void extractMastery(MasteryDetailResponse masteryDetailResponse) {
+        Mastery mastery = new Mastery();
+        mastery.id = masteryDetailResponse.id;
+        mastery.description = masteryDetailResponse.description;
+        mastery.name = masteryDetailResponse.name;
+        mastery.prereq = masteryDetailResponse.prereq;
+        mastery.ranks = masteryDetailResponse.ranks;
+        masteries.add(mastery);
+
+        MasteryImage masteryImage = new MasteryImage();
+        masteryImage.full = masteryDetailResponse.image.full;
+        masteryImage.group = masteryDetailResponse.image.group;
+        masteryImage.sprite = masteryDetailResponse.image.sprite;
+        masteryImage.x = masteryDetailResponse.image.x;
+        masteryImage.y = masteryDetailResponse.image.y;
+        masteryImage.h = masteryDetailResponse.image.h;
+        masteryImage.w = masteryDetailResponse.image.w;
+        masteryImage.masteryId = masteryDetailResponse.id;
+        masteryImages.add(masteryImage);
 
 
     }

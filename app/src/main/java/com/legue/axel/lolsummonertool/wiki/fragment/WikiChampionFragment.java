@@ -1,8 +1,6 @@
 package com.legue.axel.lolsummonertool.wiki.fragment;
 
 import android.app.AlertDialog;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,11 +8,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
@@ -62,14 +62,11 @@ public class WikiChampionFragment extends Fragment {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
-    ChampionsAdapter.ChampionListener championListener = new ChampionsAdapter.ChampionListener() {
-        @Override
-        public void championSelected(int position, Champion champion) {
-            Intent intent = new Intent(getActivity(), WikiChampionInformations.class);
-            intent.putExtra(Constants.WIKI_CHAMPION_KEY, champion.key);
-            intent.putExtra(Constants.WIKI_CHAMPION_ID, champion.id);
-            startActivity(intent);
-        }
+    private ChampionsAdapter.ChampionListener championListener = (position, champion) -> {
+        Intent intent = new Intent(getActivity(), WikiChampionInformations.class);
+        intent.putExtra(Constants.WIKI_CHAMPION_KEY, champion.key);
+        intent.putExtra(Constants.WIKI_CHAMPION_ID, champion.id);
+        startActivity(intent);
     };
 
     public static WikiChampionFragment newInstance(int page, String title) {
@@ -248,7 +245,7 @@ public class WikiChampionFragment extends Fragment {
         Log.i(TAG, "updateWidget: ");
         Intent intent = new Intent(application.getApplicationContext(), ChampionWidget.class);
         intent.setAction(Constants.ACTION_UPDATE_WIDGET);
-        int ids[] = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application,ChampionWidget.class));
+        int[] ids = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application, ChampionWidget.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         getActivity().sendBroadcast(intent);
     }

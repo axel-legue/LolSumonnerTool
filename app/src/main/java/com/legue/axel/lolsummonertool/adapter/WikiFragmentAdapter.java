@@ -15,8 +15,6 @@ import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment;
 public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
     private final static String TAG = "WikiFragmentAdapter";
 
-    private static int NUM_ITEMS = 4;
-
     public WikiFragmentAdapter(FragmentManager fm) {
         super(fm);
 
@@ -43,6 +41,7 @@ public class WikiFragmentAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
+        int NUM_ITEMS = 4;
         return NUM_ITEMS;
     }
 

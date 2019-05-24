@@ -7,12 +7,13 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class ErrorInterceptor implements Interceptor {
     private final String TAG = ErrorInterceptor.class.getName();
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(@EverythingIsNonNull Chain chain) throws IOException {
 
         Request request = chain.request();
         // Access server response

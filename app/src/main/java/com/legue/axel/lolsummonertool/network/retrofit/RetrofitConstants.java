@@ -8,7 +8,7 @@ public class RetrofitConstants {
     public static final String API_ITEM_VERSION = "9.10.1";
     public static final String API_RUNE_VERSION = "7.23.1";
     public static final String API_MASTERY_VERSION = "7.23.1";
-    public static final String API_SUMMONER_VERSION = "9.10.1";
+    public static final String API_SUMMONER_VERSION = "7.23.1";
     public static final String API_CHAMPION_VERSION = "9.10.1";
     public static final String API_SPELL_VERSION = "9.10.1";
     public static final String API_PASSIVE_VERSION = "9.10.1";

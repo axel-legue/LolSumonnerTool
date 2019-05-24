@@ -3,6 +3,7 @@ package com.legue.axel.lolsummonertool;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.SearchRecentSuggestions;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase;
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants;
@@ -144,7 +147,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -167,7 +169,8 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_builds:
                 fragmentTag = Constants.DRAWER_ITEM_BUILD;
-                currentFragment = new WikiFragment();
+                Toast.makeText(application, getString(R.string.soon_available), Toast.LENGTH_SHORT).show();
+                currentFragment = null;
                 break;
             case R.id.nav_profil:
                 fragmentTag = Constants.DRAWER_ITEM_PROFIL;
@@ -176,7 +179,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_bans:
                 fragmentTag = Constants.DRAWER_ITEM_BANS;
                 // TODO : replace with correct fragment
-                currentFragment = new WikiFragment();
+                Toast.makeText(application, getString(R.string.soon_available), Toast.LENGTH_SHORT).show();
+                currentFragment = null;
                 break;
             case R.id.nav_wiki:
                 fragmentTag = Constants.DRAWER_ITEM_WIKI;
@@ -184,14 +188,15 @@ public class MainActivity extends AppCompatActivity
                 currentFragment = new WikiFragment();
                 break;
             case R.id.nav_feedback:
-                fragmentTag = Constants.DRAWER_ITEM_FEEDBACK;
-                // TODO : replace with correct fragment
-                currentFragment = new WikiFragment();
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        getString(R.string.scheme_mail), getString(R.string.ssp), null));
+                startActivity(Intent.createChooser(emailIntent, "Feed Back..."));
                 break;
             case R.id.nav_privacy:
                 fragmentTag = Constants.DRAWER_ITEM_PRIVACY;
                 // TODO : replace with correct fragment
-                currentFragment = new WikiFragment();
+                Toast.makeText(application, getString(R.string.soon_available), Toast.LENGTH_SHORT).show();
+                currentFragment = null;
                 break;
         }
 
@@ -247,32 +252,19 @@ public class MainActivity extends AppCompatActivity
                 break;
             case RetrofitConstants.ACTION_GET_SUMMONER_MACTHES:
                 Log.i(TAG, "ACTION_GET_SUMMONER_MACTHES ");
-                //todo replace with RxCode for chaining api calls
-                //  loadMatchesDetails();
+                // TODO: 25/05/2019 Display Profil Information
+                Snackbar.make(adView, R.string.request_succeed, Snackbar.LENGTH_LONG)
+                        .show();
                 break;
 
-            case RetrofitConstants.ACTION_GET_MATCH_INFORMATIONS:
-                Log.i(TAG, "ACTION_GET_MATCH_INFORMATIONS ");
-
-                break;
 
             case RetrofitConstants.ACTION_ERROR:
+                Snackbar.make(adView, R.string.request_failed, Snackbar.LENGTH_LONG)
+                        .show();
                 break;
         }
         return true;
     });
-
-    private void loadSummonerMatches(String accountId) {
-        RetrofitHelper.getSummonerMatches(
-                RetrofitConstants.ACTION_GET_SUMMONER_MACTHES,
-                this,
-                accountId,
-                10,
-                0,
-                summonerhandler,
-                (SuperApplication) getApplication()
-        );
-    }
 
     private void loadMatchesDetails(String accountId) {
         RetrofitHelper.getSummonerMatches(

@@ -60,7 +60,7 @@ public class ChampionWidget extends AppWidgetProvider {
         super.onReceive(context, intent);
         String action = intent.getAction();
         if (action != null && action.equalsIgnoreCase(Constants.ACTION_UPDATE_WIDGET)) {
-            int ids[] = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+            int[] ids = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
             onUpdate(context, AppWidgetManager.getInstance(context), ids);
         }
     }

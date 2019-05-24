@@ -79,9 +79,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
                 holder.tvName.setText(item.name);
             }
 
-            holder.llWrapper.setOnClickListener(v -> {
-                mItemListener.itemSelected(position, item);
-            });
+            holder.llWrapper.setOnClickListener(v -> mItemListener.itemSelected(position, item));
 
 
         } else {

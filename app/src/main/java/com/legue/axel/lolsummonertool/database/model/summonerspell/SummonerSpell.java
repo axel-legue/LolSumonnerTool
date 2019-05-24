@@ -19,7 +19,6 @@ public class SummonerSpell {
     //TODO add relation between SummonerSpell and SummonerSpellImage
     public String id;
     @PrimaryKey
-    @NonNull
     public int key;
     public String name;
     public String description;
@@ -47,7 +46,7 @@ public class SummonerSpell {
     public SummonerSpell() {
     }
 
-    public SummonerSpell(String id, @NonNull int key, String name, String description, String tooltip,
+    public SummonerSpell(String id, int key, String name, String description, String tooltip,
                          int maxrank, String cooldownBurn, String costBurn, int summonerLevel,
                          String costType, String maxammo, String rangeBurn, String resource,
                          List<Integer> cost, List<Float> effectBurn,

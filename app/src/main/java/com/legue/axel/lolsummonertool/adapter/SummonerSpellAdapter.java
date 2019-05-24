@@ -1,11 +1,7 @@
 package com.legue.axel.lolsummonertool.adapter;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -28,7 +29,6 @@ import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
 import com.legue.axel.lolsummonertool.database.viewmodel.SummonerSpellViewModel;
 import com.legue.axel.lolsummonertool.utils.ImageUtils;
 import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment;
-
 
 import java.util.List;
 
@@ -80,9 +80,7 @@ public class SummonerSpellAdapter extends RecyclerView.Adapter<SummonerSpellAdap
                 holder.tvName.setText(summonerSpell.name);
             }
 
-            holder.llWrapper.setOnClickListener(v -> {
-                mSummonerSpellListener.SummonerSpellSelected(position, summonerSpell);
-            });
+            holder.llWrapper.setOnClickListener(v -> mSummonerSpellListener.SummonerSpellSelected(position, summonerSpell));
 
 
         } else {

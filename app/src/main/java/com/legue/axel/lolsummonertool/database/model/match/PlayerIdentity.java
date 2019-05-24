@@ -37,7 +37,7 @@ public class PlayerIdentity {
     public PlayerIdentity() {
     }
 
-    public PlayerIdentity(String accountId, int participantId, String currentPlatformId,
+    public PlayerIdentity( String accountId, int participantId, String currentPlatformId,
                           String summonerName, String matchHistoryUri, String platformId,
                           String currentAccountId, int profileIcon, String summonerId, int matchId) {
         this.accountId = accountId;

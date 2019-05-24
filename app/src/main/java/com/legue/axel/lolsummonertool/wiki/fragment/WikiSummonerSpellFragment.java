@@ -1,13 +1,7 @@
 package com.legue.axel.lolsummonertool.wiki.fragment;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,6 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.legue.axel.lolsummonertool.Constants;
 import com.legue.axel.lolsummonertool.R;
@@ -51,7 +52,7 @@ public class WikiSummonerSpellFragment extends Fragment {
     SummonerSpellAdapter.SummonerSpellListener summonerSpellListener = new SummonerSpellAdapter.SummonerSpellListener() {
         @Override
         public void SummonerSpellSelected(int position, SummonerSpell summonerSpell) {
-            Toast.makeText(application, "SummonerSpell a la position : " + position + " sélectionné", Toast.LENGTH_SHORT).show();
+            Toast.makeText(application, getString(R.string.toast_spell_details, position), Toast.LENGTH_SHORT).show();
         }
     };
 

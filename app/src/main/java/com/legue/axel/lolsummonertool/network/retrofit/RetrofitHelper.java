@@ -14,8 +14,6 @@ import com.legue.axel.lolsummonertool.network.response.champion.ChampionsRespons
 import com.legue.axel.lolsummonertool.network.response.item.ItemsResponse;
 import com.legue.axel.lolsummonertool.network.response.mastery.MasteryResponse;
 import com.legue.axel.lolsummonertool.network.response.match.MatchDto;
-import com.legue.axel.lolsummonertool.network.response.match.MatchReferenceDto;
-import com.legue.axel.lolsummonertool.network.response.match.MatchlistDto;
 import com.legue.axel.lolsummonertool.network.response.summonerspell.SummonerSpellsResponse;
 import com.legue.axel.lolsummonertool.utils.ChampionInfoUtils;
 import com.legue.axel.lolsummonertool.utils.ChampionUtils;
@@ -23,13 +21,9 @@ import com.legue.axel.lolsummonertool.utils.ItemUtils;
 import com.legue.axel.lolsummonertool.utils.MasteryUtils;
 import com.legue.axel.lolsummonertool.utils.SummonerSpellUtils;
 
-import java.util.List;
-
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.HttpException;
 

@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tv_info_attack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_component_s"
@@ -26,7 +25,6 @@
         android:layout_marginEnd="@dimen/margin_component_s" />
 
     <TextView
-        android:id="@+id/tv_info_defense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_component_s"
@@ -44,7 +42,6 @@
         android:layout_marginEnd="@dimen/margin_component_s" />
 
     <TextView
-        android:id="@+id/tv_magic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_component_s"
@@ -62,7 +59,6 @@
         android:layout_marginEnd="@dimen/margin_component_s" />
 
     <TextView
-        android:id="@+id/tv_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_component_s"

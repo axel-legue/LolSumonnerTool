@@ -41,7 +41,6 @@ public class WikiItemInformation extends AppCompatActivity {
     private Item mItem;
     private ItemStat mItemStat;
     private ItemGold mItemGold;
-    private SuperApplication mApplication;
     private FromItemAdapter mFromAdapter;
     private FromItemAdapter mIntoAdapter;
     private List<String> mFromItemIds;
@@ -85,7 +84,7 @@ public class WikiItemInformation extends AppCompatActivity {
 
     private void initData() {
         Log.i(TAG, "initData");
-        mApplication = (SuperApplication) this.getApplication();
+        SuperApplication mApplication = (SuperApplication) this.getApplication();
         if (mFromItemIds == null) {
             mFromItemIds = new ArrayList<>();
         }
@@ -173,7 +172,7 @@ public class WikiItemInformation extends AppCompatActivity {
     }
 
     private void setRecyclerViewParameter(RecyclerView recyclerView, FromItemAdapter adapter) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);

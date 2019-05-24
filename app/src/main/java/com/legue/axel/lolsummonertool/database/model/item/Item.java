@@ -14,7 +14,6 @@ import java.util.List;
 public class Item {
 
     @PrimaryKey()
-    @NonNull
     public int id;
     public String name;
     public String description;

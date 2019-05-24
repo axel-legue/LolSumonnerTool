@@ -79,9 +79,7 @@ public class MasteriesAdapter extends RecyclerView.Adapter<MasteriesAdapter.Mast
                 holder.tvName.setText(mastery.name);
             }
 
-            holder.llWrapper.setOnClickListener(v -> {
-                mMasteryListener.masterySelected(position, mastery);
-            });
+            holder.llWrapper.setOnClickListener(v -> mMasteryListener.masterySelected(position, mastery));
         } else {
             Log.i(TAG, "onBindViewHolder: mastery at position " + position + " is null");
         }
