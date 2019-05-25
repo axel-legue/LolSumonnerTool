@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
         application = (SuperApplication) this.getApplication();
-        //    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

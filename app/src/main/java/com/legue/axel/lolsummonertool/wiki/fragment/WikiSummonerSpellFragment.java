@@ -2,6 +2,7 @@ package com.legue.axel.lolsummonertool.wiki.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -48,6 +49,7 @@ public class WikiSummonerSpellFragment extends Fragment {
     private SuperApplication application;
     private WikiSummonerSpellFragment fragment;
     private List<SummonerSpell> summonerSpellList;
+    private Parcelable savedRecyclerLayoutState;
 
     SummonerSpellAdapter.SummonerSpellListener summonerSpellListener = new SummonerSpellAdapter.SummonerSpellListener() {
         @Override
@@ -121,6 +123,22 @@ public class WikiSummonerSpellFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(Constants.KEY_SPELL_GRID_LAYOUT_MANAGER, rvWikiData.getLayoutManager().onSaveInstanceState());
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.KEY_SPELL_GRID_LAYOUT_MANAGER)) {
+            savedRecyclerLayoutState = savedInstanceState.getParcelable(Constants.KEY_SPELL_GRID_LAYOUT_MANAGER);
+            rvWikiData.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -160,6 +178,7 @@ public class WikiSummonerSpellFragment extends Fragment {
                     if (summonerSpells != null && summonerSpells.size() > 0) {
                         summonerSpellList.clear();
                         summonerSpellList.addAll(summonerSpells);
+                        rvWikiData.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
                         adapter.notifyDataSetChanged();
                     }
                 });

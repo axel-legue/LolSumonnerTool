@@ -10,6 +10,10 @@ public class Constants {
     public final static String KEY_WIKI_PAGE_NUMBER = "key_page_number";
     public final static String KEY_WIKI_PAGE_NAME = "key_page_name";
     public final static String KEY_FAVORITE_CHAMPION = "key_favorite_champion";
+    public final static String KEY_CHAMPION_GRID_LAYOUT_MANAGER = "key_champion_grid_layout_manager";
+    public final static String KEY_ITEM_GRID_LAYOUT_MANAGER = "key_item_grid_layout_manager";
+    public final static String KEY_MASTERY_GRID_LAYOUT_MANAGER = "key_mastery_grid_layout_manager";
+    public final static String KEY_SPELL_GRID_LAYOUT_MANAGER = "key_spell_grid_layout_manager";
     public final static String ACTION_UPDATE_WIDGET = "android.appwidget.action.APPWIDGET_UPDATE";
 
     public final static String DRAWER_ITEM_BUILD = "drawer_item_build";

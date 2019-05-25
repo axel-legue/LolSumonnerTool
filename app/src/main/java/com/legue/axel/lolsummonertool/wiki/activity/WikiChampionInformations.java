@@ -1,18 +1,19 @@
 package com.legue.axel.lolsummonertool.wiki.activity;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.os.Parcelable;
 import android.text.Html;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -101,7 +102,6 @@ public class WikiChampionInformations extends AppCompatActivity {
     private String mChampionId;
     private SuperApplication application;
     private ChampionSpellAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

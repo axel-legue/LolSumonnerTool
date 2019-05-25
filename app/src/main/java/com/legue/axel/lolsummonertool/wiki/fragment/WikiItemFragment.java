@@ -3,6 +3,7 @@ package com.legue.axel.lolsummonertool.wiki.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,6 +50,7 @@ public class WikiItemFragment extends Fragment {
     private SuperApplication application;
     private WikiItemFragment fragment;
     private List<Item> itemList;
+    private Parcelable savedRecyclerLayoutState;
 
 
     ItemAdapter.ItemListener itemListener = (position, item) -> {
@@ -124,6 +126,21 @@ public class WikiItemFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(Constants.KEY_ITEM_GRID_LAYOUT_MANAGER, rvItemWiki.getLayoutManager().onSaveInstanceState());
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.KEY_ITEM_GRID_LAYOUT_MANAGER)) {
+            savedRecyclerLayoutState = savedInstanceState.getParcelable(Constants.KEY_ITEM_GRID_LAYOUT_MANAGER);
+            rvItemWiki.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -171,6 +188,7 @@ public class WikiItemFragment extends Fragment {
                     if (items != null && items.size() > 0) {
                         itemList.clear();
                         itemList.addAll(items);
+                        rvItemWiki.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
                         adapter.notifyDataSetChanged();
                     }
                 });

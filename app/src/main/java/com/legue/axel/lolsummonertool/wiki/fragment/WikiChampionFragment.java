@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -61,6 +62,7 @@ public class WikiChampionFragment extends Fragment {
     private String mfilterOptionSelected;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    private Parcelable savedRecyclerLayoutState;
 
     private ChampionsAdapter.ChampionListener championListener = (position, champion) -> {
         Intent intent = new Intent(getActivity(), WikiChampionInformations.class);
@@ -136,6 +138,22 @@ public class WikiChampionFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(Constants.KEY_CHAMPION_GRID_LAYOUT_MANAGER, rvChampionWiki.getLayoutManager().onSaveInstanceState());
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey(Constants.KEY_CHAMPION_GRID_LAYOUT_MANAGER)) {
+            savedRecyclerLayoutState = savedInstanceState.getParcelable(Constants.KEY_CHAMPION_GRID_LAYOUT_MANAGER);
+            rvChampionWiki.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
+        }
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -160,7 +178,7 @@ public class WikiChampionFragment extends Fragment {
 
         initData();
     }
-    
+
     private void initData() {
         if (championList == null) {
             championList = new ArrayList<>();
@@ -169,7 +187,8 @@ public class WikiChampionFragment extends Fragment {
         loadChampions();
 
         adapter = new ChampionsAdapter(application, championList, championListener, fragment);
-        rvChampionWiki.setLayoutManager(new GridLayoutManager(application, 4));
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(application, 4);
+        rvChampionWiki.setLayoutManager(mGridLayoutManager);
         rvChampionWiki.setAdapter(adapter);
         rvChampionWiki.setHasFixedSize(true);
     }
@@ -229,6 +248,7 @@ public class WikiChampionFragment extends Fragment {
                         if (mfilterOptionSelected != null) {
                             adapter.getFilter().filter(mfilterOptionSelected.toLowerCase());
                         }
+                        rvChampionWiki.getLayoutManager().onRestoreInstanceState(savedRecyclerLayoutState);
                         adapter.notifyDataSetChanged();
                         updateWidget();
                     }
@@ -246,7 +266,7 @@ public class WikiChampionFragment extends Fragment {
         Intent intent = new Intent(application.getApplicationContext(), ChampionWidget.class);
         intent.setAction(Constants.ACTION_UPDATE_WIDGET);
         int[] ids = AppWidgetManager.getInstance(application).getAppWidgetIds(new ComponentName(application, ChampionWidget.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         getActivity().sendBroadcast(intent);
     }
 
