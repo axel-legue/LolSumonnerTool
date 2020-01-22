@@ -14,7 +14,7 @@ public class ItemStatViewModel extends AndroidViewModel {
 
     public ItemStatViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
     }
 
     public LiveData<ItemStat> getItemStatByItemId(int itemId) {

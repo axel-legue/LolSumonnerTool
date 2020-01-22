@@ -57,7 +57,7 @@ public class ChampionInfoUtils {
                         e.printStackTrace();
                     }
                 }
-                AppExecutors.getInstance().getDiskIO().execute(() -> {
+                AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                     try {
                         database.spellImageDao().deleteAll();
 

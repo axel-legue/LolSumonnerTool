@@ -39,7 +39,7 @@ public class ChampionUtils {
                 for (ChampionDetailResponse championDetailResponse : championDetailResponseList) {
                     extractChampionDetails(championDetailResponse, database);
                 }
-                AppExecutors.getInstance().getDiskIO().execute(() -> {
+                AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                     try {
                         database.championDao().insertAllChampion(champions);
                         database.championInfoDao().insertAllChampionInfo(championInfos);

@@ -47,7 +47,7 @@ public class RetrofitHelper {
                         Log.i(TAG, "onNext: " + championsResponse);
                         ChampionUtils.insertChampionResponseInDB(
                                 championsResponse,
-                                SummonerToolDatabase.getInstance(application));
+                                SummonerToolDatabase.Companion.getInstance(application));
 
                     }
 
@@ -96,7 +96,7 @@ public class RetrofitHelper {
                         Log.i(TAG, "onNext: " + championInfoResponse);
                         ChampionInfoUtils.updateChampionResponseInDB(
                                 championInfoResponse,
-                                SummonerToolDatabase.getInstance(application));
+                                SummonerToolDatabase.Companion.getInstance(application));
 
                     }
 
@@ -147,7 +147,7 @@ public class RetrofitHelper {
                         Log.i(TAG, "onNext: " + itemsResponse);
                         ItemUtils.insertItemResponseInDB(
                                 itemsResponse,
-                                SummonerToolDatabase.getInstance(application));
+                                SummonerToolDatabase.Companion.getInstance(application));
                     }
 
                     @Override
@@ -195,7 +195,7 @@ public class RetrofitHelper {
                         Log.i(TAG, "onNext: " + masteryResponse);
                         MasteryUtils.insertMasteryResponseInDB(
                                 masteryResponse,
-                                SummonerToolDatabase.getInstance(application));
+                                SummonerToolDatabase.Companion.getInstance(application));
                     }
 
                     @Override
@@ -245,7 +245,7 @@ public class RetrofitHelper {
 
                         SummonerSpellUtils.insertSummonerSpellResponseInDB(
                                 summonerSpellsResponse,
-                                SummonerToolDatabase.getInstance(application));
+                                SummonerToolDatabase.Companion.getInstance(application));
 
                     }
 
@@ -291,9 +291,9 @@ public class RetrofitHelper {
                     @Override
                     public void onNext(Summoner summoner) {
                         Log.i(TAG, "onNext: " + summoner);
-                        AppExecutors.getInstance().getDiskIO().execute(() -> {
+                        AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                             try {
-                                SummonerToolDatabase database = SummonerToolDatabase.getInstance(application);
+                                SummonerToolDatabase database = SummonerToolDatabase.Companion.getInstance(application);
                                 database.summonerDao().deleteAll();
                                 database.summonerDao().insertSummoner(summoner);
                             } catch (Exception e) {

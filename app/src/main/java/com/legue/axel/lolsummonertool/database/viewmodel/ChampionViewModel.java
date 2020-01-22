@@ -23,7 +23,7 @@ public class ChampionViewModel extends AndroidViewModel {
 
     public ChampionViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
         champions = database.championDao().getChampions();
     }
 

@@ -17,7 +17,7 @@ public class SummonerSpellViewModel extends AndroidViewModel {
 
     public SummonerSpellViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
         summonerSpells = database.summonerSpellDao().getSummonerSpells();
     }
 

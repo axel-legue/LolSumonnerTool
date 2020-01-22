@@ -26,7 +26,7 @@ public class SummonerSpellUtils {
         if (summonerSpellsResponse != null) {
             extractSummonerSpellDetails(summonerSpellsResponse.summonerSpellList);
 
-            AppExecutors.getInstance().getDiskIO().execute(() -> {
+            AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                 try {
                     database.summonerSpellDao().insertAllSummonerSpells(summonerSpells);
                     database.summonerSpellImageDao().insertAllSummonerSpellImages(summonerSpellImages);

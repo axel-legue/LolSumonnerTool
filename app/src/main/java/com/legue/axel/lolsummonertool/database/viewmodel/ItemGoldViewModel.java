@@ -14,7 +14,7 @@ public class ItemGoldViewModel extends AndroidViewModel {
 
     public ItemGoldViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
     }
 
     public LiveData<ItemGold> getItemGoldByItemId(int itemId) {

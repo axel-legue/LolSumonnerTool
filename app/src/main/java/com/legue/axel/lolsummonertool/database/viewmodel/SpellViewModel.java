@@ -15,7 +15,7 @@ public class SpellViewModel extends AndroidViewModel {
 
     public SpellViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
     }
 
     public LiveData<SpellImage> getSpellImage(String spellName) {

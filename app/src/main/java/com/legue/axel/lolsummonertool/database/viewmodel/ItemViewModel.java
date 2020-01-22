@@ -18,7 +18,7 @@ public class ItemViewModel extends AndroidViewModel {
 
     public ItemViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
         items = database.itemDao().getItems();
     }
 

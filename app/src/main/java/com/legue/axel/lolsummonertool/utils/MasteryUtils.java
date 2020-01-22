@@ -26,7 +26,7 @@ public class MasteryUtils {
         if (masteryResponse != null) {
             extractMasteryDetails(masteryResponse.masteryDetailResponse);
 
-            AppExecutors.getInstance().getDiskIO().execute(() -> {
+            AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                 try {
                     //TODO : find a way to avoid this delete every time
                     database.masteryDao().deleteAll();

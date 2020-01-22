@@ -40,7 +40,7 @@ public class ItemUtils {
         if (itemsResponse != null) {
             extractItemDetails(itemsResponse.itemList);
 
-            AppExecutors.getInstance().getDiskIO().execute(() -> {
+            AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                 try {
                     database.itemDao().insertAllItem(items);
                     database.itemEffectDao().insertAllItemEffect(itemEffects);

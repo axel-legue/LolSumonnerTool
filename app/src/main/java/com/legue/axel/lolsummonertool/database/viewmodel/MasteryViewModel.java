@@ -18,7 +18,7 @@ public class MasteryViewModel extends AndroidViewModel {
 
     public MasteryViewModel(@NonNull Application application) {
         super(application);
-        database = SummonerToolDatabase.getInstance(this.getApplication());
+        database = SummonerToolDatabase.Companion.getInstance(this.getApplication());
         masteries = database.masteryDao().getMasteries();
     }
 
