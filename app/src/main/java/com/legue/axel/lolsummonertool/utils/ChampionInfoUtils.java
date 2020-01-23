@@ -119,9 +119,9 @@ public class ChampionInfoUtils {
         championStats.championId = Integer.valueOf(championDetailResponse.getKey());
 
         championPassive = new Passive();
-        championPassive.description = championDetailResponse.getPassive().description;
-        championPassive.name = championDetailResponse.getPassive().name;
-        championPassive.image = championDetailResponse.getPassive().image.full;
+        championPassive.description = championDetailResponse.getPassive().getDescription();
+        championPassive.name = championDetailResponse.getPassive().getName();
+        championPassive.image = championDetailResponse.getPassive().getImage().full;
         championPassive.championId = Integer.valueOf(championDetailResponse.getKey());
 
 
@@ -140,27 +140,33 @@ public class ChampionInfoUtils {
                 spell.cost = spellResponse.getCost();
                 spell.costBurn = spellResponse.getCostBurn();
                 spell.costType = spellResponse.getCostType();
-                spell.maxammo = spellResponse.getMaxammo();
+                spell.maxammo = spellResponse.getMaxAmmo();
                 spell.range = spellResponse.getRange();
                 spell.rangeBurn = spellResponse.getRangeBurn();
                 spell.championId = Integer.valueOf(championDetailResponse.getKey());
                 spells.add(spell);
 
-                LevelTip levelTip = new LevelTip();
-                levelTip.effect = spellResponse.getLeveltip().getEffect();
-                levelTip.label = spellResponse.getLeveltip().getLabel();
-                levelTip.spellId = spellResponse.getId();
+                //FIXME: see waht to do with level tip
+                LevelTip levelTip = new LevelTip(
+                        null,
+                        null,
+                        null,
+                        spellResponse.getId()
+                );
+
                 spellLevelTips.add(levelTip);
 
-                SpellImage spellImage = new SpellImage();
-                spellImage.full = spellResponse.getImage().full;
-                spellImage.group = spellResponse.getImage().group;
-                spellImage.sprite = spellResponse.getImage().sprite;
-                spellImage.x = spellResponse.getImage().x;
-                spellImage.y = spellResponse.getImage().y;
-                spellImage.h = spellResponse.getImage().h;
-                spellImage.w = spellResponse.getImage().w;
-                spellImage.spellId = spellResponse.getId();
+                SpellImage spellImage = new SpellImage(
+                        null,
+                        spellResponse.getImage().getFull(),
+                        spellResponse.getImage().getSprite(),
+                        spellResponse.getImage().getGroup(),
+                        spellResponse.getImage().getX(),
+                        spellResponse.getImage().getY(),
+                        spellResponse.getImage().getH(),
+                        spellResponse.getImage().getW(),
+                        spellResponse.getId()
+                );
                 spellImages.add(spellImage);
 
             }

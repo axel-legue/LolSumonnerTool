@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -95,7 +94,7 @@ public class MasteriesAdapter extends RecyclerView.Adapter<MasteriesAdapter.Mast
 
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         Glide.with(mContext)
-                .load(ImageUtils.BuildMasteryIconUrl(url))
+                .load(ImageUtils.INSTANCE.buildMasteryIconUrl(url))
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

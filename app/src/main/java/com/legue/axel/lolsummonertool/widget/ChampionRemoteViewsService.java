@@ -145,7 +145,7 @@ class ChampionRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory
 //                .skipMemoryCache(true)
 //                .diskCacheStrategy(DiskCacheStrategy.NONE)
 //                .circleCrop()
-//                .load(ImageUtils.BuildChampionIconUrl(championImage.full))
+//                .load(ImageUtils.buildChampionIconUrl(championImage.full))
 //                .into(target);
 //
 //    }

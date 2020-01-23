@@ -8,15 +8,6 @@ import java.util.concurrent.Executors
 
 class AppExecutors private constructor(val diskIO: Executor, val networkIO: Executor, val mainThread: Executor) {
 
-    class MainThreadExecutor : Executor {
-
-        private val mainThreadHandler = Handler(Looper.getMainLooper())
-
-        override fun execute(command: Runnable) {
-            mainThreadHandler.post(command)
-        }
-    }
-
     companion object {
         // For Singleton instantiation
         private val LOCK = Any()
@@ -32,5 +23,15 @@ class AppExecutors private constructor(val diskIO: Executor, val networkIO: Exec
                 return sInstance!!
             }
     }
+
+    class MainThreadExecutor : Executor {
+
+        private val mainThreadHandler = Handler(Looper.getMainLooper())
+
+        override fun execute(command: Runnable) {
+            mainThreadHandler.post(command)
+        }
+    }
+
 
 }

@@ -162,7 +162,7 @@ public class WikiMasteryFragment extends Fragment {
     }
 
     private void loadData() {
-        RetrofitHelper.getMasteries(
+        RetrofitHelper.INSTANCE.getMasteries(
                 RetrofitConstants.ACTION_COMPLETE,
                 masteryHandler,
                 application);

@@ -196,7 +196,7 @@ public class WikiChampionFragment extends Fragment {
 
     private void loadChampions() {
         //TODO : testing purpose => update code and move it at a better place
-        RetrofitHelper.getChampions(
+        RetrofitHelper.INSTANCE.getChampions(
                 RetrofitConstants.ACTION_COMPLETE,
                 championhandler,
                 application);

@@ -38,7 +38,7 @@ public class ItemUtils {
         itemTags = new ArrayList<>();
 
         if (itemsResponse != null) {
-            extractItemDetails(itemsResponse.itemList);
+            extractItemDetails(itemsResponse.getItemList());
 
             AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                 try {
@@ -71,58 +71,58 @@ public class ItemUtils {
     private static void extractItem(String key, ItemDetailResponse itemDetailResponse) {
         Item item = new Item();
         item.id = Integer.valueOf(key);
-        if (itemDetailResponse.name != null) {
-            item.name = itemDetailResponse.name;
+        if (itemDetailResponse.getName() != null) {
+            item.name = itemDetailResponse.getName();
         }
-        if (itemDetailResponse.description != null) {
-            item.description = itemDetailResponse.description;
+        if (itemDetailResponse.getDescription() != null) {
+            item.description = itemDetailResponse.getDescription();
         }
-        if (itemDetailResponse.colloq != null) {
-            item.colloq = itemDetailResponse.colloq;
+        if (itemDetailResponse.getColloq() != null) {
+            item.colloq = itemDetailResponse.getColloq();
         }
-        if (itemDetailResponse.plaintext != null) {
-            item.plaintext = itemDetailResponse.plaintext;
+        if (itemDetailResponse.getPlaintext() != null) {
+            item.plaintext = itemDetailResponse.getPlaintext();
         }
 
-        item.depth = itemDetailResponse.depth;
+        item.depth = itemDetailResponse.getDepth();
 
-        if (itemDetailResponse.from != null) {
-            item.from = itemDetailResponse.from;
+        if (itemDetailResponse.getFrom() != null) {
+            item.from = itemDetailResponse.getFrom();
         }
-        if (itemDetailResponse.into != null) {
-            item.into = itemDetailResponse.into;
+        if (itemDetailResponse.getInto() != null) {
+            item.into = itemDetailResponse.getInto();
         }
         items.add(item);
 
 
         ItemGold itemGold = new ItemGold();
 
-        if (itemDetailResponse.gold != null) {
-            itemGold.base = itemDetailResponse.gold.base;
-            itemGold.purchasable = itemDetailResponse.gold.purchasable;
-            itemGold.sell = itemDetailResponse.gold.sell;
-            itemGold.total = itemDetailResponse.gold.total;
+        if (itemDetailResponse.getGold() != null) {
+            itemGold.base = itemDetailResponse.getGold().base;
+            itemGold.purchasable = itemDetailResponse.getGold().purchasable;
+            itemGold.sell = itemDetailResponse.getGold().sell;
+            itemGold.total = itemDetailResponse.getGold().total;
             itemGold.itemId = Integer.valueOf(key);
             itemGolds.add(itemGold);
         }
 
 
         ItemImage itemImage = new ItemImage();
-        if (itemDetailResponse.itemImage != null) {
-            itemImage.full = itemDetailResponse.itemImage.full;
-            itemImage.group = itemDetailResponse.itemImage.group;
-            itemImage.sprite = itemDetailResponse.itemImage.sprite;
-            itemImage.x = itemDetailResponse.itemImage.x;
-            itemImage.y = itemDetailResponse.itemImage.y;
-            itemImage.h = itemDetailResponse.itemImage.h;
-            itemImage.w = itemDetailResponse.itemImage.w;
+        if (itemDetailResponse.getItemImage() != null) {
+            itemImage.full = itemDetailResponse.getItemImage().full;
+            itemImage.group = itemDetailResponse.getItemImage().group;
+            itemImage.sprite = itemDetailResponse.getItemImage().sprite;
+            itemImage.x = itemDetailResponse.getItemImage().x;
+            itemImage.y = itemDetailResponse.getItemImage().y;
+            itemImage.h = itemDetailResponse.getItemImage().h;
+            itemImage.w = itemDetailResponse.getItemImage().w;
             itemImage.itemId = Integer.valueOf(key);
             itemImages.add(itemImage);
         }
 
 
-        if (itemDetailResponse.tags != null && itemDetailResponse.tags.size() > 0) {
-            for (String string : itemDetailResponse.tags) {
+        if (itemDetailResponse.getTags() != null && itemDetailResponse.getTags().size() > 0) {
+            for (String string : itemDetailResponse.getTags()) {
                 ItemTag itemTag = new ItemTag();
                 itemTag.tag = string;
                 itemTag.itemId = Integer.valueOf(key);
@@ -130,8 +130,8 @@ public class ItemUtils {
             }
         }
 
-        if (itemDetailResponse.effect != null) {
-            HashMap<String, String> effectResponse = itemDetailResponse.effect;
+        if (itemDetailResponse.getEffect() != null) {
+            HashMap<String, String> effectResponse = itemDetailResponse.getEffect();
 
             Iterator it;
             it = effectResponse.entrySet().iterator();
@@ -146,8 +146,8 @@ public class ItemUtils {
             }
         }
 
-        if (itemDetailResponse.stats != null) {
-            HashMap<String, Float> statResponse = itemDetailResponse.stats;
+        if (itemDetailResponse.getStats() != null) {
+            HashMap<String, Float> statResponse = itemDetailResponse.getStats();
             Iterator it;
             it = statResponse.entrySet().iterator();
             while (it.hasNext()) {
@@ -161,8 +161,8 @@ public class ItemUtils {
             }
         }
 
-        if (itemDetailResponse.maps != null) {
-            HashMap<String, Boolean> mapResponse = itemDetailResponse.maps;
+        if (itemDetailResponse.getMaps() != null) {
+            HashMap<String, Boolean> mapResponse = itemDetailResponse.getMaps();
             Iterator it;
             it = mapResponse.entrySet().iterator();
             while (it.hasNext()) {

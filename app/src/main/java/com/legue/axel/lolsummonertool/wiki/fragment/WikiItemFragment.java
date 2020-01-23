@@ -165,7 +165,7 @@ public class WikiItemFragment extends Fragment {
 
     private void loadItems() {
         Log.i(TAG, "loadItems: ");
-        RetrofitHelper.getItems(
+        RetrofitHelper.INSTANCE.getItems(
                 RetrofitConstants.ACTION_COMPLETE,
                 itemHandler,
                 application);

@@ -169,9 +169,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun displayTitleName(id: Int) {
         if (id != R.id.nav_profil) {
-            supportActionBar!!.setTitle(getString(R.string.app_name))
+            supportActionBar!!.title = getString(R.string.app_name)
         } else {
-            supportActionBar!!.setTitle(null)
+            supportActionBar!!.title = null
         }
     }
 
@@ -237,7 +237,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    private fun findSummoner(summonerName: String?) {
+    private fun findSummoner(summonerName: String) {
         RetrofitHelper.getSummonerName(
                 RetrofitConstants.ACTION_GET_SUMMONER,
                 this,

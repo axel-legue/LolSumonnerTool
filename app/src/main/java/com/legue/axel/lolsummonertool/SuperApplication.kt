@@ -5,6 +5,11 @@ import com.legue.axel.lolsummonertool.network.retrofit.RetrofitManager
 
 
 class SuperApplication : Application() {
+
+    companion object {
+        var instance: SuperApplication? = null
+    }
+
     var retrofitManager: RetrofitManager? = null
 
     override fun onCreate() {
@@ -13,7 +18,5 @@ class SuperApplication : Application() {
         retrofitManager = RetrofitManager()
     }
 
-    companion object {
-        var instance: SuperApplication? = null
-    }
+
 }

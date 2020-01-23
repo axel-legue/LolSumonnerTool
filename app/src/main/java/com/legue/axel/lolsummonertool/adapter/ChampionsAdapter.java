@@ -158,7 +158,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         if (mChampionImage != null) {
             Glide.with(mContext)
-                    .load(ImageUtils.BuildChampionIconUrl(url))
+                    .load(ImageUtils.INSTANCE.buildChampionIconUrl(url))
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

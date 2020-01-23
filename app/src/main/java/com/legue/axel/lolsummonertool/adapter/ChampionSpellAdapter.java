@@ -66,7 +66,7 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
             spellViewModel.getSpellImage(spell.id).observe(mActivity, spellImage -> {
                 if (spellImage != null) {
                     mSpellImage = spellImage;
-                    displayImage(mSpellImage.full, holder.ivSpell, holder.pbSpell);
+                    displayImage(mSpellImage.getFull(), holder.ivSpell, holder.pbSpell);
                 }
             });
 
@@ -77,17 +77,17 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
                 holder.tvName.setText(spell.name);
 
                 if (shouldConvertListToString(spell.cost)) {
-                    holder.tvCost.setText(Utils.converFloatListToString(spell.cost));
+                    holder.tvCost.setText(Utils.INSTANCE.convertFloatListToString(spell.cost));
                 } else {
                     holder.tvCost.setText(String.valueOf(Math.round(spell.cost.get(0))));
                 }
 
                 if (shouldConvertListToString(spell.range)) {
-                    holder.tvRange.setText(Utils.converFloatListToString(spell.range));
+                    holder.tvRange.setText(Utils.INSTANCE.convertFloatListToString(spell.range));
                 } else {
                     holder.tvRange.setText(String.valueOf(Math.round(spell.range.get(0))));
                 }
-                holder.tvCooldown.setText(Utils.converFloatListToString(spell.cooldown));
+                holder.tvCooldown.setText(Utils.INSTANCE.convertFloatListToString(spell.cooldown));
                 holder.tvLore.setText(Html.fromHtml(spell.description, Html.FROM_HTML_MODE_COMPACT));
             }
 
@@ -120,7 +120,7 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         if (mSpellImage != null) {
             Glide.with(mContext)
-                    .load(ImageUtils.BuildSpellIconUrl(url))
+                    .load(ImageUtils.INSTANCE.buildSpellIconUrl(url))
                     .listener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

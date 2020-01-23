@@ -81,7 +81,7 @@ class WikiItemInformation : AppCompatActivity() {
 
     private fun displayImage() {
         Glide.with(this)
-                .load(ImageUtils.BuildItemIconUrl(mItemImage!!.full))
+                .load(ImageUtils.buildItemIconUrl(mItemImage!!.full))
                 .error(R.drawable.ic_placeholder_black_24dp)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(iv_item)

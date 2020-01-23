@@ -162,7 +162,7 @@ public class WikiSummonerSpellFragment extends Fragment {
 
 
     private void loadData() {
-        RetrofitHelper.getSummonerSpells(
+        RetrofitHelper.INSTANCE.getSummonerSpells(
                 RetrofitConstants.ACTION_COMPLETE,
                 summonerHandler,
                 application);

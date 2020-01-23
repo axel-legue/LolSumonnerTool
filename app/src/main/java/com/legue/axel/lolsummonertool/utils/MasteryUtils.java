@@ -24,7 +24,7 @@ public class MasteryUtils {
 
 
         if (masteryResponse != null) {
-            extractMasteryDetails(masteryResponse.masteryDetailResponse);
+            extractMasteryDetails(masteryResponse.getMasteryDetailResponse());
 
             AppExecutors.Companion.getInstance().getDiskIO().execute(() -> {
                 try {
@@ -56,22 +56,22 @@ public class MasteryUtils {
 
     private static void extractMastery(MasteryDetailResponse masteryDetailResponse) {
         Mastery mastery = new Mastery();
-        mastery.id = masteryDetailResponse.id;
-        mastery.description = masteryDetailResponse.description;
-        mastery.name = masteryDetailResponse.name;
-        mastery.prereq = masteryDetailResponse.prereq;
-        mastery.ranks = masteryDetailResponse.ranks;
+        mastery.id = masteryDetailResponse.getId();
+        mastery.description = masteryDetailResponse.getDescription();
+        mastery.name = masteryDetailResponse.getName();
+        mastery.prereq = masteryDetailResponse.getPrereq();
+        mastery.ranks = masteryDetailResponse.getRanks();
         masteries.add(mastery);
 
         MasteryImage masteryImage = new MasteryImage();
-        masteryImage.full = masteryDetailResponse.image.full;
-        masteryImage.group = masteryDetailResponse.image.group;
-        masteryImage.sprite = masteryDetailResponse.image.sprite;
-        masteryImage.x = masteryDetailResponse.image.x;
-        masteryImage.y = masteryDetailResponse.image.y;
-        masteryImage.h = masteryDetailResponse.image.h;
-        masteryImage.w = masteryDetailResponse.image.w;
-        masteryImage.masteryId = masteryDetailResponse.id;
+        masteryImage.full = masteryDetailResponse.getImage().full;
+        masteryImage.group = masteryDetailResponse.getImage().group;
+        masteryImage.sprite = masteryDetailResponse.getImage().sprite;
+        masteryImage.x = masteryDetailResponse.getImage().x;
+        masteryImage.y = masteryDetailResponse.getImage().y;
+        masteryImage.h = masteryDetailResponse.getImage().h;
+        masteryImage.w = masteryDetailResponse.getImage().w;
+        masteryImage.masteryId = masteryDetailResponse.getId();
         masteryImages.add(masteryImage);
 
 

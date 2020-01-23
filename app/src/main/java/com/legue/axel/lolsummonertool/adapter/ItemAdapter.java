@@ -95,7 +95,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
 
     private void displayImage(String url, ImageView imageView, ProgressBar progressBar) {
         Glide.with(mContext)
-                .load(ImageUtils.BuildItemIconUrl(url))
+                .load(ImageUtils.INSTANCE.buildItemIconUrl(url))
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

@@ -90,7 +90,7 @@ public class FromItemAdapter extends RecyclerView.Adapter<FromItemAdapter.ItemVi
 
     private void displayImage(String url, ImageView imageView) {
         Glide.with(mActivity)
-                .load(ImageUtils.BuildItemIconUrl(url))
+                .load(ImageUtils.INSTANCE.buildItemIconUrl(url))
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

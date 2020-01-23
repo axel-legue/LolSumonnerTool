@@ -5,15 +5,10 @@ import android.os.Handler
 import android.os.Message
 import android.text.Html
 import android.util.Log
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -26,7 +21,6 @@ import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper
 import com.legue.axel.lolsummonertool.utils.ImageUtils
-import kotlinx.android.synthetic.main.champion_widget_item.*
 import kotlinx.android.synthetic.main.layout_champion_difficulty.*
 import kotlinx.android.synthetic.main.layout_champion_global_info.*
 import kotlinx.android.synthetic.main.layout_champion_lore.*
@@ -36,6 +30,7 @@ import kotlinx.android.synthetic.main.layout_champion_stats.*
 import java.util.*
 
 class WikiChampionInformations : AppCompatActivity() {
+
     private var mChampion: Champion? = null
     private var mChampionInfos: ChampionInfo? = null
     private var mChampionStats: ChampionStats? = null
@@ -44,8 +39,9 @@ class WikiChampionInformations : AppCompatActivity() {
     private var mChampionSpells: MutableList<Spell>? = null
     private var mChampionKey = 0
     private var mChampionId: String? = null
-    private var application: SuperApplication? = null
+    private lateinit var application: SuperApplication
     private var adapter: ChampionSpellAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wiki_champion_informations)
@@ -120,7 +116,7 @@ class WikiChampionInformations : AppCompatActivity() {
     private fun displayPassiveImage(passiveImageEndPoint: String?) {
         if (passiveImageEndPoint != null) {
             Glide.with(this)
-                    .load(ImageUtils.BuildPassiveIconUrl(passiveImageEndPoint))
+                    .load(ImageUtils.buildPassiveIconUrl(passiveImageEndPoint))
                     .error(R.drawable.ic_placeholder_black_24dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(iv_passive)
@@ -130,7 +126,7 @@ class WikiChampionInformations : AppCompatActivity() {
     private fun updateChampionImage() {
         if (mChampionImage != null) {
             Glide.with(this)
-                    .load(ImageUtils.BuildChampionIconUrl(mChampionImage!!.full))
+                    .load(ImageUtils.buildChampionIconUrl(mChampionImage!!.full))
                     .error(R.drawable.ic_placeholder_black_24dp)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(iv_champion)
@@ -142,12 +138,16 @@ class WikiChampionInformations : AppCompatActivity() {
     }
 
     private fun loadChampion(championId: String?, championKey: Int) {
-        RetrofitHelper.getChampionByName(
-                RetrofitConstants.ACTION_COMPLETE,
-                championId,
-                championKey,
-                championhandler,
-                application)
+        if (championId != null) {
+            RetrofitHelper.getChampionByName(
+                    RetrofitConstants.ACTION_COMPLETE,
+                    championId,
+                    championKey,
+                    championhandler,
+                    application)
+        } else {
+            Log.w(TAG, "Champion id is null")
+        }
     }
 
     private val championhandler = Handler(Handler.Callback { msg: Message ->
@@ -212,7 +212,7 @@ class WikiChampionInformations : AppCompatActivity() {
 
     private fun getChampionSpells(championViewModel: ChampionViewModel, championKey: Int) {
         championViewModel.getChampionSpells(championKey).observe(this, Observer { championSpells: List<Spell?>? ->
-            if (championSpells != null && championSpells.size > 0) {
+            if (championSpells != null && championSpells.isNotEmpty()) {
                 mChampionSpells!!.clear()
                 mChampionSpells!!.addAll(championSpells as Collection<Spell>)
                 updateChampionSpells()
