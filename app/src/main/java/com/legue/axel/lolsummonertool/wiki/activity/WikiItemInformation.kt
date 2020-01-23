@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
-import com.legue.axel.lolsummonertool.SuperApplication
 import com.legue.axel.lolsummonertool.adapter.FromItemAdapter
 import com.legue.axel.lolsummonertool.database.model.item.Item
 import com.legue.axel.lolsummonertool.database.model.item.ItemGold
@@ -23,7 +22,6 @@ import com.legue.axel.lolsummonertool.database.viewmodel.ItemGoldViewModel
 import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
 import kotlinx.android.synthetic.main.activity_wiki_item_information.*
-import java.util.*
 
 class WikiItemInformation : AppCompatActivity() {
     companion object {
@@ -31,15 +29,12 @@ class WikiItemInformation : AppCompatActivity() {
     }
 
     private var mItemId = 0
-    private var mItem: Item? = null
     private val mItemStat: ItemStat? = null
-    private var mItemGold: ItemGold? = null
-    private var mFromAdapter: FromItemAdapter? = null
-    private var mIntoAdapter: FromItemAdapter? = null
-    private var mFromItemIds: MutableList<String>? = null
-    private var mIntoItemIds: MutableList<String>? = null
-    private var mItemViewModel: ItemViewModel? = null
-    private var mItemImage: ItemImage? = null
+    private lateinit var mFromAdapter: FromItemAdapter
+    private lateinit var mIntoAdapter: FromItemAdapter
+    private lateinit var mFromItemIds: MutableList<String>
+    private lateinit var mIntoItemIds: MutableList<String>
+    private lateinit var mItemViewModel: ItemViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,34 +49,26 @@ class WikiItemInformation : AppCompatActivity() {
 
     private fun initData() {
         Log.i(TAG, "initData")
-        val mApplication = this.application as SuperApplication
-        if (mFromItemIds == null) {
-            mFromItemIds = ArrayList()
-        }
-        if (mIntoItemIds == null) {
-            mIntoItemIds = ArrayList()
-        }
+        mFromItemIds = arrayListOf()
+        mIntoItemIds = arrayListOf()
         loadItemImage()
         loadTreeItems()
         mFromAdapter = FromItemAdapter(mFromItemIds, this)
-        setRecyclerViewParameter(rv_from, mFromAdapter!!)
+        setRecyclerViewParameter(rv_from, mFromAdapter)
         mIntoAdapter = FromItemAdapter(mIntoItemIds, this)
-        setRecyclerViewParameter(rv_into, mIntoAdapter!!)
+        setRecyclerViewParameter(rv_into, mIntoAdapter)
     }
 
     private fun loadItemImage() {
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel::class.java)
-        mItemViewModel!!.getItemImage(mItemId).observe(this, Observer { itemImage: ItemImage? ->
-            if (itemImage != null) {
-                mItemImage = itemImage
-                displayImage()
-            }
+        mItemViewModel.getItemImage(mItemId).observe(this, Observer { itemImage: ItemImage ->
+            displayImage(itemImage)
         })
     }
 
-    private fun displayImage() {
+    private fun displayImage(itemImage: ItemImage) {
         Glide.with(this)
-                .load(ImageUtils.buildItemIconUrl(mItemImage!!.full))
+                .load(ImageUtils.buildItemIconUrl(itemImage.full))
                 .error(R.drawable.ic_placeholder_black_24dp)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(iv_item)
@@ -89,56 +76,52 @@ class WikiItemInformation : AppCompatActivity() {
 
     private fun loadTreeItems() {
         Log.i(TAG, "loadTreeItems")
-        mItemViewModel!!.getItemById(mItemId).observe(this, Observer { item: Item? ->
-            if (item != null) {
-                mItem = item
-                updateItemUi()
-                loadItemGold()
-            }
+        mItemViewModel.getItemById(mItemId).observe(this, Observer { item: Item ->
+            updateItemUi(item)
+            loadItemGold(item)
         })
     }
 
-    private fun loadItemGold() {
+    private fun loadItemGold(item: Item) {
         val itemGoldViewModel = ViewModelProviders.of(this).get(ItemGoldViewModel::class.java)
-        itemGoldViewModel.getItemGoldByItemId(mItemId).observe(this, Observer { itemGold: ItemGold? ->
-            if (itemGold != null) {
-                mItemGold = itemGold
-                updateItemGoldUi()
-            }
+        itemGoldViewModel.getItemGoldByItemId(item.id).observe(this, Observer { itemGold: ItemGold ->
+            updateItemGoldUi(itemGold)
+
         })
     }
 
-    private fun updateItemUi() {
+    private fun updateItemUi(item: Item) {
         Log.i(TAG, "updateUi")
-        tv_name.text = mItem!!.name
-        val itemDescription = mItem!!.description
-        tv_passive.text = Html.fromHtml(itemDescription, Html.FROM_HTML_MODE_LEGACY)
-        mFromItemIds!!.clear()
-        mIntoItemIds!!.clear()
-        if (mItem!!.from != null && mItem!!.from.size > 0) {
+        tv_name.text = item.name
+        tv_passive.text = Html.fromHtml(item.description, Html.FROM_HTML_MODE_LEGACY)
+        mFromItemIds.clear()
+        mIntoItemIds.clear()
+
+        if (item.from != null && item.from.size > 0) {
             tv_title_recipe.visibility = View.VISIBLE
-            mFromItemIds!!.addAll(mItem!!.from)
-            mFromAdapter!!.notifyDataSetChanged()
+            mFromItemIds.addAll(item.from)
+            mFromAdapter.notifyDataSetChanged()
         } else {
-            tv_title_recipe!!.visibility = View.GONE
+            tv_title_recipe.visibility = View.GONE
         }
-        if (mItem!!.into != null && mItem!!.into.size > 0) {
+
+        if (item.into != null && item.into.size > 0) {
             tv_title_recipe.visibility = View.VISIBLE
-            mIntoItemIds!!.addAll(mItem!!.into)
-            mIntoAdapter!!.notifyDataSetChanged()
+            mIntoItemIds.addAll(item.into)
+            mIntoAdapter.notifyDataSetChanged()
         } else {
-            tv_title_recipe!!.visibility = View.GONE
+            tv_title_recipe.visibility = View.GONE
         }
     }
 
-    private fun updateItemGoldUi() {
-        val itemCost = getString(R.string.item_cost, mItemGold!!.total, mItemGold!!.base, mItemGold!!.sell)
+    private fun updateItemGoldUi(itemGold: ItemGold) {
+        val itemCost = getString(R.string.item_cost, itemGold.total, itemGold.base, itemGold.sell)
         tv_cost.text = itemCost
     }
 
-    private fun setRecyclerViewParameter(recyclerView: RecyclerView?, adapter: FromItemAdapter) {
+    private fun setRecyclerViewParameter(recyclerView: RecyclerView, adapter: FromItemAdapter) {
         val linearLayoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        recyclerView!!.layoutManager = linearLayoutManager
+        recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
     }
