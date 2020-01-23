@@ -47,7 +47,7 @@ class ChampionRemoteViewFactory implements RemoteViewsService.RemoteViewsFactory
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
         ComponentName componentName = new ComponentName(mContext.getPackageName(), ChampionWidget.class.getName());
 
-        List<Champion> championList = SummonerToolDatabase.Companion.getInstance(mContext).championDao().getChampionsWidget();
+        List<Champion> championList = SummonerToolDatabase.Companion.getInstance(mContext).championDao().championsWidget();
         Random random = new Random();
         int numberOfChampionToDisplay = 10;
         randomChampionToDisplay = new ArrayList<>();

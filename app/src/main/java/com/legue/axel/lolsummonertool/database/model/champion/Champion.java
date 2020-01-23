@@ -10,11 +10,10 @@ import com.legue.axel.lolsummonertool.database.converter.StringListConverters;
 import java.util.List;
 
 import io.reactivex.annotations.NonNull;
+//TODO :Add recommended Object and relation if enough time.
 
 @Entity(tableName = "champions")
 public class Champion {
-    //TODO :Add recommended Object and relation if enough time.
-
     @PrimaryKey()
     @NonNull
     public int key;
