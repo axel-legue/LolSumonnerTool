@@ -55,23 +55,27 @@ public class MasteryUtils {
     }
 
     private static void extractMastery(MasteryDetailResponse masteryDetailResponse) {
-        Mastery mastery = new Mastery();
-        mastery.id = masteryDetailResponse.getId();
-        mastery.description = masteryDetailResponse.getDescription();
-        mastery.name = masteryDetailResponse.getName();
-        mastery.prereq = masteryDetailResponse.getPrereq();
-        mastery.ranks = masteryDetailResponse.getRanks();
+        Mastery mastery = new Mastery(
+                masteryDetailResponse.getId(),
+                masteryDetailResponse.getName(),
+                masteryDetailResponse.getDescription(),
+                masteryDetailResponse.getRanks(),
+                masteryDetailResponse.getPrereq()
+        );
         masteries.add(mastery);
 
-        MasteryImage masteryImage = new MasteryImage();
-        masteryImage.full = masteryDetailResponse.getImage().full;
-        masteryImage.group = masteryDetailResponse.getImage().group;
-        masteryImage.sprite = masteryDetailResponse.getImage().sprite;
-        masteryImage.x = masteryDetailResponse.getImage().x;
-        masteryImage.y = masteryDetailResponse.getImage().y;
-        masteryImage.h = masteryDetailResponse.getImage().h;
-        masteryImage.w = masteryDetailResponse.getImage().w;
-        masteryImage.masteryId = masteryDetailResponse.getId();
+
+        MasteryImage masteryImage = new MasteryImage(
+                null,
+                masteryDetailResponse.getImage().getFull(),
+                masteryDetailResponse.getImage().getGroup(),
+                masteryDetailResponse.getImage().getSprite(),
+                masteryDetailResponse.getImage().getX(),
+                masteryDetailResponse.getImage().getY(),
+                masteryDetailResponse.getImage().getH(),
+                masteryDetailResponse.getImage().getW(),
+                masteryDetailResponse.getId()
+        );
         masteryImages.add(masteryImage);
 
 

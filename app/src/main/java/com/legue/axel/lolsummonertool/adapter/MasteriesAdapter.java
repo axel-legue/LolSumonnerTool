@@ -69,15 +69,15 @@ public class MasteriesAdapter extends RecyclerView.Adapter<MasteriesAdapter.Mast
 
         if (mastery != null) {
             MasteryViewModel masteryViewModel = ViewModelProviders.of(mFragment).get(MasteryViewModel.class);
-            masteryViewModel.getMasteryImage(mastery.id).observe(mFragment, masteryImage -> {
+            masteryViewModel.getMasteryImage(mastery.getId()).observe(mFragment, masteryImage -> {
                 if (masteryImage != null) {
                     mMasteryImage = masteryImage;
-                    displayImage(mMasteryImage.full, holder.ivIcon, holder.pbMastery);
+                    displayImage(mMasteryImage.getFull(), holder.ivIcon, holder.pbMastery);
                 }
             });
 
-            if (mastery.name != null && !TextUtils.isEmpty(mastery.name)) {
-                holder.tvName.setText(mastery.name);
+            if (mastery.getName() != null && !TextUtils.isEmpty(mastery.getName())) {
+                holder.tvName.setText(mastery.getName());
             }
 
             holder.llWrapper.setOnClickListener(v -> mMasteryListener.masterySelected(position, mastery));
