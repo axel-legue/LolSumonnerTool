@@ -42,7 +42,11 @@ class WikiMasteryFragment : Fragment() {
     private lateinit var fragment: WikiMasteryFragment
     private lateinit var masteryList: MutableList<Mastery>
     private var savedRecyclerLayoutState: Parcelable? = null
-    private var masteryListener = MasteryListener { position, mastery -> Toast.makeText(application, getString(R.string.toast_mastery_details, position), Toast.LENGTH_SHORT).show() }
+    private var masteryListener = object : MasteryListener {
+        override fun masterySelected(position: Int, mastery: Mastery?) {
+            Toast.makeText(application, getString(R.string.toast_mastery_details, position), Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
