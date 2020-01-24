@@ -43,10 +43,12 @@ class WikiItemFragment : Fragment() {
     private lateinit var fragment: WikiItemFragment
     private lateinit var itemList: MutableList<Item>
     private var savedRecyclerLayoutState: Parcelable? = null
-    private var itemListener = ItemAdapter.ItemListener { position: Int, item: Item ->
-        val intent = Intent(activity, WikiItemInformation::class.java)
-        intent.putExtra(Constants.WIKI_ITEM_ID, item.id)
-        startActivity(intent)
+    private var itemListener = object : ItemAdapter.ItemListener {
+        override fun itemSelected(position: Int, item: Item) {
+            val intent = Intent(activity, WikiItemInformation::class.java)
+            intent.putExtra(Constants.WIKI_ITEM_ID, item.id)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
