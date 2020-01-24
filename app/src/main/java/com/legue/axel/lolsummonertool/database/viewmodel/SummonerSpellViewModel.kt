@@ -13,7 +13,7 @@ class SummonerSpellViewModel(application: Application) : AndroidViewModel(applic
     private val database: SummonerToolDatabase = SummonerToolDatabase.getInstance(this.getApplication())
 
     init {
-        summonerSpells = database.summonerSpellDao().summonerSpells
+        summonerSpells = database.summonerSpellDao().getSummonerSpells()
     }
 
     fun getSummonerSpellImage(summonerSpellId: Int): LiveData<SummonerSpellImage> {
