@@ -9,14 +9,11 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase
 import com.legue.axel.lolsummonertool.database.model.champion.Champion
-
-import java.util.ArrayList
-import java.util.Random
+import java.util.*
 
 class ChampionRemoteViewsService : RemoteViewsService() {
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
@@ -72,13 +69,13 @@ internal class ChampionRemoteViewFactory(private val mContext: Context) : Remote
             views.setTextViewText(R.id.tv_champion_name, champion.name)
         }
 
-        if (champion.tags != null && champion.tags.size > 0) {
+        if (champion.tags != null && champion.tags!!.isNotEmpty()) {
             val builder = StringBuilder()
-            for (i in champion.tags.indices) {
-                if (i == champion.tags.size - 1) {
-                    builder.append(champion.tags[i])
+            for (i in champion.tags!!.indices) {
+                if (i == champion.tags!!.size - 1) {
+                    builder.append(champion.tags!![i])
                 } else {
-                    builder.append(champion.tags[i]).append(" - ")
+                    builder.append(champion.tags!![i]).append(" - ")
                 }
             }
 

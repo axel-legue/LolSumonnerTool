@@ -58,7 +58,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
                     if (championSet != null && championSet.size() > 0) {
                         filteredResults.addAll(championSet);
 
-                        Collections.sort(filteredResults, (o1, o2) -> o1.name.compareToIgnoreCase(o2.name));
+                        Collections.sort(filteredResults, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
                     }
                 }
 
@@ -86,7 +86,7 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
         Set<Champion> results = new HashSet<>();
 
         for (Champion champion : mChampions) {
-            for (String tag : champion.tags) {
+            for (String tag : champion.getTags()) {
                 if (tag.toLowerCase().contains(constraint)) {
                     results.add(champion);
                 }
@@ -131,16 +131,16 @@ public class ChampionsAdapter extends RecyclerView.Adapter<ChampionsAdapter.Cham
 
         if (champion != null) {
             ChampionViewModel championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel.class);
-            championViewModel.getChampionImage(champion.key).observe(mFragment, championImage -> {
+            championViewModel.getChampionImage(champion.getKey()).observe(mFragment, championImage -> {
                 if (championImage != null) {
                     mChampionImage = championImage;
-                    displayImage(mChampionImage.full, holder.ivIcon, holder.pbChampion);
+                    displayImage(mChampionImage.getFull(), holder.ivIcon, holder.pbChampion);
                 }
             });
 
 
-            if (champion.name != null && !TextUtils.isEmpty(champion.name)) {
-                holder.tvName.setText(champion.name);
+            if (champion.getName() != null && !TextUtils.isEmpty(champion.getName())) {
+                holder.tvName.setText(champion.getName());
             }
 
             holder.llWrapper.setOnClickListener(v -> mChampionListener.championSelected(position, champion));

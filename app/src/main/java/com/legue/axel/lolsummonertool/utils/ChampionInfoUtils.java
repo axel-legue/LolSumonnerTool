@@ -94,55 +94,59 @@ public class ChampionInfoUtils {
     private static void extractChampionDetails(ChampionInfoDetailResponse championDetailResponse, SummonerToolDatabase database) {
 
         champion = new Champion();
-        champion.key = Integer.valueOf(championDetailResponse.getKey());
-        champion.id = championDetailResponse.getId();
-        champion.name = championDetailResponse.getName();
-        champion.lore = championDetailResponse.getLore();
-        champion.title = championDetailResponse.getTitle();
-        champion.blurb = championDetailResponse.getBlurb();
+        champion.setKey(Integer.valueOf(championDetailResponse.getKey()));
+        champion.setId(championDetailResponse.getId());
+        champion.setName(championDetailResponse.getName());
+        champion.setLore(championDetailResponse.getLore());
+        champion.setTitle(championDetailResponse.getTitle());
+        champion.setBlurb(championDetailResponse.getBlurb());
         List<String> tags = championDetailResponse.getTags();
         if (tags != null && tags.size() > 0) {
-            champion.tags = tags;
+            champion.setTags(tags);
         }
 
         championInfo = new ChampionInfo();
         championInfo = championDetailResponse.getInfo();
-        championInfo.championId = Integer.valueOf(championDetailResponse.getKey());
+        championInfo.setChampionId(Integer.valueOf(championDetailResponse.getKey()));
 
         image = new ChampionImage();
         image = championDetailResponse.getImage();
-        image.championId = Integer.valueOf(championDetailResponse.getKey());
+        image.setChampionId(Integer.valueOf(championDetailResponse.getKey()));
 
         championStats = new ChampionStats();
         championStats = championDetailResponse.getStats();
-        championStats.championId = Integer.valueOf(championDetailResponse.getKey());
+        championStats.setChampionId(Integer.valueOf(championDetailResponse.getKey()));
 
-        championPassive = new Passive();
-        championPassive.description = championDetailResponse.getPassive().getDescription();
-        championPassive.name = championDetailResponse.getPassive().getName();
-        championPassive.image = championDetailResponse.getPassive().getImage().full;
-        championPassive.championId = Integer.valueOf(championDetailResponse.getKey());
+        championPassive = new Passive(
+                null,
+                championDetailResponse.getPassive().getName(),
+                championDetailResponse.getPassive().getDescription(),
+                championDetailResponse.getPassive().getImage().getFull(),
+                Integer.valueOf(championDetailResponse.getKey())
+        );
 
 
         List<SpellResponse> spellResponseList = championDetailResponse.getSpells();
-        if (spellResponseList != null && spellResponseList.size() > 0) {
+        if (spellResponseList.size() > 0) {
             for (SpellResponse spellResponse : spellResponseList) {
 
-                Spell spell = new Spell();
-                spell.id = spellResponse.getId();
-                spell.name = spellResponse.getName();
-                spell.description = spellResponse.getDescription();
-                spell.toolTip = spellResponse.getToolTip();
-                spell.maxRank = spellResponse.getMaxRank();
-                spell.cooldown = spellResponse.getCooldown();
-                spell.cooldownBurn = spellResponse.getCooldownBurn();
-                spell.cost = spellResponse.getCost();
-                spell.costBurn = spellResponse.getCostBurn();
-                spell.costType = spellResponse.getCostType();
-                spell.maxammo = spellResponse.getMaxAmmo();
-                spell.range = spellResponse.getRange();
-                spell.rangeBurn = spellResponse.getRangeBurn();
-                spell.championId = Integer.valueOf(championDetailResponse.getKey());
+                Spell spell = new Spell(
+                        spellResponse.getId(),
+                        spellResponse.getName(),
+                        spellResponse.getDescription(),
+                        spellResponse.getToolTip(),
+                        spellResponse.getMaxRank(),
+                        spellResponse.getCooldown(),
+                        spellResponse.getCooldownBurn(),
+                        spellResponse.getCost(),
+                        spellResponse.getCostBurn(),
+                        spellResponse.getCostType(),
+                        spellResponse.getMaxAmmo(),
+                        spellResponse.getRange(),
+                        spellResponse.getRangeBurn(),
+                        spellResponse.getResource(),
+                        Integer.valueOf(championDetailResponse.getKey())
+                );
                 spells.add(spell);
 
                 //FIXME: see waht to do with level tip

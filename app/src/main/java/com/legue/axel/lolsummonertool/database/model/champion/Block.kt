@@ -9,13 +9,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "blocks")
 data class Block(
         @PrimaryKey(autoGenerate = true)
-        var id: Int = 0,
-        var type: String? = null,
-        var recMath: Boolean = false,
-        var recSteps: Boolean = false,
-        var minSummonerLevel: Int = 0,
-        var maxSummonerLevel: Int = 0,
-        var showIfSummonerSpell: String? = null,
-        var hideIfSummonerSpell: String? = null,
-        var appendAfterSection: String? = null
+        val id: Int = 0,
+        val type: String? = null,
+        val recMath: Boolean = false,
+        val recSteps: Boolean = false,
+        val minSummonerLevel: Int = 0,
+        val maxSummonerLevel: Int = 0,
+        val showIfSummonerSpell: String? = null,
+        val hideIfSummonerSpell: String? = null,
+        val appendAfterSection: String? = null
 )

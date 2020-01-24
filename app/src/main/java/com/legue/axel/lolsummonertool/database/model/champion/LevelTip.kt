@@ -8,9 +8,9 @@ import com.legue.axel.lolsummonertool.database.converter.StringListConverters
 @TypeConverters(StringListConverters::class)
 data class LevelTip(
         @PrimaryKey(autoGenerate = true)
-        var id: Int? = null,
-        var label: List<String>? = null,
-        var effect: List<String>? = null,
+        val id: Int? = null,
+        val label: List<String>? = null,
+        val effect: List<String>? = null,
         @ColumnInfo(index = true)
-        var spellId: String
+        val spellId: String
 )

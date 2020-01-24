@@ -63,7 +63,7 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
         if (spell != null) {
 
             SpellViewModel spellViewModel = ViewModelProviders.of(mActivity).get(SpellViewModel.class);
-            spellViewModel.getSpellImage(spell.id).observe(mActivity, spellImage -> {
+            spellViewModel.getSpellImage(spell.getId()).observe(mActivity, spellImage -> {
                 if (spellImage != null) {
                     mSpellImage = spellImage;
                     displayImage(mSpellImage.getFull(), holder.ivSpell, holder.pbSpell);
@@ -73,22 +73,22 @@ public class ChampionSpellAdapter extends RecyclerView.Adapter<ChampionSpellAdap
             //TODO complete info
 
 
-            if (spell.name != null && !TextUtils.isEmpty(spell.name)) {
-                holder.tvName.setText(spell.name);
+            if (spell.getName() != null && !TextUtils.isEmpty(spell.getName())) {
+                holder.tvName.setText(spell.getName());
 
-                if (shouldConvertListToString(spell.cost)) {
-                    holder.tvCost.setText(Utils.INSTANCE.convertFloatListToString(spell.cost));
+                if (shouldConvertListToString(spell.getCost())) {
+                    holder.tvCost.setText(Utils.INSTANCE.convertFloatListToString(spell.getCost()));
                 } else {
-                    holder.tvCost.setText(String.valueOf(Math.round(spell.cost.get(0))));
+                    holder.tvCost.setText(String.valueOf(Math.round(spell.getCost().get(0))));
                 }
 
-                if (shouldConvertListToString(spell.range)) {
-                    holder.tvRange.setText(Utils.INSTANCE.convertFloatListToString(spell.range));
+                if (shouldConvertListToString(spell.getRange())) {
+                    holder.tvRange.setText(Utils.INSTANCE.convertFloatListToString(spell.getRange()));
                 } else {
-                    holder.tvRange.setText(String.valueOf(Math.round(spell.range.get(0))));
+                    holder.tvRange.setText(String.valueOf(Math.round(spell.getRange().get(0))));
                 }
-                holder.tvCooldown.setText(Utils.INSTANCE.convertFloatListToString(spell.cooldown));
-                holder.tvLore.setText(Html.fromHtml(spell.description, Html.FROM_HTML_MODE_COMPACT));
+                holder.tvCooldown.setText(Utils.INSTANCE.convertFloatListToString(spell.getCooldown()));
+                holder.tvLore.setText(Html.fromHtml(spell.getDescription(), Html.FROM_HTML_MODE_COMPACT));
             }
 
 

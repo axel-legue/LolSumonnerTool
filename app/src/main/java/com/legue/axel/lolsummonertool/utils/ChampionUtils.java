@@ -69,29 +69,29 @@ public class ChampionUtils {
     private static void extractChampionDetails(ChampionDetailResponse championDetailResponse, SummonerToolDatabase database) {
 
         Champion champion = new Champion();
-        champion.key = Integer.valueOf(championDetailResponse.getKey());
-        champion.id = championDetailResponse.getId();
-        champion.name = championDetailResponse.getName();
-        champion.title = championDetailResponse.getTitle();
-        champion.blurb = championDetailResponse.getBlurb();
+        champion.setKey(Integer.valueOf(championDetailResponse.getKey()));
+        champion.setId(championDetailResponse.getId());
+        champion.setName(championDetailResponse.getName());
+        champion.setTitle(championDetailResponse.getTitle());
+        champion.setBlurb(championDetailResponse.getBlurb());
         List<String> tags = championDetailResponse.getTags();
         if (tags != null && tags.size() > 0) {
-            champion.tags = tags;
+            champion.setTags(tags);
         }
         champions.add(champion);
 
 
         ChampionInfo championInfo = championDetailResponse.getInfo();
-        championInfo.championId = Integer.valueOf(championDetailResponse.getKey());
+        championInfo.setChampionId(Integer.valueOf(championDetailResponse.getKey()));
         championInfos.add(championInfo);
 
 
         ChampionImage championImage = championDetailResponse.getImage();
-        championImage.championId = Integer.valueOf(championDetailResponse.getKey());
+        championImage.setChampionId(Integer.valueOf(championDetailResponse.getKey()));
         images.add(championImage);
 
         ChampionStats championStats = championDetailResponse.getStats();
-        championStats.championId = Integer.valueOf(championDetailResponse.getKey());
+        championStats.setChampionId(Integer.valueOf(championDetailResponse.getKey()));
         championStatsList.add(championStats);
     }
 
