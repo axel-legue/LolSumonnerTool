@@ -50,38 +50,40 @@ public class SummonerSpellUtils {
 
     private static void extractMastery(SummonerSpellDetailsResponse value) {
 
-        SummonerSpell summonerSpell = new SummonerSpell();
-        summonerSpell.id = value.getId();
-        summonerSpell.key = value.getKey();
-        summonerSpell.name = value.getName();
-        summonerSpell.description = value.getDescription();
-        summonerSpell.tooltip = value.getTooltip();
-        summonerSpell.maxrank = value.getMaxrank();
-        summonerSpell.cooldown = value.getCooldown();
-        summonerSpell.cooldownBurn = value.getCooldownBurn();
-        summonerSpell.cost = value.getCost();
-        summonerSpell.costBurn = value.getCostBurn();
-        summonerSpell.effectBurn = value.getEffectBurn();
-        summonerSpell.summonerLevel = value.getSummonerLevel();
-        summonerSpell.modes = value.getModes();
-        summonerSpell.costType = value.getCostType();
-        summonerSpell.maxammo = value.getMaxammo();
-        summonerSpell.range = value.getRange();
-        summonerSpell.rangeBurn = value.getRangeBurn();
-        summonerSpell.resource = value.getResource();
+        SummonerSpell summonerSpell = new SummonerSpell(
+                value.getId(),
+                value.getKey(),
+                value.getName(),
+                value.getDescription(),
+                value.getTooltip(),
+                value.getMaxrank(),
+                value.getCooldownBurn(),
+                value.getCostBurn(),
+                value.getSummonerLevel(),
+                value.getCostType(),
+                value.getMaxammo(),
+                value.getRangeBurn(),
+                value.getResource(),
+                value.getCooldown(),
+                value.getEffectBurn(),
+                value.getCost(),
+                value.getRange(),
+                value.getModes()
+        );
 
-        SummonerSpellImage image = new SummonerSpellImage();
-        image.full = value.getImage().full;
-        image.group = value.getImage().group;
-        image.sprite = value.getImage().sprite;
-        image.x = value.getImage().x;
-        image.y = value.getImage().y;
-        image.w = value.getImage().w;
-        image.h = value.getImage().h;
-        image.summonerSpellId = value.getKey();
+        SummonerSpellImage image = new SummonerSpellImage(
+                null,
+                value.getImage().getFull(),
+                value.getImage().getSprite(),
+                value.getImage().getGroup(),
+                value.getImage().getX(),
+                value.getImage().getY(),
+                value.getImage().getW(),
+                value.getImage().getH(),
+                value.getKey()
+        );
 
-
-        if (!summonerSpell.name.contains("Disabled")) {
+        if (!summonerSpell.getName().contains("Disabled")) {
             summonerSpells.add(summonerSpell);
             summonerSpellImages.add(image);
         }

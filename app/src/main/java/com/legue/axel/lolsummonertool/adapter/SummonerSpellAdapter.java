@@ -69,15 +69,15 @@ public class SummonerSpellAdapter extends RecyclerView.Adapter<SummonerSpellAdap
 
         if (summonerSpell != null) {
             SummonerSpellViewModel summonerSpellViewModel = ViewModelProviders.of(mFragment).get(SummonerSpellViewModel.class);
-            summonerSpellViewModel.getSummonerSpellImage(summonerSpell.key).observe(mFragment, image -> {
+            summonerSpellViewModel.getSummonerSpellImage(summonerSpell.getKey()).observe(mFragment, image -> {
                 if (image != null) {
                     mSummonerSpellImage = image;
-                    displayImage(mSummonerSpellImage.full, holder.ivIcon, holder.pbItem);
+                    displayImage(mSummonerSpellImage.getFull(), holder.ivIcon, holder.pbItem);
                 }
             });
 
-            if (summonerSpell.name != null && !TextUtils.isEmpty(summonerSpell.name)) {
-                holder.tvName.setText(summonerSpell.name);
+            if (summonerSpell.getName() != null && !TextUtils.isEmpty(summonerSpell.getName())) {
+                holder.tvName.setText(summonerSpell.getName());
             }
 
             holder.llWrapper.setOnClickListener(v -> mSummonerSpellListener.SummonerSpellSelected(position, summonerSpell));
