@@ -30,7 +30,7 @@ public class Basic {
     public Basic() {
     }
 
-    public Basic(String name, Rune rune, ItemGold itemGold, String group, String description, String colloq, String plaintext, boolean consumed, int stacks, int depths, boolean consumeOnFull, List<Integer> from, List<Integer> into, int specialRecipe, boolean inStore, boolean hideFromALl, String requiredChampion, List<String> tags ) {
+    public Basic(String name, Rune rune, ItemGold itemGold, String group, String description, String colloq, String plaintext, boolean consumed, int stacks, int depths, boolean consumeOnFull, List<Integer> from, List<Integer> into, int specialRecipe, boolean inStore, boolean hideFromALl, String requiredChampion, List<String> tags) {
         this.name = name;
         this.rune = rune;
         this.itemGold = itemGold;

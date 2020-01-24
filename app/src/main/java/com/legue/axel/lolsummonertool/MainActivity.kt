@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                 // Here we can only have 1 summoner save in database
 
-                SummonerToolDatabase.getInstance(this).summonerDao().summoners.observe(this, Observer { summoners ->
+                SummonerToolDatabase.getInstance(this).summonerDao().getSummoners().observe(this, Observer { summoners ->
                     if (summoners != null && summoners.size == 1) {
                         loadMatchesDetails(summoners[0].accountId)
                     }

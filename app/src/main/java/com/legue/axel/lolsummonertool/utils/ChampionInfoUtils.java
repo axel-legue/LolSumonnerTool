@@ -10,7 +10,6 @@ import com.legue.axel.lolsummonertool.database.model.champion.ChampionInfo;
 import com.legue.axel.lolsummonertool.database.model.champion.ChampionStats;
 import com.legue.axel.lolsummonertool.database.model.champion.LevelTip;
 import com.legue.axel.lolsummonertool.database.model.champion.Passive;
-import com.legue.axel.lolsummonertool.database.model.champion.PassiveImage;
 import com.legue.axel.lolsummonertool.database.model.champion.Spell;
 import com.legue.axel.lolsummonertool.database.model.champion.SpellImage;
 import com.legue.axel.lolsummonertool.network.response.champion.ChampionInfoDetailResponse;
@@ -32,7 +31,7 @@ public class ChampionInfoUtils {
     private static ChampionInfo championInfo;
     private static ChampionStats championStats;
     private static Passive championPassive;
-    private static PassiveImage passiveImage;
+
     private static List<LevelTip> spellLevelTips;
     private static List<SpellImage> spellImages;
     private static List<Spell> spells;
