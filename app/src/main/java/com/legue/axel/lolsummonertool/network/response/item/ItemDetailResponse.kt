@@ -6,18 +6,18 @@ import com.legue.axel.lolsummonertool.database.model.item.ItemImage
 import java.util.*
 
 data class ItemDetailResponse(
-        var name: String? = null,
-        var description: String? = null,
-        var colloq: String? = null,
-        var plaintext: String? = null,
-        var from: List<String>? = null,
-        var hideFromAll: Boolean?? = null,
-        var into: List<String>? = null,
+        val name: String? = null,
+        val description: String? = null,
+        val colloq: String? = null,
+        val plaintext: String? = null,
+        val from: List<String>? = null,
+        val hideFromAll: Boolean?? = null,
+        val into: List<String>? = null,
         @field: SerializedName("image")
-        var itemImage: ItemImage? = null,
-        var gold: ItemGold? = null,
-        var tags: List<String>? = null,
-        var maps: LinkedHashMap<String, Boolean>? = null,
-        var stats: LinkedHashMap<String, Float>? = null,
-        var effect: LinkedHashMap<String, String>? = null,
-        var depth: Int? = null)
+        val itemImage: ItemImage? = null,
+        val gold: ItemGold? = null,
+        val tags: List<String>? = null,
+        val maps: LinkedHashMap<String, Boolean>? = null,
+        val stats: LinkedHashMap<String, Float>? = null,
+        val effect: LinkedHashMap<String, String>? = null,
+        val depth: Int? = null)
