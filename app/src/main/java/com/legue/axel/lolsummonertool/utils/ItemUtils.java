@@ -69,65 +69,54 @@ public class ItemUtils {
     }
 
     private static void extractItem(String key, ItemDetailResponse itemDetailResponse) {
-        Item item = new Item();
-        item.id = Integer.valueOf(key);
-        if (itemDetailResponse.getName() != null) {
-            item.name = itemDetailResponse.getName();
-        }
-        if (itemDetailResponse.getDescription() != null) {
-            item.description = itemDetailResponse.getDescription();
-        }
-        if (itemDetailResponse.getColloq() != null) {
-            item.colloq = itemDetailResponse.getColloq();
-        }
-        if (itemDetailResponse.getPlaintext() != null) {
-            item.plaintext = itemDetailResponse.getPlaintext();
-        }
-
-        if (itemDetailResponse.getDepth() != null) {
-            item.depth = itemDetailResponse.getDepth();
-        }
-
-        if (itemDetailResponse.getFrom() != null) {
-            item.from = itemDetailResponse.getFrom();
-        }
-        if (itemDetailResponse.getInto() != null) {
-            item.into = itemDetailResponse.getInto();
-        }
+        Item item = new Item(
+                Integer.valueOf(key),
+                itemDetailResponse.getName(),
+                itemDetailResponse.getDescription(),
+                itemDetailResponse.getColloq(),
+                itemDetailResponse.getPlaintext(),
+                itemDetailResponse.getDepth(),
+                itemDetailResponse.getFrom(),
+                itemDetailResponse.getInto()
+        );
         items.add(item);
 
 
-        ItemGold itemGold = new ItemGold();
-
         if (itemDetailResponse.getGold() != null) {
-            itemGold.base = itemDetailResponse.getGold().base;
-            itemGold.purchasable = itemDetailResponse.getGold().purchasable;
-            itemGold.sell = itemDetailResponse.getGold().sell;
-            itemGold.total = itemDetailResponse.getGold().total;
-            itemGold.itemId = Integer.valueOf(key);
+            ItemGold itemGold = new ItemGold(
+                    null,
+                    itemDetailResponse.getGold().getBase(),
+                    itemDetailResponse.getGold().getTotal(),
+                    itemDetailResponse.getGold().getSell(),
+                    itemDetailResponse.getGold().getPurchasable(),
+                    Integer.valueOf(key)
+            );
             itemGolds.add(itemGold);
         }
 
-
-        ItemImage itemImage = new ItemImage();
         if (itemDetailResponse.getItemImage() != null) {
-            itemImage.full = itemDetailResponse.getItemImage().full;
-            itemImage.group = itemDetailResponse.getItemImage().group;
-            itemImage.sprite = itemDetailResponse.getItemImage().sprite;
-            itemImage.x = itemDetailResponse.getItemImage().x;
-            itemImage.y = itemDetailResponse.getItemImage().y;
-            itemImage.h = itemDetailResponse.getItemImage().h;
-            itemImage.w = itemDetailResponse.getItemImage().w;
-            itemImage.itemId = Integer.valueOf(key);
+            ItemImage itemImage = new ItemImage(
+                    null,
+                    itemDetailResponse.getItemImage().getFull(),
+                    itemDetailResponse.getItemImage().getGroup(),
+                    itemDetailResponse.getItemImage().getSprite(),
+                    itemDetailResponse.getItemImage().getX(),
+                    itemDetailResponse.getItemImage().getY(),
+                    itemDetailResponse.getItemImage().getH(),
+                    itemDetailResponse.getItemImage().getW(),
+                    Integer.valueOf(key)
+            );
             itemImages.add(itemImage);
         }
 
 
         if (itemDetailResponse.getTags() != null && itemDetailResponse.getTags().size() > 0) {
             for (String string : itemDetailResponse.getTags()) {
-                ItemTag itemTag = new ItemTag();
-                itemTag.tag = string;
-                itemTag.itemId = Integer.valueOf(key);
+                ItemTag itemTag = new ItemTag(
+                        null,
+                        string,
+                        Integer.valueOf(key)
+                );
                 itemTags.add(itemTag);
             }
         }
@@ -139,10 +128,13 @@ public class ItemUtils {
             it = effectResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
-                ItemEffect itemEffect = new ItemEffect();
-                itemEffect.key = (String) pair.getKey();
-                itemEffect.value = (String) pair.getValue();
-                itemEffect.itemId = Integer.valueOf(key);
+                ItemEffect itemEffect = new ItemEffect(
+                        null,
+                        (String) pair.getKey(),
+                        (String) pair.getValue(),
+                        Integer.valueOf(key)
+                );
+
                 itemEffects.add(itemEffect);
                 it.remove();
             }
@@ -154,10 +146,12 @@ public class ItemUtils {
             it = statResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
-                ItemStat itemStat = new ItemStat();
-                itemStat.key = (String) pair.getKey();
-                itemStat.value = (Float) pair.getValue();
-                itemStat.itemId = Integer.valueOf(key);
+                ItemStat itemStat = new ItemStat(
+                        null,
+                        (String) pair.getKey(),
+                        (Float) pair.getValue(),
+                        Integer.valueOf(key)
+                );
                 itemStats.add(itemStat);
                 it.remove();
             }
@@ -169,10 +163,12 @@ public class ItemUtils {
             it = mapResponse.entrySet().iterator();
             while (it.hasNext()) {
                 HashMap.Entry pair = (HashMap.Entry) it.next();
-                ItemMap itemMap = new ItemMap();
-                itemMap.key = (String) pair.getKey();
-                itemMap.value = (Boolean) pair.getValue();
-                itemMap.itemId = Integer.valueOf(key);
+                ItemMap itemMap = new ItemMap(
+                        null,
+                        pair.getKey().toString(),
+                        (Boolean) pair.getValue(),
+                        Integer.valueOf(key)
+                );
                 itemMaps.add(itemMap);
                 it.remove();
             }

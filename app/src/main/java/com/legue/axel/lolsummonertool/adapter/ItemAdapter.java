@@ -68,15 +68,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
 
         if (item != null) {
             ItemViewModel itemViewModel = ViewModelProviders.of(mFragment).get(ItemViewModel.class);
-            itemViewModel.getItemImage(item.id).observe(mFragment, itemImage -> {
+            itemViewModel.getItemImage(item.getId()).observe(mFragment, itemImage -> {
                 if (itemImage != null) {
                     mItemImage = itemImage;
-                    displayImage(mItemImage.full, holder.ivIcon, holder.pbItem);
+                    displayImage(mItemImage.getFull(), holder.ivIcon, holder.pbItem);
                 }
             });
 
-            if (item.name != null && !TextUtils.isEmpty(item.name)) {
-                holder.tvName.setText(item.name);
+            if (item.getName() != null && !TextUtils.isEmpty(item.getName())) {
+                holder.tvName.setText(item.getName());
             }
 
             holder.llWrapper.setOnClickListener(v -> mItemListener.itemSelected(position, item));

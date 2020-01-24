@@ -59,13 +59,13 @@ public class FromItemAdapter extends RecyclerView.Adapter<FromItemAdapter.ItemVi
             itemViewModel.getItemById(Integer.valueOf(itemId)).observe(mActivity, item -> {
                 if (item != null) {
                     mItem = item;
-                    if (item.name != null && !TextUtils.isEmpty(item.name)) {
-                        holder.tvItemName.setText(item.name);
+                    if (item.getName() != null && !TextUtils.isEmpty(item.getName())) {
+                        holder.tvItemName.setText(item.getName());
                     }
 
-                    getItemImage(holder, itemViewModel, mItem.id);
+                    getItemImage(holder, itemViewModel, mItem.getId());
                     // TODO: 23/04/2019 replace with gold item
-                    holder.tvItemCost.setText(getPrice(item.id));
+                    holder.tvItemCost.setText(getPrice(item.getId()));
 
                 }
             });
@@ -78,7 +78,7 @@ public class FromItemAdapter extends RecyclerView.Adapter<FromItemAdapter.ItemVi
         itemViewModel.getItemImage(itemId).observe(mActivity, itemImage -> {
             if (itemImage != null) {
                 mItemImage = itemImage;
-                displayImage(mItemImage.full, holder.ivItem);
+                displayImage(mItemImage.getFull(), holder.ivItem);
             }
         });
     }

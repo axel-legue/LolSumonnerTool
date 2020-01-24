@@ -97,7 +97,7 @@ class WikiItemInformation : AppCompatActivity() {
         mFromItemIds.clear()
         mIntoItemIds.clear()
 
-        if (item.from != null && item.from.size > 0) {
+        if (item.from != null && item.from?.size > 0) {
             tv_title_recipe.visibility = View.VISIBLE
             mFromItemIds.addAll(item.from)
             mFromAdapter.notifyDataSetChanged()
