@@ -53,11 +53,13 @@ class WikiChampionFragment : Fragment() {
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var mEditor: SharedPreferences.Editor
     private var savedRecyclerLayoutState: Parcelable? = null
-    private val championListener = ChampionListener { position: Int, champion: Champion ->
-        val intent = Intent(activity, WikiChampionInformations::class.java)
-        intent.putExtra(Constants.WIKI_CHAMPION_KEY, champion.key)
-        intent.putExtra(Constants.WIKI_CHAMPION_ID, champion.id)
-        startActivity(intent)
+    private val championListener = object : ChampionListener {
+        override fun championSelected(position: Int, champion: Champion?) {
+            val intent = Intent(activity, WikiChampionInformations::class.java)
+            intent.putExtra(Constants.WIKI_CHAMPION_KEY, champion?.key)
+            intent.putExtra(Constants.WIKI_CHAMPION_ID, champion?.id)
+            startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
