@@ -84,7 +84,9 @@ public class ItemUtils {
             item.plaintext = itemDetailResponse.getPlaintext();
         }
 
-        item.depth = itemDetailResponse.getDepth();
+        if (itemDetailResponse.getDepth() != null) {
+            item.depth = itemDetailResponse.getDepth();
+        }
 
         if (itemDetailResponse.getFrom() != null) {
             item.from = itemDetailResponse.getFrom();
