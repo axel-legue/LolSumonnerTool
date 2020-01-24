@@ -37,13 +37,16 @@ class WikiSummonerSpellFragment : Fragment() {
             return wikiMasteryFragment
         }
     }
+
     private lateinit var adapter: SummonerSpellAdapter
     private lateinit var application: SuperApplication
     private lateinit var fragment: WikiSummonerSpellFragment
     private lateinit var summonerSpellList: MutableList<SummonerSpell>
     private var savedRecyclerLayoutState: Parcelable? = null
-    private var summonerSpellListener = SummonerSpellListener { position, summonerSpell ->
-        Toast.makeText(application, getString(R.string.toast_spell_details, position), Toast.LENGTH_SHORT).show()
+    private var summonerSpellListener = object : SummonerSpellListener {
+        override fun SummonerSpellSelected(position: Int, summonerSpell: SummonerSpell?) {
+            Toast.makeText(application, getString(R.string.toast_spell_details, position), Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
