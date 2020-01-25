@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class ChampionsResponse(
-        var type: String?,
-        var format: String?,
-        var version: String?,
+        var type: String? = null,
+        var format: String? = null,
+        var version: String? = null,
         @field:SerializedName("data")
-        var championList: LinkedHashMap<String, ChampionDetailResponse>?)
+        var championList: LinkedHashMap<String, ChampionDetailResponse>? = null)
