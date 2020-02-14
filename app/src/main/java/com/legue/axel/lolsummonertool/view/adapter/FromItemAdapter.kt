@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.adapter
+package com.legue.axel.lolsummonertool.view.adapter
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -18,9 +18,9 @@ import com.bumptech.glide.request.target.Target
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.model.item.Item
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage
-import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel
+import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
-import com.legue.axel.lolsummonertool.wiki.activity.WikiItemInformation
+import com.legue.axel.lolsummonertool.view.wiki.activity.WikiItemInformation
 import kotlinx.android.synthetic.main.node.view.*
 
 class FromItemAdapter(private val ListId: List<String>, private val mActivity: WikiItemInformation) : RecyclerView.Adapter<FromItemAdapter.ItemViewHolder>() {

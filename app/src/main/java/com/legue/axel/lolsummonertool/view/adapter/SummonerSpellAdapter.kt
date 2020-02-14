@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.adapter
+package com.legue.axel.lolsummonertool.view.adapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -22,9 +22,9 @@ import com.bumptech.glide.request.target.Target
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpellImage
-import com.legue.axel.lolsummonertool.database.viewmodel.SummonerSpellViewModel
+import com.legue.axel.lolsummonertool.viewmodel.SummonerSpellViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiSummonerSpellFragment
 import kotlinx.android.synthetic.main.adapter_summoner_spell.view.*
 
 class SummonerSpellAdapter(private val mContext: Context, private val mSummonerSpells: List<SummonerSpell>, summonerSpellListener: SummonerSpellListener, private val mFragment: WikiSummonerSpellFragment) : RecyclerView.Adapter<SummonerSpellAdapter.SummonerSpellHolder>() {

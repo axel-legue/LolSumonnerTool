@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.fragment
+package com.legue.axel.lolsummonertool.view.wiki.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -16,10 +16,10 @@ import butterknife.ButterKnife
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.SuperApplication
-import com.legue.axel.lolsummonertool.adapter.SummonerSpellAdapter
-import com.legue.axel.lolsummonertool.adapter.SummonerSpellAdapter.SummonerSpellListener
+import com.legue.axel.lolsummonertool.view.adapter.SummonerSpellAdapter
+import com.legue.axel.lolsummonertool.view.adapter.SummonerSpellAdapter.SummonerSpellListener
 import com.legue.axel.lolsummonertool.database.model.summonerspell.SummonerSpell
-import com.legue.axel.lolsummonertool.database.viewmodel.SummonerSpellViewModel
+import com.legue.axel.lolsummonertool.viewmodel.SummonerSpellViewModel
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper.getSummonerSpells
 import kotlinx.android.synthetic.main.fragment_wiki_data.*

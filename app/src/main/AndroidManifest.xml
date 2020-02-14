@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <receiver android:name=".widget.ChampionWidget">
+        <receiver android:name="com.legue.axel.lolsummonertool.view.widget.ChampionWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -31,7 +31,7 @@
             android:value="ca-app-pub-4205057744646990~8261001730" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
@@ -48,8 +48,8 @@
                 android:resource="@xml/profil_search" />
         </activity>
         <activity
-            android:name=".wiki.activity.WikiChampionInformations"
-            android:parentActivityName=".MainActivity"
+            android:name="com.legue.axel.lolsummonertool.view.wiki.activity.WikiChampionInformations"
+            android:parentActivityName=".view.MainActivity"
             android:theme="@style/AppThemeDark">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -58,8 +58,8 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".wiki.activity.WikiItemInformation"
-            android:parentActivityName=".MainActivity"
+            android:name="com.legue.axel.lolsummonertool.view.wiki.activity.WikiItemInformation"
+            android:parentActivityName=".view.MainActivity"
             android:theme="@style/AppThemeDark">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -81,7 +81,7 @@
             android:authorities="com.legue.axel.lolsummonertool.ProfilSuggestionProvider"
             android:exported="false" />
 
-        <receiver android:name=".widget.ChampionWidget">
+        <receiver android:name="com.legue.axel.lolsummonertool.view.widget.ChampionWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -92,7 +92,7 @@
         </receiver>
 
         <service
-            android:name=".widget.ChampionRemoteViewsService"
+            android:name="com.legue.axel.lolsummonertool.view.widget.ChampionRemoteViewsService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>

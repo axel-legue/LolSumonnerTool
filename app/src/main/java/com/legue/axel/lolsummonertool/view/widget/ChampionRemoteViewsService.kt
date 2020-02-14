@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.widget
+package com.legue.axel.lolsummonertool.view.widget
 
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName

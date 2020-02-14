@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.adapter
+package com.legue.axel.lolsummonertool.view.adapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -17,9 +17,9 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.model.champion.Champion
-import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel
+import com.legue.axel.lolsummonertool.viewmodel.ChampionViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiChampionFragment
 import kotlinx.android.synthetic.main.adapter_champion.view.*
 import java.util.*
 
@@ -98,7 +98,7 @@ open class ChampionsAdapter// Constructor
         val champion = mChampionFiltered[position]
 
         val championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel::class.java)
-        championViewModel.getChampionImage(champion.key).observe(mFragment.viewLifecycleOwner, Observer { championImage ->
+        championViewModel.getChampionImage().observe(mFragment.viewLifecycleOwner, Observer { championImage ->
             if (championImage != null) {
                 championImage.full?.let { displayImage(it, holder.ivIcon, holder.pbChampion) }
             }

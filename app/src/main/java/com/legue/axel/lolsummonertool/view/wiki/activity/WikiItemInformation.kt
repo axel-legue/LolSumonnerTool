@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.activity
+package com.legue.axel.lolsummonertool.view.wiki.activity
 
 import android.os.Bundle
 import android.text.Html
@@ -13,13 +13,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
-import com.legue.axel.lolsummonertool.adapter.FromItemAdapter
+import com.legue.axel.lolsummonertool.view.adapter.FromItemAdapter
 import com.legue.axel.lolsummonertool.database.model.item.Item
 import com.legue.axel.lolsummonertool.database.model.item.ItemGold
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage
 import com.legue.axel.lolsummonertool.database.model.item.ItemStat
-import com.legue.axel.lolsummonertool.database.viewmodel.ItemGoldViewModel
-import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel
+import com.legue.axel.lolsummonertool.viewmodel.ItemGoldViewModel
+import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
 import kotlinx.android.synthetic.main.activity_wiki_item_information.*
 

@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.adapter
+package com.legue.axel.lolsummonertool.view.adapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -21,9 +21,9 @@ import com.bumptech.glide.request.target.Target
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.model.mastery.Mastery
 import com.legue.axel.lolsummonertool.database.model.mastery.MasteryImage
-import com.legue.axel.lolsummonertool.database.viewmodel.MasteryViewModel
+import com.legue.axel.lolsummonertool.viewmodel.MasteryViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiMasteryFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiMasteryFragment
 import kotlinx.android.synthetic.main.adapter_mastery.view.*
 
 class MasteriesAdapter(private val mContext: Context, private val mMasterys: List<Mastery>, masteryListener: MasteryListener, private val mFragment: WikiMasteryFragment) : RecyclerView.Adapter<MasteriesAdapter.MasteryHolder>() {

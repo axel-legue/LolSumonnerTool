@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.fragment
+package com.legue.axel.lolsummonertool.view.wiki.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,12 +15,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.SuperApplication
-import com.legue.axel.lolsummonertool.adapter.ItemAdapter
+import com.legue.axel.lolsummonertool.view.adapter.ItemAdapter
 import com.legue.axel.lolsummonertool.database.model.item.Item
-import com.legue.axel.lolsummonertool.database.viewmodel.ItemViewModel
+import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper.getItems
-import com.legue.axel.lolsummonertool.wiki.activity.WikiItemInformation
+import com.legue.axel.lolsummonertool.view.wiki.activity.WikiItemInformation
 import kotlinx.android.synthetic.main.fragment_wiki_data.*
 
 class WikiItemFragment : Fragment() {

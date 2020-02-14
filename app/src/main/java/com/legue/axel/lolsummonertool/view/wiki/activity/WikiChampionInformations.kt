@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.activity
+package com.legue.axel.lolsummonertool.view.wiki.activity
 
 import android.os.Bundle
 import android.os.Handler
@@ -14,19 +14,18 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.SuperApplication
-import com.legue.axel.lolsummonertool.adapter.ChampionSpellAdapter
 import com.legue.axel.lolsummonertool.database.model.champion.*
-import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper
 import com.legue.axel.lolsummonertool.utils.ImageUtils
+import com.legue.axel.lolsummonertool.view.adapter.ChampionSpellAdapter
+import com.legue.axel.lolsummonertool.viewmodel.ChampionViewModel
 import kotlinx.android.synthetic.main.layout_champion_difficulty.*
 import kotlinx.android.synthetic.main.layout_champion_global_info.*
 import kotlinx.android.synthetic.main.layout_champion_lore.*
 import kotlinx.android.synthetic.main.layout_champion_passive.*
 import kotlinx.android.synthetic.main.layout_champion_spells.*
 import kotlinx.android.synthetic.main.layout_champion_stats.*
-import kotlin.math.roundToInt
 
 class WikiChampionInformations : AppCompatActivity() {
 
@@ -60,12 +59,19 @@ class WikiChampionInformations : AppCompatActivity() {
         rv_spells.setHasFixedSize(true)
     }
 
-    private fun updateChampion(champion: Champion) {
-        tv_name.text = champion.name ?: ""
-        tv_nickname.text = champion.title ?: ""
-        tv_role.text = champion.tags?.get(0) ?: ""
-        tv_description.text = champion.lore ?: ""
-
+    private fun updateChampion(championViewModel: ChampionViewModel) {
+        championViewModel.getName().observe(this, Observer {
+            tv_name.text = it
+        })
+        championViewModel.getNickName().observe(this, Observer {
+            tv_nickname.text = it
+        })
+        championViewModel.getRole().observe(this, Observer {
+            tv_role.text = it
+        })
+        championViewModel.getDescription().observe(this, Observer {
+            tv_description.text = it
+        })
     }
 
     private fun updateChampionInfo(championInfo: ChampionInfo) {
@@ -78,19 +84,6 @@ class WikiChampionInformations : AppCompatActivity() {
         pb_magic.max = 10
         pb_magic.progress = championInfo.magic ?: 0
 
-    }
-
-    private fun updateChampionStat(championStats: ChampionStats) {
-        tv_range_value.text = championStats.attackRange?.let { it.roundToInt().toString() }
-        tv_armor_value.text = championStats.armor?.let { it.roundToInt().toString() }
-        tv_attack_damage_value.text = championStats.attackDamage?.let { it.roundToInt().toString() }
-        tv_attack_speed_value.text = championStats.run { attackSpeed.toString() }
-        tv_mana_value.text = championStats.mp?.let { it.roundToInt().toString() }
-        tv_mana_regen_value.text = championStats.mpRegen?.let { it.roundToInt().toString() }
-        tv_health_value.text = championStats.hp?.let { it.roundToInt().toString() }
-        tv_health_regen_value.text = championStats.hpRegen.toString()
-        tv_magic_resist_value.text = championStats.spellBlock?.let { it.roundToInt().toString() }
-        tv_move_speed_value.text = championStats.moveSpeed?.let { it.roundToInt().toString() }
     }
 
     private fun updateChampionPassive(passive: Passive) {
@@ -140,14 +133,15 @@ class WikiChampionInformations : AppCompatActivity() {
             RetrofitConstants.ACTION_COMPLETE -> {
                 Log.i(TAG, "ACTION_COMPLETE ")
                 val mChampionViewModel = ViewModelProviders.of(this).get(ChampionViewModel::class.java)
-                mChampionViewModel.getChampionByKey(msg.arg1).observe(this, Observer { champion: Champion ->
-                    updateChampion(champion)
+                mChampionViewModel.start(mChampionKey)
+                mChampionViewModel.getChampionByKey().observe(this, Observer { champion: Champion ->
+                    updateChampion(mChampionViewModel)
                     // adapter.notifyDataSetChanged();
-                    getChampionInfo(mChampionViewModel, champion.key)
-                    getChampionStat(mChampionViewModel, champion.key)
-                    getChampionImage(mChampionViewModel, champion.key)
-                    getChampionPassive(mChampionViewModel, champion.key)
-                    getChampionSpells(mChampionViewModel, champion.key)
+                    updateChampionInfo(mChampionViewModel)
+                    updateChampionStat(mChampionViewModel)
+                    getChampionImage(mChampionViewModel)
+                    getChampionPassive(mChampionViewModel)
+                    getChampionSpells(mChampionViewModel)
                 })
             }
             RetrofitConstants.ACTION_ERROR -> {
@@ -157,36 +151,62 @@ class WikiChampionInformations : AppCompatActivity() {
         true
     })
 
-    private fun getChampionInfo(championViewModel: ChampionViewModel, championKey: Int) {
-        championViewModel.getChampionInfo(championKey).observe(this, Observer { championInfo: ChampionInfo ->
+    private fun updateChampionInfo(championViewModel: ChampionViewModel) {
+        championViewModel.getChampionInfo().observe(this, Observer { championInfo: ChampionInfo ->
             updateChampionInfo(championInfo)
 
         })
     }
 
-    private fun getChampionStat(championViewModel: ChampionViewModel, championKey: Int) {
-        championViewModel.getChampionStat(championKey).observe(this, Observer { championStats: ChampionStats ->
-            updateChampionStat(championStats)
-
+    private fun updateChampionStat(championViewModel: ChampionViewModel) {
+        championViewModel.getRange().observe(this, Observer {
+            tv_range_value.text = it
+        })
+        championViewModel.getMpRegen().observe(this, Observer {
+            tv_mana_regen_value.text = it
+        })
+        championViewModel.getMp().observe(this, Observer {
+            tv_mana_value.text = it
+        })
+        championViewModel.getHp().observe(this, Observer {
+            tv_health_value.text = it
+        })
+        championViewModel.getHpRegen().observe(this, Observer {
+            tv_health_regen_value.text = it
+        })
+        championViewModel.getAttackSpeed().observe(this, Observer {
+            tv_attack_speed_value.text = it
+        })
+        championViewModel.getArmor().observe(this, Observer {
+            tv_armor_value.text = it
+        })
+        championViewModel.getMagicResist().observe(this, Observer {
+            tv_magic_resist_value.text = it
+        })
+        championViewModel.getAttackDamage().observe(this, Observer {
+            tv_attack_damage_value.text = it
+        })
+        championViewModel.getMovementSpeed().observe(this, Observer {
+            tv_move_speed_value.text = it
         })
     }
 
-    private fun getChampionImage(championViewModel: ChampionViewModel, championKey: Int) {
-        championViewModel.getChampionImage(championKey).observe(this, Observer { championImage: ChampionImage ->
+    private fun getChampionImage(championViewModel: ChampionViewModel) {
+        championViewModel.getChampionImage().observe(this, Observer { championImage: ChampionImage ->
             updateChampionImage(championImage)
         })
     }
 
-    private fun getChampionPassive(championViewModel: ChampionViewModel, championKey: Int) {
-        championViewModel.getChampionPassive(championKey).observe(this, Observer { passive: Passive? ->
+    private fun getChampionPassive(championViewModel: ChampionViewModel) {
+        championViewModel.getChampionPassive().observe(this, Observer { passive: Passive? ->
             if (passive != null) {
                 updateChampionPassive(passive)
             }
         })
     }
 
-    private fun getChampionSpells(championViewModel: ChampionViewModel, championKey: Int) {
-        championViewModel.getChampionSpells(championKey).observe(this, Observer { championSpells: List<Spell> ->
+    private fun getChampionSpells(championViewModel: ChampionViewModel) {
+        championViewModel.getChampionSpells().observe(this, Observer { championSpells: List<Spell> ->
             if (championSpells.isNotEmpty()) {
                 mChampionSpells.clear()
                 mChampionSpells.addAll(championSpells as Collection<Spell>)

@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.fragment
+package com.legue.axel.lolsummonertool.view.wiki.fragment
 
 
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.SuperApplication
-import com.legue.axel.lolsummonertool.adapter.WikiFragmentAdapter
+import com.legue.axel.lolsummonertool.view.adapter.WikiFragmentAdapter
 import kotlinx.android.synthetic.main.fragment_wiki_main.*
 
 class WikiFragment : Fragment() {

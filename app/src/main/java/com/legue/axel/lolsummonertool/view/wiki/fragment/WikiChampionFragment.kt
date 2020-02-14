@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.fragment
+package com.legue.axel.lolsummonertool.view.wiki.fragment
 
 import android.app.AlertDialog
 import android.appwidget.AppWidgetManager
@@ -10,6 +10,7 @@ import android.os.Parcelable
 import android.util.Log
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -17,21 +18,21 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.SuperApplication
-import com.legue.axel.lolsummonertool.adapter.ChampionsAdapter
-import com.legue.axel.lolsummonertool.adapter.ChampionsAdapter.ChampionListener
 import com.legue.axel.lolsummonertool.database.model.champion.Champion
-import com.legue.axel.lolsummonertool.database.viewmodel.ChampionViewModel
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper.getChampions
-import com.legue.axel.lolsummonertool.widget.ChampionWidget
-import com.legue.axel.lolsummonertool.wiki.activity.WikiChampionInformations
+import com.legue.axel.lolsummonertool.view.adapter.ChampionsAdapter
+import com.legue.axel.lolsummonertool.view.adapter.ChampionsAdapter.ChampionListener
+import com.legue.axel.lolsummonertool.view.widget.ChampionWidget
+import com.legue.axel.lolsummonertool.view.wiki.activity.WikiChampionInformations
+import com.legue.axel.lolsummonertool.viewmodel.ChampionViewModel
 import kotlinx.android.synthetic.main.fragment_wiki_data.*
 import java.util.*
 
 class WikiChampionFragment : Fragment() {
     companion object {
         private val TAG = WikiChampionFragment::class.java.name
-        @JvmStatic
+
         fun newInstance(page: Int, title: String?): WikiChampionFragment {
             val wikiChampionFragment = WikiChampionFragment()
             val args = Bundle()
@@ -53,6 +54,7 @@ class WikiChampionFragment : Fragment() {
     private lateinit var mSharedPreferences: SharedPreferences
     private lateinit var mEditor: SharedPreferences.Editor
     private var savedRecyclerLayoutState: Parcelable? = null
+
     private val championListener = object : ChampionListener {
         override fun championSelected(position: Int, champion: Champion?) {
             val intent = Intent(activity, WikiChampionInformations::class.java)
@@ -181,7 +183,7 @@ class WikiChampionFragment : Fragment() {
             RetrofitConstants.ACTION_COMPLETE -> {
                 Log.i(TAG, "ACTION_COMPLETE ")
                 val championViewModel = ViewModelProviders.of(fragment).get(ChampionViewModel::class.java)
-                championViewModel.champions.observe(viewLifecycleOwner, Observer { champions: List<Champion> ->
+                championViewModel.getChampions().observe(viewLifecycleOwner, Observer { champions: List<Champion> ->
                     if (champions.isNotEmpty()) {
                         championList.clear()
                         championList.addAll(champions)
@@ -195,6 +197,8 @@ class WikiChampionFragment : Fragment() {
                 })
             }
             RetrofitConstants.ACTION_ERROR -> {
+                // TODO("Handle error properly")
+                Toast.makeText(application, " Cannot retrieve data from server", Toast.LENGTH_LONG).show()
             }
         }
         true

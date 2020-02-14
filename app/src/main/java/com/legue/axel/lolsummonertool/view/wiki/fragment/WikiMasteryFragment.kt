@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.wiki.fragment
+package com.legue.axel.lolsummonertool.view.wiki.fragment
 
 import android.os.Bundle
 import android.os.Handler
@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.SuperApplication
-import com.legue.axel.lolsummonertool.adapter.MasteriesAdapter
-import com.legue.axel.lolsummonertool.adapter.MasteriesAdapter.MasteryListener
+import com.legue.axel.lolsummonertool.view.adapter.MasteriesAdapter
+import com.legue.axel.lolsummonertool.view.adapter.MasteriesAdapter.MasteryListener
 import com.legue.axel.lolsummonertool.database.model.mastery.Mastery
-import com.legue.axel.lolsummonertool.database.viewmodel.MasteryViewModel
+import com.legue.axel.lolsummonertool.viewmodel.MasteryViewModel
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper.getMasteries
 import kotlinx.android.synthetic.main.fragment_wiki_data.*

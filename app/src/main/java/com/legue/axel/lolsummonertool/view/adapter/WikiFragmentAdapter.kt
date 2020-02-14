@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.adapter
+package com.legue.axel.lolsummonertool.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -6,10 +6,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import android.util.Log
 
 import com.legue.axel.lolsummonertool.Constants
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiChampionFragment
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiItemFragment
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiMasteryFragment
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiSummonerSpellFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiChampionFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiItemFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiMasteryFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiSummonerSpellFragment
 
 class WikiFragmentAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 

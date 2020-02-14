@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool
+package com.legue.axel.lolsummonertool.view
 
 import android.app.SearchManager
 import android.content.Context
@@ -10,7 +10,6 @@ import android.provider.SearchRecentSuggestions
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.FrameLayout
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -20,18 +19,21 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import butterknife.BindView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.legue.axel.lolsummonertool.Constants
+import com.legue.axel.lolsummonertool.ProfilSuggestionProvider
+import com.legue.axel.lolsummonertool.R
+import com.legue.axel.lolsummonertool.SuperApplication
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper
 import com.legue.axel.lolsummonertool.profil.ProfilFragment
 import com.legue.axel.lolsummonertool.utils.Utils
-import com.legue.axel.lolsummonertool.wiki.fragment.WikiFragment
+import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val TAG = MainActivity::class.java.name

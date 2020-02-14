@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.adapter
+package com.legue.axel.lolsummonertool.view.adapter
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -21,10 +21,10 @@ import com.bumptech.glide.request.target.Target
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.model.champion.Spell
 import com.legue.axel.lolsummonertool.database.model.champion.SpellImage
-import com.legue.axel.lolsummonertool.database.viewmodel.SpellViewModel
+import com.legue.axel.lolsummonertool.viewmodel.SpellViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
 import com.legue.axel.lolsummonertool.utils.Utils
-import com.legue.axel.lolsummonertool.wiki.activity.WikiChampionInformations
+import com.legue.axel.lolsummonertool.view.wiki.activity.WikiChampionInformations
 import kotlinx.android.synthetic.main.adapter_champion_spell.view.*
 import kotlin.math.roundToInt
 

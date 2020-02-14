@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.widget
+package com.legue.axel.lolsummonertool.view.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -9,7 +9,7 @@ import android.widget.RemoteViews
 
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
-import com.legue.axel.lolsummonertool.wiki.activity.WikiChampionInformations
+import com.legue.axel.lolsummonertool.view.wiki.activity.WikiChampionInformations
 
 /**
  * Implementation of App Widget functionality.

@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.database.viewmodel
+package com.legue.axel.lolsummonertool.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
