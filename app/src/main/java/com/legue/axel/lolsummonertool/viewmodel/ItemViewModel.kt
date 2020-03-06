@@ -6,22 +6,22 @@ import androidx.lifecycle.LiveData
 
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase
 import com.legue.axel.lolsummonertool.database.model.item.Item
+import com.legue.axel.lolsummonertool.database.model.item.ItemGold
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage
+import com.legue.axel.lolsummonertool.repository.ItemRepository
 
 class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
-    val items: LiveData<List<Item>>
-    private val database: SummonerToolDatabase = SummonerToolDatabase.getInstance(this.getApplication())
-
-    init {
-        items = database.itemDao().getItems()
+    fun start(itemId: Int) {
+        id = itemId
     }
 
-    fun getItemById(itemId: Int): LiveData<Item> {
-        return database.itemDao().getItemById(itemId)
-    }
+    private val itemRepository: ItemRepository = ItemRepository.getInstance(application)
+    private var id: Int = 0
 
-    fun getItemImage(itemId: Int): LiveData<ItemImage> {
-        return database.itemImageDao().getItemImageByItemId(itemId)
-    }
+    fun getItems(): LiveData<List<Item>>  = itemRepository.getItems()
+    fun getItemById(): LiveData<Item> = itemRepository.getItemById(id)
+    fun getItemImage(): LiveData<ItemImage> = itemRepository.getItemImage(id)
+    fun getItemGoldByItemId(): LiveData<ItemGold> = itemRepository.getItemGoldByItemId(id)
+
 }

@@ -33,25 +33,22 @@ class FromItemAdapter(private val ListId: List<String>, private val mActivity: W
     override fun onBindViewHolder(holder: ItemViewHolder, i: Int) {
         val itemId = ListId[i]
         val itemViewModel = ViewModelProviders.of(mActivity).get(ItemViewModel::class.java)
-
-        itemViewModel.getItemById(Integer.valueOf(itemId)).observe(mActivity, Observer { item: Item? ->
+        itemViewModel.start(Integer.valueOf(itemId))
+        itemViewModel.getItemById().observe(mActivity, Observer { item: Item? ->
 
             holder.tvItemName.text = item?.name ?: ""
-
             getItemImage(holder, itemViewModel, item?.id)
             // TODO: 23/04/2019 replace with gold item
             holder.tvItemCost.text = getPrice(item?.id)
-
-
         })
 
     }
 
     private fun getItemImage(holder: ItemViewHolder, itemViewModel: ItemViewModel, itemId: Int?) {
         if (itemId != null) {
-            itemViewModel.getItemImage(itemId).observe(mActivity, Observer { itemImage: ItemImage? ->
+            itemViewModel.start(Integer.valueOf(itemId))
+            itemViewModel.getItemImage().observe(mActivity, Observer { itemImage: ItemImage? ->
                 displayImage(itemImage?.full, holder.ivItem)
-
             })
         }
     }
@@ -83,7 +80,6 @@ class FromItemAdapter(private val ListId: List<String>, private val mActivity: W
     override fun getItemCount(): Int {
         return ListId.size
     }
-
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ivItem: ImageView = itemView.iv_item

@@ -98,6 +98,7 @@ open class ChampionsAdapter// Constructor
         val champion = mChampionFiltered[position]
 
         val championViewModel = ViewModelProviders.of(mFragment).get(ChampionViewModel::class.java)
+        championViewModel.start(championKey = champion.key)
         championViewModel.getChampionImage().observe(mFragment.viewLifecycleOwner, Observer { championImage ->
             if (championImage != null) {
                 championImage.full?.let { displayImage(it, holder.ivIcon, holder.pbChampion) }

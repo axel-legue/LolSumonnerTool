@@ -43,6 +43,7 @@ class WikiItemFragment : Fragment() {
     private lateinit var fragment: WikiItemFragment
     private lateinit var itemList: MutableList<Item>
     private var savedRecyclerLayoutState: Parcelable? = null
+
     private var itemListener = object : ItemAdapter.ItemListener {
         override fun itemSelected(position: Int, item: Item) {
             val intent = Intent(activity, WikiItemInformation::class.java)
@@ -138,7 +139,7 @@ class WikiItemFragment : Fragment() {
             RetrofitConstants.ACTION_COMPLETE -> {
                 Log.i(TAG, "ACTION_COMPLETE ")
                 val itemViewModel = ViewModelProviders.of(fragment).get(ItemViewModel::class.java)
-                itemViewModel.items.observe(viewLifecycleOwner, Observer { items: List<Item> ->
+                itemViewModel.getItems().observe(viewLifecycleOwner, Observer { items: List<Item> ->
                     if (items.isNotEmpty()) {
                         itemList.clear()
                         itemList.addAll(items)

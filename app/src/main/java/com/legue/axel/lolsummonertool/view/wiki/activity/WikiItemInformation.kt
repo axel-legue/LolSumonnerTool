@@ -13,14 +13,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.legue.axel.lolsummonertool.Constants
 import com.legue.axel.lolsummonertool.R
-import com.legue.axel.lolsummonertool.view.adapter.FromItemAdapter
 import com.legue.axel.lolsummonertool.database.model.item.Item
 import com.legue.axel.lolsummonertool.database.model.item.ItemGold
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage
 import com.legue.axel.lolsummonertool.database.model.item.ItemStat
-import com.legue.axel.lolsummonertool.viewmodel.ItemGoldViewModel
-import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
+import com.legue.axel.lolsummonertool.view.adapter.FromItemAdapter
+import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import kotlinx.android.synthetic.main.activity_wiki_item_information.*
 
 class WikiItemInformation : AppCompatActivity() {
@@ -61,7 +60,9 @@ class WikiItemInformation : AppCompatActivity() {
 
     private fun loadItemImage() {
         mItemViewModel = ViewModelProviders.of(this).get(ItemViewModel::class.java)
-        mItemViewModel.getItemImage(mItemId).observe(this, Observer { itemImage: ItemImage ->
+        //TODO: add ViewModel specific for this view ?
+        mItemViewModel.start(mItemId)
+        mItemViewModel.getItemImage().observe(this, Observer { itemImage: ItemImage ->
             displayImage(itemImage)
         })
     }
@@ -76,28 +77,27 @@ class WikiItemInformation : AppCompatActivity() {
 
     private fun loadTreeItems() {
         Log.i(TAG, "loadTreeItems")
-        mItemViewModel.getItemById(mItemId).observe(this, Observer { item: Item ->
+        mItemViewModel.getItemById().observe(this, Observer { item: Item ->
             updateItemUi(item)
-            loadItemGold(item)
+            loadItemGold()
         })
     }
 
-    private fun loadItemGold(item: Item) {
-        val itemGoldViewModel = ViewModelProviders.of(this).get(ItemGoldViewModel::class.java)
-        itemGoldViewModel.getItemGoldByItemId(item.id).observe(this, Observer { itemGold: ItemGold ->
+    private fun loadItemGold() {
+        mItemViewModel.getItemGoldByItemId().observe(this, Observer { itemGold: ItemGold ->
             updateItemGoldUi(itemGold)
-
         })
     }
 
     private fun updateItemUi(item: Item) {
+        //TODO ADD data field in ItemViewModel
         Log.i(TAG, "updateUi")
         tv_name.text = item.name
         tv_passive.text = Html.fromHtml(item.description, Html.FROM_HTML_MODE_LEGACY)
         mFromItemIds.clear()
         mIntoItemIds.clear()
 
-        if (item.from != null && item.from?.size > 0) {
+        if (item.from != null && item.from.isNotEmpty()) {
             tv_title_recipe.visibility = View.VISIBLE
             mFromItemIds.addAll(item.from)
             mFromAdapter.notifyDataSetChanged()
@@ -105,7 +105,7 @@ class WikiItemInformation : AppCompatActivity() {
             tv_title_recipe.visibility = View.GONE
         }
 
-        if (item.into != null && item.into.size > 0) {
+        if (item.into != null && item.into.isNotEmpty()) {
             tv_title_recipe.visibility = View.VISIBLE
             mIntoItemIds.addAll(item.into)
             mIntoAdapter.notifyDataSetChanged()

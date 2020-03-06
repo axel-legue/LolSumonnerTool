@@ -22,9 +22,9 @@ import com.bumptech.glide.request.target.Target
 import com.legue.axel.lolsummonertool.R
 import com.legue.axel.lolsummonertool.database.model.item.Item
 import com.legue.axel.lolsummonertool.database.model.item.ItemImage
-import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import com.legue.axel.lolsummonertool.utils.ImageUtils
 import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiItemFragment
+import com.legue.axel.lolsummonertool.viewmodel.ItemViewModel
 import kotlinx.android.synthetic.main.adapter_item.view.*
 
 class ItemAdapter(private val mContext: Context, private val mItems: List<Item>, itemListener: ItemListener, private val mFragment: WikiItemFragment) : RecyclerView.Adapter<ItemAdapter.ItemHolder>() {
@@ -33,7 +33,6 @@ class ItemAdapter(private val mContext: Context, private val mItems: List<Item>,
     interface ItemListener {
         fun itemSelected(position: Int, item: Item)
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.adapter_item, parent, false)
@@ -44,8 +43,9 @@ class ItemAdapter(private val mContext: Context, private val mItems: List<Item>,
         val item = mItems[position]
 
         val itemViewModel = ViewModelProviders.of(mFragment).get(ItemViewModel::class.java)
-
-        itemViewModel.getItemImage(item.id).observe(mFragment.viewLifecycleOwner, Observer { itemImage: ItemImage? ->
+        //TODO: check if we have to create a viewModel for this adapter
+        itemViewModel.start(item.id)
+        itemViewModel.getItemImage().observe(mFragment.viewLifecycleOwner, Observer { itemImage: ItemImage? ->
             displayImage(itemImage?.full, holder.ivIcon, holder.pbItem)
         })
 
