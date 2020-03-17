@@ -42,7 +42,8 @@ class MasteriesAdapter(private val mContext: Context, private val mMasterys: Lis
         val mastery = mMasterys[position]
 
         val masteryViewModel = ViewModelProviders.of(mFragment).get(MasteryViewModel::class.java)
-        masteryViewModel.getMasteryImage(mastery.id).observe(mFragment, Observer { masteryImage: MasteryImage? ->
+        masteryViewModel.start(mastery.id)
+        masteryViewModel.getMasteryImage().observe(mFragment, Observer { masteryImage: MasteryImage? ->
             displayImage(masteryImage?.full, holder.ivIcon, holder.pbMastery)
         })
 

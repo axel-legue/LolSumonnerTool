@@ -126,7 +126,7 @@ class WikiMasteryFragment : Fragment() {
             RetrofitConstants.ACTION_COMPLETE -> {
                 Log.i(TAG, "ACTION_COMPLETE ")
                 val masteryViewModel = ViewModelProviders.of(fragment).get(MasteryViewModel::class.java)
-                masteryViewModel.masteries.observe(viewLifecycleOwner, Observer { masteries: List<Mastery> ->
+                masteryViewModel.getMasteries().observe(viewLifecycleOwner, Observer { masteries: List<Mastery> ->
                     if (masteries.isNotEmpty()) {
                         masteryList.clear()
                         masteryList.addAll(masteries)
