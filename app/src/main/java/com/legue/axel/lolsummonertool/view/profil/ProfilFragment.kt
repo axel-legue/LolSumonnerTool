@@ -1,4 +1,4 @@
-package com.legue.axel.lolsummonertool.profil
+package com.legue.axel.lolsummonertool.view.profil
 
 
 import android.app.AlertDialog
@@ -35,8 +35,8 @@ class ProfilFragment : Fragment() {
 
     private val mOnQueryTextListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(s: String): Boolean {
-            if (s.matches(RetrofitConstants.REGEX_VALIDATION_NAME.toRegex())) {
-                return false
+            return if (s.matches(RetrofitConstants.REGEX_VALIDATION_NAME.toRegex())) {
+                false
             } else {
                 // TODO: 27/04/2019 Change waring text  and icons
                 AlertDialog.Builder(context)
@@ -45,7 +45,7 @@ class ProfilFragment : Fragment() {
                         .setPositiveButton(android.R.string.yes) { dialog, which -> }
                         .setIcon(R.drawable.ic_warning_red_24dp)
                         .show()
-                return true
+                true
             }
         }
 

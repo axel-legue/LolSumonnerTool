@@ -30,7 +30,7 @@ object RetrofitConstants {
     const val API_SUMMONER_NAME_V4_BY_NAME = "/lol/summoner/v4/summoners/by-name/"
     const val API_MATCH_V4_BY_ENCRYTPED_ACCOUNT_ID = "/lol/match/v4/matchlists/by-account/"
     const val API_MATCH_V4_MATCH_ID = "/lol/match/v4/matches/"
-    const val API_KEY_VALUE_LOL_SUMMONER_TOOL = "RGAPI-5996239e-146f-491a-a9e9-03bf000ff2fe"
+    const val API_KEY_VALUE_LOL_SUMMONER_TOOL = "RGAPI-eb5aef1b-1501-409d-a9f4-ee50b5f192d1"
 
     const val API_KEY_PARAMETER = "api_key"
     const val API_KEY_BEGIN_INDEX = "beginIndex"

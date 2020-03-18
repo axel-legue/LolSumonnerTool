@@ -31,7 +31,7 @@ import com.legue.axel.lolsummonertool.SuperApplication
 import com.legue.axel.lolsummonertool.database.SummonerToolDatabase
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitConstants
 import com.legue.axel.lolsummonertool.network.retrofit.RetrofitHelper
-import com.legue.axel.lolsummonertool.profil.ProfilFragment
+import com.legue.axel.lolsummonertool.view.profil.ProfilFragment
 import com.legue.axel.lolsummonertool.utils.Utils
 import com.legue.axel.lolsummonertool.view.wiki.fragment.WikiFragment
 
@@ -240,6 +240,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun findSummoner(summonerName: String) {
+        Log.d(TAG, "findSummoner : $summonerName")
         RetrofitHelper.getSummonerName(
                 RetrofitConstants.ACTION_GET_SUMMONER,
                 this,
