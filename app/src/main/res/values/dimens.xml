@@ -27,11 +27,17 @@
     <!-- Body -->
     <dimen name="body_1_text_size">16sp</dimen>
     <dimen name="body_2_text_size">12sp</dimen>
+    <dimen name="body_3_text_size">8sp</dimen>
     <!-- Key Lines -->
     <!-- Banner-->
     <dimen name="banner_height">60dp</dimen>
 
     <!-- Image Dimension-->
+    <dimen name="image_xsmall_summoner_spell_width">20dp</dimen>
+    <dimen name="image_xsmall_summoner_spell_height">20dp</dimen>
+
+    <dimen name="image_xsmall_item">25dp</dimen>
+
     <dimen name="image_adapter_item_width">60dp</dimen>
     <dimen name="image_adapter_item_height">60dp</dimen>
 
@@ -43,6 +49,9 @@
 
     <dimen name="image_champion_width">60dp</dimen>
     <dimen name="image_champion_height">60dp</dimen>
+
+    <dimen name="image_large_champion_width">80dp</dimen>
+    <dimen name="image_large_champion_height">80dp</dimen>
 
     <dimen name="image_champion_large_width">120dp</dimen>
     <dimen name="image_champion_large_height">120dp</dimen>

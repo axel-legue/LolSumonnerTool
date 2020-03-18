@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_champion"
+        style="@style/champion_adapter_image"
+        android:layout_width="@dimen/image_large_champion_width"
+        android:layout_height="@dimen/image_large_champion_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/content_description_champion_image"
+        android:src="@drawable/ic_placeholder_black_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_game_type"
+        app:layout_constraintStart_toEndOf="@+id/iv_champion"
+        app:layout_constraintTop_toTopOf="@+id/iv_champion"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="Victory" />
+
+    <TextView
+        android:id="@+id/tv_game_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/body_3_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/tv_game_time"
+        app:layout_constraintEnd_toEndOf="@+id/tv_result"
+        app:layout_constraintStart_toEndOf="@+id/iv_champion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_result"
+        tools:text="Ranked" />
+
+    <TextView
+        android:id="@+id/tv_game_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/body_3_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/ll_summoner_spell"
+        app:layout_constraintEnd_toEndOf="@+id/tv_result"
+        app:layout_constraintStart_toEndOf="@+id/iv_champion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_game_type"
+        tools:text="14 Hours" />
+
+    <LinearLayout
+        android:id="@+id/ll_summoner_spell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_champion"
+        app:layout_constraintEnd_toEndOf="@+id/tv_result"
+        app:layout_constraintStart_toEndOf="@+id/iv_champion"
+        app:layout_constraintTop_toBottomOf="@+id/tv_game_time">
+
+        <ImageView
+            android:id="@+id/iv_summoner_spell_1"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_summoner_spell_width"
+            android:layout_height="@dimen/image_xsmall_summoner_spell_height"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_summoner_spell_2"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_summoner_spell_width"
+            android:layout_height="@dimen/image_xsmall_summoner_spell_height"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tv_score_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_KDA"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/tv_result"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="3 / 2 / 5" />
+
+    <TextView
+        android:id="@+id/tv_KDA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/body_2_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/tv_game_length"
+        app:layout_constraintEnd_toEndOf="@+id/tv_score_line"
+        app:layout_constraintStart_toStartOf="@+id/tv_score_line"
+        app:layout_constraintTop_toBottomOf="@+id/tv_score_line"
+        tools:text="4.21:1 KDA" />
+
+    <TextView
+        android:id="@+id/tv_game_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/body_3_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_champion"
+        app:layout_constraintEnd_toEndOf="@+id/tv_score_line"
+        app:layout_constraintStart_toStartOf="@+id/tv_score_line"
+        app:layout_constraintTop_toBottomOf="@+id/tv_KDA"
+        tools:text="26m59s" />
+
+    <LinearLayout
+        android:id="@+id/ll_spell_item_line_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/ll_spell_item_line_2"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <ImageView
+            android:id="@+id/iv_item_1"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_item_2"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_item_3"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_item_4"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_spell_item_line_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_champion"
+        app:layout_constraintStart_toStartOf="@+id/ll_spell_item_line_1"
+        app:layout_constraintTop_toBottomOf="@+id/ll_spell_item_line_1">
+
+        <ImageView
+            android:id="@+id/iv_item_5"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_item_6"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+        <ImageView
+            android:id="@+id/iv_trinket_slot"
+            style="@style/champion_adapter_image"
+            android:layout_width="@dimen/image_xsmall_item"
+            android:layout_height="@dimen/image_xsmall_item"
+            android:contentDescription="@string/content_description_champion_image"
+            android:src="@drawable/ic_placeholder_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_champion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ll_spell_item_line_1"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/body_2_text_size"
+            tools:text="Level 18" />
+
+        <TextView
+            android:id="@+id/tv_creep_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/body_2_text_size"
+            tools:text="112 (4.6) cs" />
+
+        <TextView
+            android:id="@+id/tv_kill_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/body_2_text_size"
+            tools:text="P/Kill 63%" />
+
+        <TextView
+            android:id="@+id/tv_ward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/body_2_text_size"
+            tools:text="9 Wards" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
